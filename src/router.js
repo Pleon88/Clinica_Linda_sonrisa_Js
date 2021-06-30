@@ -39,21 +39,29 @@ router.post('/logout', (req, res) => {
   req.logout();
   req.session.destroy((err) => {
     res.clearCookie('connect.sid');
-    // Don't redirect, just print text
-    res.send('Logged out');
+    res.render('login', {layout: './Shared/layout'})
   });
 });
 
 // vistas
 router.get('/login', (req, res) => { res.render('login', {layout: './Shared/layout'}) });
 router.get('/test', (req, res) => { res.render('test', {layout: './Shared/layout'}) });
-router.get('/inicioSession', (req, res) => { res.render('inicioSession', {layout: './Shared/layout_login'}) });
+// router.get('/inicioSession', (req, res) => { res.render('inicioSession', {layout: './Shared/layout_login'}) });
 router.get('/registrar', (req, res) => { res.render('registrar', {layout: './Shared/layout'}) });
 router.get('/informacion', (req, res) => { res.render('informacion', {layout: './Shared/layout_login'}) });
+router.get('/', (req, res) => { res.render('index', {layout: './Shared/layout'}) });
 
-router.get('/', (req, res , next) => {
+router.get('/medico', (req, res , next) => {
   if (req.isAuthenticated()) return next();
   res.redirect('/login');
-},(req, res) => { res.render('inicioSession', { user: req.user }) });
+},(req, res) => { res.render('inicioSession', { layout: './Shared/layout_login', user: req.user }) });
+
+router.get('/inicioSession', (req, res , next) => {
+  if (req.isAuthenticated()) return next();
+  res.redirect('/login');
+},(req, res) => {
+  if (req.user.idTipo_usuario === 5) return res.render('inicioSession', { layout: './Shared/layout_login', user: req.user })
+  if (req.user.idTipo_usuario === 1) return res.render('medico', { layout: './Shared/layout_login', user: req.user })  
+ });
 
 module.exports = router;

@@ -30,14 +30,12 @@ const login = async (req, res, next) => {
   passport.deserializeUser(function (id, done) {
     done(null, id);
   });
-
+  
   passport.authenticate("local", {
-    successRedirect: "/",
-    failureRedirect: "/login",
+    successRedirect: "/inicioSession",
+    failureRedirect: "/",
   })(req, res, next);
 };
-
-const showLogin = () => {};
 
 module.exports = {
   login,
