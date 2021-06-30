@@ -47,6 +47,7 @@ router.post('/logout', (req, res) => {
 router.get('/login', (req, res) => { res.render('login', {layout: './Shared/layout'}) });
 router.get('/mision', (req, res) => { res.render('mision', {layout: './Shared/layout'}) });
 router.get('/contacto', (req, res) => { res.render('contacto', {layout: './Shared/layout'}) });
+router.get('/indexUsers', (req, res) => { res.render('indexUsers', {layout: './Shared/layout'}) });
 // router.get('/inicioSession', (req, res) => { res.render('inicioSession', {layout: './Shared/layout_login'}) });
 router.get('/registrar', (req, res) => { res.render('registrar', {layout: './Shared/layout'}) });
 router.get('/informacion', (req, res) => { res.render('informacion', {layout: './Shared/layout_login'}) });

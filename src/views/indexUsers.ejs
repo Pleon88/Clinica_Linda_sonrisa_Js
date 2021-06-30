@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+<h2>Usuarios</h2>
+<p>
+    <input onclick="document.location.href='/registrar'" type="button" value="Crear" class="btn btn-success">
+</p>
+<div class=" table-responsive col-auto">
+    <table class="table table-hover text-truncate">
+        <thead class="thead-dark">
+            <tr>
+                <th>Nombre:</th>
+                <th>Apellido Paterno:</th>
+                <th>Apellido Materno:</th>
+                <th>Fecha de Nacimiento:</th>
+                <th>Usuario:</th>
+                <th>Contraseña:</th>
+                <th>Dirección:</th>
+                <th>Comuna:</th>
+                <th>Email:</th>
+                <th>Fono:</th>
+                <th>RUN Persona Cargo:</th>
+                <th>Categoria:</th>
+                <th>Status:</th>
+                <th>Fecha Creación:</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr v-for="(user,indice) of usuarios">
+                <td>{{run_usuario}} </td>
+                <td>{{apellidoP_usuario}} </td>
+                <td>{{apellidoM_usuario}} </td>
+                <td>{{fecha_nac_usuario}} </td>
+                <td>{{Usuario}} </td>
+                <td>{{password_usuario}} </td>
+                <td>{{direccion_usuario}} </td>
+                <td>{{comuna_usuario}} </td>
+                <td>{{email_usuario}} </td>
+                <td>{{fono_usuario}} </td>
+                <td>{{persona_cargo}} </td>
+                <td>{{idTipo_usuario}} </td>
+                <td>{{status_usuario}} </td>
+                <td>{{fecha_creacion}} </td>
+            
+        
+        <td>
+            <input onclick="document.location.href='/Usuarios/Details/{{id=run_usuario}}'" type="button" value="Ver" class="btn btn-outline-warning"> |
+            <input onclick="document.location.href='/Usuarios/Modificar/186131797'" type="button" value="Modificar" class="btn btn-outline-dark"> |
+            <input onclick="document.location.href='/Usuarios/Delete/186131797'" type="button" value="Eliminar" class="btn btn-outline-danger">
+            <input onclick="document.location.href=''" type="button" value="Ver" class="btn btn-outline-warning" /> |
+            <input onclick="document.location.href=''" type="button" value="Modificar" class="btn btn-outline-dark" /> |
+            <input onclick="document.location.href= ''" type="button" value="Eliminar" class="btn btn-outline-danger" />
+        </td>
+    </tr>
+    </tbody>
+    </table>
+</div>
+</body>
+</html>
