@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+    <h2>Mi Información</h2>
+
+    <div>
+        <h4><%= user.nombre_usuario %>  <%= user.apellidoP_usuario %></h4>
+        <hr />
+        <div class="form-group">
+            <div class="form-group">
+                <strong>RUN:</strong>
+            </div>
+            <div class="form-control">
+                <%=Usuario[Usuario].run_usuario%>
+                @Html.DisplayFor(model => model.run_usuario)
+            </div>
+    
+            <div class="form-group">
+                <strong>Nombre:</strong>
+            </div>
+    
+            <div class="form-control">
+                @Html.DisplayFor(model => model.nombre_usuario)
+            </div>
+    
+            <div class="form-group">
+                <strong>A. Paterno:</strong>
+            </div>
+    
+            <div class="form-control">
+                @Html.DisplayFor(model => model.apellidoP_usuario)
+            </div>
+    
+            <div class="form-group">
+                <strong>A. Materno:</strong>
+            </div>
+    
+            <div class="form-control">
+                @Html.DisplayFor(model => model.apellidoM_usuario)
+            </div>
+    
+            <div class="form-group">
+                <strong>Fecha de Nacimiento:</strong>
+            </div>
+    
+            <div class="form-control">
+                @Html.DisplayFor(model => model.fecha_nac_usuario)
+            </div>
+    
+            <div class="form-group">
+                <strong>Usuario:</strong>
+            </div>
+    
+            <div class="form-control">
+                @Html.DisplayFor(model => model.usuario1)
+            </div>
+    
+            <div class="form-group">
+                <strong>Contraseña:</strong>
+            </div>
+    
+            <div class="form-control">
+                @Html.DisplayFor(model => model.password_usuario)
+            </div>
+    
+            <div class="form-group">
+                <strong>Dirección:</strong>
+            </div>
+    
+            <div class="form-control">
+                @Html.DisplayFor(model => model.direccion_usuario)
+            </div>
+    
+            <div class="form-group">
+                <strong>Región:</strong>
+            </div>
+    
+            <div class="form-control">
+                @Html.DisplayFor(model => model.Comuna.idregion)
+            </div>
+    
+            <div class="form-group">
+                <strong>Comuna:</strong>
+            </div>
+    
+            <div class="form-control">
+                @Html.DisplayFor(model => model.Comuna.nombre_comuna)
+            </div>
+    
+            <div class="form-group">
+                <strong>Email:</strong>
+            </div>
+    
+            <div class="form-control">
+                @Html.DisplayFor(model => model.email_usuario)
+            </div>
+    
+            <div class="form-group">
+                <strong>Fono:</strong>
+            </div>
+    
+            <div class="form-control">
+                @Html.DisplayFor(model => model.fono_usuario)
+            </div>
+    
+            <div class="form-group">
+                <strong>RUN Persona a Cargo:</strong>
+            </div>
+    
+            <div class="form-control">
+                @Html.DisplayFor(model => model.persona_cargo)
+            </div>
+        </div>
+    </div>
+    <hr />
+
+   <p>
+   <//input onclick="document.location.href='@Url.Action("Modificar", "Acceso", new { id = Model.run_usuario })'" type="button" value="Modificar" class="btn btn-outline-success" /> |
+   <//input onclick="document.location.href='@Url.Content("~/Acceso/InicioSesion")'" type="button" value="Volver" class="btn btn-outline-dark" />
+    </p>
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

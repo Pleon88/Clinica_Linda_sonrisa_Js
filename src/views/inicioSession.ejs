@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+<h2>Inicio Sesion</h2>
+<br>
+<h4>BIENVENIDO  <%= user.nombre_usuario %>  <%= user.apellidoP_usuario %></h4>
+<hr />
+<br />
+<div class="list-group">
+    <a href="#" class="list-group-item list-group-item-action active">
+        Menú
+    </a>
+    <a href="/informacion" class="list-group-item list-group-item-action">Información Personal</a>
+    <a href="@Url.Content("~/Acceso/SituacionEconomica")" class="list-group-item list-group-item-action">Situación Ecónomica</a>
+    <a href="@Url.Content("~/Acceso/ReservaHora")" class="list-group-item list-group-item-action">Reserva de Hora</a>
+    <a href="@Url.Content("~/Acceso/VerBoleta")" class="list-group-item list-group-item-action">Ver Boletas</a>
+</div>
+<br />
+</body>
+</html>
