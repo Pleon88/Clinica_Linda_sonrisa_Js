@@ -1,0 +1,265 @@
+{
+	"info": {
+		"_postman_id": "9f6bb6da-e9f2-4e34-9645-97ad60f285fb",
+		"name": "pablito",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:3000/usuarios",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"run_usuario\": \"1-8\",\n    \"nombre_usuario\": \"Claudio\",\n    \"apellidoP_usuario\": \"Troncoso\",\n    \"apellidoM_usuario\": \"Ogalde\",\n    \"fecha_nac_usuario\": \"1991-06-10\",\n    \"usuario\": \"ceto\",\n    \"idTipo_usuario\": 5,\n    \"status_usuario\": \"activo\",\n    \"password_usuario\": \"123\",\n    \"direccion_usuario\": \"asd\",\n    \"comuna_usuario\": 1,\n    \"email_usuario\": \"ctroncoso@gmail.com\",\n    \"fono_usuario\": \"123123\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/usuarios",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"usuarios"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/usuarios",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/usuarios",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"usuarios"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/usuarios/1-9",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nombre_usuario\": \"Test edit\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/usuarios/1-9",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"usuarios",
+						"1-9"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/usuarios/1-9",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/usuarios/1-9",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"usuarios",
+						"1-9"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/usuarios/1-9",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/usuarios/1-9",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"usuarios",
+						"1-9"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3000/agendas",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id_usuario_agenda\": \"186131797\",\n    \"fecha_agenda\": \"2021-06-30\",\n    \"status_agenda\": \"creada\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/agendas",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"agendas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3000/agendas",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/agendas?idMedico=1-9",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"agendas"
+					],
+					"query": [
+						{
+							"key": "idMedico",
+							"value": "1-9"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3000/agendas/5",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/agendas/5",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"agendas",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3000/agendas/6/reservas",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"horarioReserva\": \"2021-06-30 01:00\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/agendas/6/reservas",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"agendas",
+						"6",
+						"reservas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3000/agendas/6/reservas",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/agendas/6/reservas",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"agendas",
+						"6",
+						"reservas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3000/agendas/6/reservas/2",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/agendas/6/reservas/2",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"agendas",
+						"6",
+						"reservas",
+						"2"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

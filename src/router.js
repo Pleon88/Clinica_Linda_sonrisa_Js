@@ -10,7 +10,9 @@ const bodyParser = require("body-parser");
 
 // llama a los controladores.
 const usuario = require("./controllers/usuario");
+const agendaController = require('./controllers/agenda');
 const loginController = require("./controllers/login");
+const reservaController = require('./controllers/reservas');
 
 router.use(bodyParser.urlencoded({ extended: true }));
 router.use(bodyParser.json());
@@ -29,9 +31,21 @@ router.use(passport.session());
 // usuarios
 router.get("/usuarios", usuario.showAll);
 router.get("/usuarios/:id", usuario.show);
-router.post("/usuarios", usuario.create);
+router.post("/registrar", usuario.create);
 router.put("/usuarios/:id", usuario.edit);
 router.delete("/usuarios/:id", usuario.remove);
+
+// agenda
+router.get("/agendas", agendaController.show);
+router.post("/agendas", agendaController.create);
+router.put("/agendas/:id", agendaController.edit);
+router.delete("/agendas/:id", agendaController.remove);
+
+// reserva
+router.post("/agendas/:id/reservas", reservaController.add);
+router.get("/agendas/:id/reservas", reservaController.show);
+router.delete("/agendas/:id/reservas/:idReserva", reservaController.remove);
+router.put("/agendas/:id/reservas/:idReserva", reservaController.edit);
 
 // login
 router.post("/login", loginController.login);
@@ -49,7 +63,7 @@ router.get('/mision', (req, res) => { res.render('mision', {layout: './Shared/la
 router.get('/contacto', (req, res) => { res.render('contacto', {layout: './Shared/layout'}) });
 router.get('/indexUsers', (req, res) => { res.render('indexUsers', {layout: './Shared/layout'}) });
 // router.get('/inicioSession', (req, res) => { res.render('inicioSession', {layout: './Shared/layout_login'}) });
-router.get('/registrar', (req, res) => { res.render('registrar', {layout: './Shared/layout'}) });
+router.get('/registrar', (req, res) => { res.render('registrar', {layout: './Shared/layout', created: null}) });
 router.get('/informacion', (req, res) => { res.render('informacion', {layout: './Shared/layout_login'}) });
 router.get('/', (req, res) => { res.render('index', {layout: './Shared/layout'}) });
 
