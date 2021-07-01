@@ -9,7 +9,18 @@
   </div>
   <br>
   <div>
-    <form id="addUser" name="addUser">
+
+    <% if (created) { %>
+      <div class="alert alert-success" role="alert">
+        Usuario creado correctamente
+      </div>
+    <%} else if (created !== null){%>
+      <div class="alert alert-danger" role="alert">
+        problemas al crear al usuario
+      </div>
+    <%}%>
+
+    <form id="addUser" name="addUser" action="/registrar" method="post">
       <label for="run_usuario" class="control-label col-md-2"> RUN:</label>
       <input type="text" id="run_usuario" name="run_usuario" class="form-control col-md-4" placeholder="RUN"> <br>
 
@@ -69,7 +80,7 @@
 
   </div>
   </div>
-  <script src="js/usuarios.js"></script>
+  <!-- <script src="js/usuarios.js"></script> -->
    <script
   src="https://code.jquery.com/jquery-3.4.1.min.js"
   integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="

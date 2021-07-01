@@ -16,8 +16,9 @@ const create = async (req, res) => {
   req.body.idTipo_usuario = Number(req.body.idTipo_usuario);
   req.body.fecha_creacion = new Date();
   const usuarios = await Model.Usuario.create(req.body).catch((error) => error)
-  if (usuarios.message) return res.json({ error: true, message: usuarios.message })
-  return res.status(200).json({usuarios})
+  if (usuarios.message) return res.render(res.render('registrar', {layout: './Shared/layout', created: false }))
+  // return res.status(200).json({usuarios})
+  return res.render(res.render('registrar', {layout: './Shared/layout', created: true }))
 };
 
 const edit = async (req, res) => {
