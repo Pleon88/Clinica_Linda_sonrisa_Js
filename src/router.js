@@ -10,7 +10,9 @@ const bodyParser = require("body-parser");
 
 // llama a los controladores.
 const usuario = require("./controllers/usuario");
+const agendaController = require('./controllers/agenda');
 const loginController = require("./controllers/login");
+const reservaController = require('./controllers/reservas');
 
 router.use(bodyParser.urlencoded({ extended: true }));
 router.use(bodyParser.json());
@@ -32,6 +34,18 @@ router.get("/usuarios/:id", usuario.show);
 router.post("/usuarios", usuario.create);
 router.put("/usuarios/:id", usuario.edit);
 router.delete("/usuarios/:id", usuario.remove);
+
+// agenda
+router.get("/agendas", agendaController.show);
+router.post("/agendas", agendaController.create);
+router.put("/agendas/:id", agendaController.edit);
+router.delete("/agendas/:id", agendaController.remove);
+
+// reserva
+router.post("/agendas/:id/reservas", reservaController.add);
+router.get("/agendas/:id/reservas", reservaController.show);
+router.delete("/agendas/:id/reservas/:idReserva", reservaController.remove);
+router.put("/agendas/:id/reservas/:idReserva", reservaController.edit);
 
 // login
 router.post("/login", loginController.login);
