@@ -18,3 +18,7 @@ app.listen(portApp, () => {
   // eslint-disable-next-line no-console
   console.log(`App listening on port ${portApp}`);
 });
+
+app.get('/usuarios', (req, res)=> {
+  res.render("indexUsers",{Nombre: "nombre_usuario", ApellidoP: "apellidoP_usuario"})
+}) 

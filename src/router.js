@@ -58,13 +58,26 @@ router.post('/logout', (req, res) => {
 });
 
 // vistas
+
+// Home
 router.get('/login', (req, res) => { res.render('login', {layout: './Shared/layout'}) });
 router.get('/mision', (req, res) => { res.render('mision', {layout: './Shared/layout'}) });
 router.get('/contacto', (req, res) => { res.render('contacto', {layout: './Shared/layout'}) });
-router.get('/indexUsers', (req, res) => { res.render('indexUsers', {layout: './Shared/layout'}) });
-// router.get('/inicioSession', (req, res) => { res.render('inicioSession', {layout: './Shared/layout_login'}) });
 router.get('/registrar', (req, res) => { res.render('registrar', {layout: './Shared/layout', created: null}) });
+
+
+// Crud Usuarios
+router.get('/indexUsers', (req, res) => { res.render('indexUsers', {layout: './Shared/layout'}) }); 
+
+// router.get('/inicioSession', (req, res) => { res.render('inicioSession', {layout: './Shared/layout_login'}) });
+
+//Menu usuario Paciente
 router.get('/informacion', (req, res) => { res.render('informacion', {layout: './Shared/layout_login'}) });
+router.get('/reservaHora', (req, res) => { res.render('reservaHora', {layout: './Shared/layout'}) });
+router.get('/reservaHoras', (req, res) => { res.render('reservaHoras', {layout: './Shared/layout'}) });
+
+
+// login
 router.get('/', (req, res) => { res.render('index', {layout: './Shared/layout'}) });
 
 router.get('/medico', (req, res , next) => {

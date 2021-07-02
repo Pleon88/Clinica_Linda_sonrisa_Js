@@ -28,7 +28,7 @@
         </thead>
         <tbody>
             <tr v-for="(user,indice) of usuarios">
-                <td>{{run_usuario}} </td>
+                <td>{{nombre_usuario}} </td>
                 <td>{{apellidoP_usuario}} </td>
                 <td>{{apellidoM_usuario}} </td>
                 <td>{{fecha_nac_usuario}} </td>
@@ -41,10 +41,8 @@
                 <td>{{persona_cargo}} </td>
                 <td>{{idTipo_usuario}} </td>
                 <td>{{status_usuario}} </td>
-                <td>{{fecha_creacion}} </td>
-            
-        
-        <td>
+                <td>{{fecha_creacion}} </td>        
+            <td>
             <input onclick="document.location.href='/Usuarios/Details/{{id=run_usuario}}'" type="button" value="Ver" class="btn btn-outline-warning"> |
             <input onclick="document.location.href='/Usuarios/Modificar/186131797'" type="button" value="Modificar" class="btn btn-outline-dark"> |
             <input onclick="document.location.href='/Usuarios/Delete/186131797'" type="button" value="Eliminar" class="btn btn-outline-danger">
