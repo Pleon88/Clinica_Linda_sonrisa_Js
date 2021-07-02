@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+	
 <body>
 	<h2>Reserva de hora</h2>
 	<br>
@@ -10,14 +11,14 @@
 					<div class="card-body ">
 						<h4 class="mb-3">Seleccion de profesional</h4>
 						<p></p>
-						<form action="\" method="GET">
-							<select class="form-select mb-3" aria-label="Default select example">
-								<option selected>Open this select menu</option>
-								<option value="1">One</option>
-								<option value="2">Two</option>
-								<option value="3">Three</option>
+						<form id="professionals" method="POST">
+							<select class="form-select mb-3" aria-label="Default select example" id="profesional" name="profesional">
+								<option selected>Selecciona profesional</option>
+								<% professionals.forEach((profesional) => { %>
+									<option value="<%= profesional.run_usuario %>" id="<%= profesional.run_usuario %>" name="<%= profesional.run_usuario %>"><%= profesional.nombre_usuario %></option>
+								<% }) %>
 							</select>
-							<button type="button" class="btn btn-primary float-end">Consultar Agenda</button>
+							<input type="submit" class="btn btn-primary float-end" value="Consultar Agenda" >
 						</form>
 					</div>
 				</div>
@@ -27,14 +28,12 @@
 					<div class="card-body ">
 						<h4 class="mb-3">Fecha</h4>
 						<p></p>
-						<form action="\" method="GET">
-							<select class="form-select mb-3" aria-label="Default select example">
-								<option selected>Open this select menu</option>
-								<option value="1">One</option>
-								<option value="2">Two</option>
-								<option value="3">Three</option>
+						<form id="agendasProfesional" method="POST">
+							<select class="form-select mb-3" aria-label="Default select example" id="agendaSelect" name="agendaSelect">
+								<option value="">Seleccione una agenda</option>
 							</select>
-							<button type="button" class="btn btn-primary float-end">Seleccionar</button>
+							<input type="submit" class="btn btn-primary float-end" value="Seleccionar">
+							
 						</form>
 					</div>
 				</div>
@@ -45,11 +44,8 @@
 						<h4 class="mb-3">Hora</h4>
 						<p></p>
 						<form action="\" method="GET">
-							<select class="form-select mb-3" aria-label="Default select example">
-								<option selected>Open this select menu</option>
-								<option value="1">One</option>
-								<option value="2">Two</option>
-								<option value="3">Three</option>
+							<select class="form-select mb-3" aria-label="Default select example" id="reservasProfesional" name="reservasProfesional">
+								<option selected>Horas</option>
 							</select>
 							<button type="button" class="btn btn-primary float-end">Seleccionar</button>
 						</form>
@@ -65,5 +61,66 @@
 		</div>
 	</div>
 <br />
+	
+
+<script>
+	$('#professionals').submit(function (e) {
+			e.preventDefault();
+			var profesionalSelected = $('#profesional').find(":selected").val();
+			console.log(profesionalSelected)
+			$.ajax({
+				url: `/agendas?profesional=${profesionalSelected}`,
+				processData: false,
+				contentType: false,
+				type: 'get',
+				success: function(agendas){
+						console.log(agendas);
+						$('#agendaSelect')
+							.find('option')
+							.remove()
+							.end()
+							.append('<option value="" selected>Seleccione una agenda</option>')
+							.val('whatever');
+
+							$('#reservasProfesional')
+							.find('option')
+							.remove()
+							.end()
+							.append('<option value="" selected>Seleccione una hora</option>')
+							.val('whatever');							
+						agendas.forEach((agenda) => {
+							console.log(agenda)
+							$('#agendaSelect').append(`<option value="${agenda.id_agenda}"> ${agenda.fecha_agenda} </option>`);
+						})
+				}
+			});
+	});
+	
+	$('#agendasProfesional').submit(function (e) {
+			e.preventDefault();
+			var agendaSelected = $('#agendaSelect').find(":selected").val();
+			console.log(agendaSelected)
+			$.ajax({
+				url: `/agendas/${agendaSelected}/reservas`,
+				processData: false,
+				contentType: false,
+				type: 'get',
+				success: function(reservas){
+						console.log(reservas);
+						$('#reservasProfesional')
+							.find('option')
+							.remove()
+							.end()
+							.append('<option value="">Seleccione una hora</option>')
+							.val('whatever');
+						reservas.forEach((reserva) => {
+							var hours = new Date(reserva.horario_reserva)
+							$('#reservasProfesional').append(`<option > ${hours.getHours()}:${('0' + hours.getMinutes()).slice(-2)} </option>`);
+						})
+				}
+			});
+	});
+
+</script>
 </body>
 </html>

@@ -3,7 +3,8 @@ const Model = require("../models");
 
 const showAll = async (req, res) => {
   const usuarios = await Model.Usuario.findAll();
-  return res.json({ data: usuarios})
+  return res.render(res.render('users', {layout: './Shared/layout', users: usuarios }))
+  // return res.json({ data: usuarios})
 };
 
 const show = async (req, res) => {
