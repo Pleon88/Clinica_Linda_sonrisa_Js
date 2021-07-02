@@ -1,6 +1,17 @@
 const Sequelize = require("sequelize");
 const Model = require("../models");
 
+
+const showProfessionals = async (req, res) => {
+  const professionals = await Model.Usuario.findAll({
+    attributes: ['run_usuario', 'nombre_usuario'],
+    where: {
+      idTipo_usuario: 1
+    }
+  })
+  return res.render('reservaHoras', {layout: './Shared/layout_login', professionals: professionals, user: req.user})
+}
+
 const add = async (req, res) => {
   const { id } = req.params;
   const { horarioReserva } = req.body;
@@ -40,4 +51,5 @@ module.exports = {
   show,
   remove,
   edit,
+  showProfessionals,
 }
