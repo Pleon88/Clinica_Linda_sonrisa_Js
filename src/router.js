@@ -4,6 +4,10 @@ const cookieParser = require("cookie-parser");
 const session = require("express-session");
 const passport = require("passport");
 
+const verifyUserLogin = (req, res , next) => {
+  if (req.isAuthenticated()) return next();
+  res.redirect('/login');
+}
 
 const router = express.Router();
 const bodyParser = require("body-parser");
@@ -29,7 +33,7 @@ router.use(passport.initialize());
 router.use(passport.session());
 
 // usuarios
-router.get("/usuarios", usuario.showAll);
+router.get("/users", usuario.showAll);
 router.get("/usuarios/:id", usuario.show);
 router.post("/registrar", usuario.create);
 router.put("/usuarios/:id", usuario.edit);
@@ -65,7 +69,6 @@ router.get('/mision', (req, res) => { res.render('mision', {layout: './Shared/la
 router.get('/contacto', (req, res) => { res.render('contacto', {layout: './Shared/layout'}) });
 router.get('/registrar', (req, res) => { res.render('registrar', {layout: './Shared/layout', created: null}) });
 
-
 // Crud Usuarios
 router.get('/indexUsers', (req, res) => { res.render('indexUsers', {layout: './Shared/layout'}) }); 
 router.get('/Informacion', (req, res) => { res.render('Informacion', {layout: './Shared/layout'}) }); 
@@ -77,17 +80,13 @@ router.get('/modificar', (req, res) => { res.render('modificar', {layout: './Sha
 //Menu usuario Paciente
 router.get('/informacion', (req, res) => { res.render('informacion', {layout: './Shared/layout_login'}) });
 router.get('/reservaHora', (req, res) => { res.render('reservaHora', {layout: './Shared/layout'}) });
-router.get('/reservaHoras', (req, res) => { res.render('reservaHoras', {layout: './Shared/layout'}) });
-
+router.get('/reservations',verifyUserLogin ,reservaController.showProfessionals);
 
 
 // login
 router.get('/', (req, res) => { res.render('index', {layout: './Shared/layout'}) });
 
-router.get('/medico', (req, res , next) => {
-  if (req.isAuthenticated()) return next();
-  res.redirect('/login');
-},(req, res) => { res.render('inicioSession', { layout: './Shared/layout_login', user: req.user }) });
+router.get('/medico',verifyUserLogin ,(req, res) => { res.render('inicioSession', { layout: './Shared/layout_login', user: req.user }) });
 
 router.get('/inicioSession', (req, res , next) => {
   if (req.isAuthenticated()) return next();

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+<h2>Usuarios</h2>
+
+<p>
+    <input onclick="document.location.href='/registrar'" type="button" value="Crear" class="btn btn-success">
+</p>
+<div class=" table-responsive col-auto">
+    <table class="table table-hover text-truncate">
+        <thead class="thead-dark">
+            <tr>
+                <th>Nombre:</th>
+                <th>Apellido Paterno:</th>
+                <th>Apellido Materno:</th>
+                <th>Fecha de Nacimiento:</th>
+                <th>Usuario:</th>
+                <th>Contraseña:</th>
+                <th>Dirección:</th>
+                <th>Comuna:</th>
+                <th>Email:</th>
+                <th>Fono:</th>
+                <th>RUN Persona Cargo:</th>
+                <th>Categoria:</th>
+                <th>Status:</th>
+                <th>Fecha Creación:</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <% users.forEach ( function(user) { %>
+                <tr v-for="(user,indice) of usuarios">
+                    <td><%= user.nombre_usuario %> </td>
+                    <td><%= user.apellidoP_usuario %> </td>
+                    <td><%= user.apellidoM_usuario %> </td>
+                    <td><%= user.fecha_nac_usuario %> </td>
+                    <td><%= user.Usuario %> </td>
+                    <td><%= user.password_usuario %> </td>
+                    <td><%= user.direccion_usuario %> </td>
+                    <td><%= user.comuna_usuario %> </td>
+                    <td><%= user.email_usuario %> </td>
+                    <td><%= user.fono_usuario %> </td>
+                    <td><%= user.persona_cargo %> </td>
+                    <td><%= user.idTipo_usuario %> </td>
+                    <td><%= user.status_usuario %> </td>
+                    <td><%= user.fecha_creacion %> </td>     
+                <td>            
+                    <input onclick="document.location.href=`/Usuarios/Details/id=<%= user.run_usuario %>`" type="button" value="Ver" class="btn btn-outline-warning"> |
+                    <input onclick="document.location.href='/Usuarios/Modificar/186131797'" type="button" value="Modificar" class="btn btn-outline-dark"> |
+                    <input onclick="document.location.href='/Usuarios/Delete/186131797'" type="button" value="Eliminar" class="btn btn-outline-danger">
+                    <input onclick="document.location.href=''" type="button" value="Ver" class="btn btn-outline-warning" /> |
+                    <input onclick="document.location.href=''" type="button" value="Modificar" class="btn btn-outline-dark" /> |
+                    <input onclick="document.location.href= ''" type="button" value="Eliminar" class="btn btn-outline-danger" /> 
+                </tr>
+            <% }) %> 
+        </td>
+    </tr>
+    </tbody>
+    </table>
+</div>
+</body>
+</html>
