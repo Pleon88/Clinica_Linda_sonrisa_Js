@@ -68,6 +68,9 @@ router.get('/registrar', (req, res) => { res.render('registrar', {layout: './Sha
 
 // Crud Usuarios
 router.get('/indexUsers', (req, res) => { res.render('indexUsers', {layout: './Shared/layout'}) }); 
+router.get('/Informacion', (req, res) => { res.render('Informacion', {layout: './Shared/layout'}) }); 
+router.get('/eliminar', (req, res) => { res.render('eliminar', {layout: './Shared/layout'}) });
+router.get('/modificar', (req, res) => { res.render('modificar', {layout: './Shared/layout'}) });
 
 // router.get('/inicioSession', (req, res) => { res.render('inicioSession', {layout: './Shared/layout_login'}) });
 
@@ -75,6 +78,7 @@ router.get('/indexUsers', (req, res) => { res.render('indexUsers', {layout: './S
 router.get('/informacion', (req, res) => { res.render('informacion', {layout: './Shared/layout_login'}) });
 router.get('/reservaHora', (req, res) => { res.render('reservaHora', {layout: './Shared/layout'}) });
 router.get('/reservaHoras', (req, res) => { res.render('reservaHoras', {layout: './Shared/layout'}) });
+
 
 
 // login

@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <body>
-    <h2>Mi Información</h2>
+<h2>Eliminar</h2>
 
+<h3>¿Estás seguro?</h3>
 <div>
     <h4>Usuario</h4>
     <hr />
-    <div class="form-group">
+    <div class=" form-group">
         <div class="form-group">
             <strong>RUN:</strong>
         </div>
@@ -134,12 +135,16 @@
             @Html.DisplayFor(model => model.Tipo_Usuario.nombre_usuario)
         </div>
     </div>
-</div>
-<hr />
+    <hr />
 
-<p>
-    <input onclick="document.location.href='@Url.Action(Modificar, new { id = Model.run_usuario })'" type="button" value="Modificar" class="btn btn-outline-success" /> |
-    <input onclick="document.location.href='/indexUsers'" type="button" value="Volver a la lista" class="btn btn-outline-dark" />
-</p>
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Eliminar" class="btn btn-danger" /> |
+            <input onclick="document.location.href='/indexUsers'" type="button" value="Volver a la Lista" class="btn btn-outline-dark" />
+        </div>
+    }
+</div>
 </body>
 </html>
