@@ -5,50 +5,33 @@
 	<h2>Reserva de hora</h2>
 	<br>
 	<div class="container">
-		<div class="row row-cols-1 row-cols-md-3 g-4">
-			<div class="col-4">
+		<div class="row row-cols-1 row-cols-md-5 ">
+			<div class="col-8">
 				<div class="card">
 					<div class="card-body ">
 						<h4 class="mb-3">Seleccion de profesional</h4>
 						<p></p>
 						<form id="professionals" method="POST">
-							<select class="form-select mb-3" aria-label="Default select example" id="profesional" name="profesional">
+							<select class="form-select mb-3 profesionalOptions" aria-label="Default select example" id="profesional" name="profesional">
 								<option selected>Selecciona profesional</option>
 								<% professionals.forEach((profesional) => { %>
-									<option value="<%= profesional.run_usuario %>" id="<%= profesional.run_usuario %>" name="<%= profesional.run_usuario %>"><%= profesional.nombre_usuario %></option>
+									<option value="<%= profesional.run_usuario %>" id="<%= profesional.run_usuario %>" ><%= profesional.nombre_usuario %></option>
 								<% }) %>
 							</select>
-							<input type="submit" class="btn btn-primary float-end" value="Consultar Agenda" >
-						</form>
-					</div>
-				</div>
-			</div>
-			<div class="col-4">
-				<div class="card">
-					<div class="card-body ">
-						<h4 class="mb-3">Fecha</h4>
-						<p></p>
-						<form id="agendasProfesional" method="POST">
-							<select class="form-select mb-3" aria-label="Default select example" id="agendaSelect" name="agendaSelect">
+
+							<h4 class="mb-3">Fecha</h4>
+							<p></p>
+							<select class="form-select mb-3" aria-label="Default select example" id="agendaSelect" name="agendaSelect" disabled>
 								<option value="">Seleccione una agenda</option>
-							</select>
-							<input type="submit" class="btn btn-primary float-end" value="Seleccionar">
+							</select>			
 							
-						</form>
-					</div>
-				</div>
-			</div>
-			<div class="col-4">
-				<div class="card">
-					<div class="card-body ">
-						<h4 class="mb-3">Hora</h4>
-						<p></p>
-						<form action="\" method="GET">
-							<select class="form-select mb-3" aria-label="Default select example" id="reservasProfesional" name="reservasProfesional">
+							<h4 class="mb-3">Horas</h4>
+							<p></p>
+							<select class="form-select mb-3" aria-label="Default select example" id="reservaHora" name="reservaHora" disabled>
 								<option selected>Horas</option>
 							</select>
-							<button type="button" class="btn btn-primary float-end">Seleccionar</button>
-						</form>
+							<input type="submit" value="Reservar"  class="btn btn-success">
+						</form>				
 					</div>
 				</div>
 			</div>
@@ -57,70 +40,100 @@
 	<br>
 	<div class="form-group">
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-      		<input type="submit" value="Reservar" class="btn btn-success" > |
-			<input onclick="document.location.href='/inicioSession'" type="button" value="Volver al Menu" class="btn btn-outline-dark" />
+      		<!-- <input type="submit" value="Reservar" class="btn btn-success" > |
+			<input onclick="document.location.href='/inicioSession'" type="button" value="Volver al Menu" class="btn btn-outline-dark" /> -->
 		</div>
 	</div>
 <br />
 	
 
 <script>
-	$('#professionals').submit(function (e) {
-			e.preventDefault();
-			var profesionalSelected = $('#profesional').find(":selected").val();
-			console.log(profesionalSelected)
-			$.ajax({
-				url: `/agendas?profesional=${profesionalSelected}`,
-				processData: false,
-				contentType: false,
-				type: 'get',
-				success: function(agendas){
-						console.log(agendas);
-						$('#agendaSelect')
-							.find('option')
-							.remove()
-							.end()
-							.append('<option value="" selected>Seleccione una agenda</option>')
-							.val('whatever');
+	$('#profesional').change(function() {
+		var profesionalSelected = $('#profesional').find(":selected").val();
+		$.ajax({
+			url: `/agendas?profesional=${profesionalSelected}`,
+			processData: false,
+			contentType: false,
+			type: 'get',
+			success: function(agendas){
+				if (agendas.length > 0) {
+					$('#agendaSelect')
+						.find('option')
+						.remove()
+						.end()
+						.append('<option value="" selected>Seleccione una agenda</option>')
+						.val('whatever');
 
-							$('#reservasProfesional')
-							.find('option')
-							.remove()
-							.end()
-							.append('<option value="" selected>Seleccione una hora</option>')
-							.val('whatever');							
-						agendas.forEach((agenda) => {
-							console.log(agenda)
-							$('#agendaSelect').append(`<option value="${agenda.id_agenda}"> ${agenda.fecha_agenda} </option>`);
-						})
+						$('#reservaHora')
+						.find('option')
+						.remove()
+						.end()
+						.append('<option value="" selected>Seleccione una hora</option>')
+						.val('whatever');	
+						$('#agendaSelect').prop("disabled", false);						
+					agendas.forEach((agenda) => {
+						$('#agendaSelect').append(`<option value="${agenda.id_agenda}" > ${agenda.fecha_agenda} </option>`);
+					})
+					
+				} else {
+					$('#agendaSelect')
+						.find('option')
+						.remove()
+						.end()
+						.append('<option value="" selected>Seleccione una agenda</option>')
+						.val('whatever');					
+					$('#agendaSelect').prop("disabled", true);		
 				}
-			});
-	});
-	
-	$('#agendasProfesional').submit(function (e) {
-			e.preventDefault();
+			}
+		});
+	})
+
+	$('#agendaSelect').change(function() {
 			var agendaSelected = $('#agendaSelect').find(":selected").val();
-			console.log(agendaSelected)
 			$.ajax({
 				url: `/agendas/${agendaSelected}/reservas`,
 				processData: false,
 				contentType: false,
 				type: 'get',
 				success: function(reservas){
-						console.log(reservas);
-						$('#reservasProfesional')
+					if (reservas.length > 0) {
+						$('#reservaHora')
 							.find('option')
 							.remove()
 							.end()
 							.append('<option value="">Seleccione una hora</option>')
 							.val('whatever');
+						$('#reservaHora').prop("disabled", false);	
 						reservas.forEach((reserva) => {
 							var hours = new Date(reserva.horario_reserva)
-							$('#reservasProfesional').append(`<option > ${hours.getHours()}:${('0' + hours.getMinutes()).slice(-2)} </option>`);
+							$('#reservaHora').append(`<option  value="${reserva.id}"> ${hours.getHours()}:${('0' + hours.getMinutes()).slice(-2)} </option>`);
 						})
+					}
 				}
-			});
-	});
+			});			
+		});
+
+	const serialize_form = form => JSON.stringify(
+		Array.from(new FormData(form).entries())
+				.reduce((m, [ key, value ]) => Object.assign(m, { [key]: value }), {})
+	);
+
+	$('#professionals').submit(function(e) {
+		event.preventDefault(e)
+  	const reservaHoraDatos = serialize_form(this);
+		$.ajax({
+				url: `/agendas/${JSON.parse(reservaHoraDatos).agendaSelect}/reservas/${JSON.parse(reservaHoraDatos).reservaHora}`,
+				processData: false,
+				contentType: false,
+				type: 'PUT',
+				contentType: "application/json",
+      	dataType   : "json",				
+				data: serialize_form(this),
+				success: function(response){
+						console.log(response);
+				}
+			});	
+	})
 
 </script>
 </body>

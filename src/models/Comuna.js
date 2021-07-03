@@ -10,12 +10,12 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING(100),
       allowNull: false
     },
-    id_region: {
+    idregion: {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
         model: 'Region',
-        key: 'id_region'
+        key: 'idregion'
       }
     }
   }, {

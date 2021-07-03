@@ -62,8 +62,8 @@ function initModels(sequelize) {
   Producto.hasMany(Producto_Presupuesto, { as: "Producto_Presupuestos", foreignKey: "id_producto"});
   Orden_Pedidos.belongsTo(Proveedor, { as: "rut_proveedor_Proveedor", foreignKey: "rut_proveedor"});
   Proveedor.hasMany(Orden_Pedidos, { as: "Orden_Pedidos", foreignKey: "rut_proveedor"});
-  Comuna.belongsTo(Region, { as: "id_region_Region", foreignKey: "id_region"});
-  Region.hasMany(Comuna, { as: "Comunas", foreignKey: "id_region"});
+  Comuna.belongsTo(Region, { as: "idregion_Region", foreignKey: "idregion"});
+  Region.hasMany(Comuna, { as: "Comunas", foreignKey: "idregion"});
   Producto.belongsTo(Servicio, { as: "id_servicio_Servicio", foreignKey: "id_servicio"});
   Servicio.hasMany(Producto, { as: "Productos", foreignKey: "id_servicio"});
   Usuario.belongsTo(Tipo_Usuario, { as: "idTipo_usuario_Tipo_Usuario", foreignKey: "idTipo_usuario"});

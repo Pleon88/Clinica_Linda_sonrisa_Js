@@ -25,13 +25,22 @@ const add = async (req, res) => {
 
 const show = async (req, res) => {
   const { id } = req.params;
-  const reservas = await Model.Reserva.findAll({ where: { id_agenda: Number(id) } })
+  const reservas = await Model.Reserva.findAll({ where: { id_agenda: Number(id), status_reserva: 'activo' } })
   return res.status(200).json(reservas)
 }
 
-const edit = async () => {
-  // cambiar el status a reservado
-  const { id, idReserva } = req.params; // Se destructuro el req.params. 
+const edit = async (req, res) => {
+  const { id, idReserva } = req.params;
+  const userUpdate = await Model.Reserva.update({ 
+    status_reserva: "reservado", 
+    id_usuario: req.body.profesional }, {
+    where: {
+      id_agenda: id, id: idReserva 
+    }
+  });
+
+  console.log(userUpdate)
+  return res.json(userUpdate)
 };
 
 const remove = async (req, res) => {

@@ -1,12 +1,6 @@
 const Sequelize = require('sequelize');
 module.exports = function(sequelize, DataTypes) {
   return sequelize.define('Reserva', {
-    id: {
-      autoIncrement: true,
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      primaryKey: true
-    },
     id_agenda: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -20,8 +14,18 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false
     },
     horario_reserva: {
-      type: DataTypes.TIME,
+      type: DataTypes.DATE,
       allowNull: false
+    },
+    id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true,
+      autoIncrement: true
+    },
+    id_usuario: {
+      type: DataTypes.STRING(50),
+      allowNull: true
     }
   }, {
     sequelize,
