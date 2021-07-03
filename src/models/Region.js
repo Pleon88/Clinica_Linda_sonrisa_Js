@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 module.exports = function(sequelize, DataTypes) {
   return sequelize.define('Region', {
-    id_region: {
+    idregion: {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true
@@ -17,10 +17,10 @@ module.exports = function(sequelize, DataTypes) {
     timestamps: false,
     indexes: [
       {
-        name: "PK_Región",
+        name: "PK_Region",
         unique: true,
         fields: [
-          { name: "id_region" },
+          { name: "idregion" },
         ]
       },
     ]

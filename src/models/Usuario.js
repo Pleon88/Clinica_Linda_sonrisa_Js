@@ -76,7 +76,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     fecha_creacion: {
       type: DataTypes.DATEONLY,
-      allowNull: false,
+      allowNull: false
     }
   }, {
     sequelize,
