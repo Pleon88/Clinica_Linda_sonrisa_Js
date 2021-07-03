@@ -4,83 +4,216 @@
 	<h2>Agenda</h2>
 	<br>
 	<div class="container">
-		<div class="row row-cols-1 row-cols-md-3 g-4">
-			<div class="col-3">
-				<div class="card">
-					<div class="card-body ">
-						<h4 class="mb-3">Agenda</h4>
-						<p></p>
-						<form action="\" method="GET">
-							<input class="form-control text-box single-line mb-3" data-val="true" data-val-date="El campo Fecha de Nacimiento debe ser una fecha." data-val-required="El campo Fecha Nacimiento es obligatorio." id="fecha_agenda" name="fecha_agenda" required="required" type="date" value="" min="2021-07-01" max="2021-12-31">
-							<span class="field-validation-valid text-danger" data-valmsg-for="fecha_agenda" data-valmsg-replace="true"></span>
-							<button type="button" class="btn btn-primary float-end">Seleccionar</button>
-						</form>
+		<form id="previsualizaAgenda" method="POST">
+			<div class="row row-cols-1 row-cols-md-3 g-4">
+				<div class="col-3">
+					<div class="card">
+						<div class="card-body ">
+							<h4 class="mb-3">Agenda</h4>
+							<p></p>
+
+								<input class="form-control text-box single-line mb-3" data-val="true" data-val-date="El campo Fecha de Nacimiento debe ser una fecha." data-val-required="El campo Fecha Nacimiento es obligatorio." id="fecha_agenda" name="fecha_agenda" required="required" type="date" value="" min="2021-07-01" max="2021-12-31">
+								<span class="field-validation-valid text-danger" data-valmsg-for="fecha_agenda" data-valmsg-replace="true"></span>
+						</div>
+					</div>
+				</div>
+				<div class="col-3">
+					<div class="card">
+						<div class="card-body ">
+							<h4 class="mb-3">Hora inicio</h4>
+							<p></p>
+
+								<select class="form-select mb-3" aria-label="Default select example" name="horaInicio">
+									<option selected>Hora inicio</option>
+									<option value="08:00">08:00</option>
+									<option value="09:00">09:00</option>
+									<option value="10:00">10:00</option>
+									<option value="11:00">11:00</option>
+									<option value="12:00">12:00</option>
+								</select>
+
+						</div>
+					</div>
+				</div>
+				<div class="col-3">
+					<div class="card">
+						<div class="card-body ">
+							<h4 class="mb-3">Intervalo</h4>
+							<p></p>
+
+								<select class="form-select mb-3" aria-label="Default select example" name="intervalo">
+									<option selected>Minutos</option>
+									<option value="30">30</option>
+									<option value="45">45</option>
+									<option value="60">60</option>
+								</select>
+
+						</div>
+					</div>
+				</div>
+				<div class="col-3">
+					<div class="card">
+						<div class="card-body ">
+							<h4 class="mb-3">Bloques</h4>
+							<p></p>
+
+								<select class="form-select mb-3" aria-label="Default select example" name="bloques">
+									<option selected>Bloques</option>
+									<option value="8">8</option>
+									<option value="7">7</option>
+									<option value="6">6</option>
+									<option value="5">5</option>
+									<option value="4">4</option>
+								</select>
+
+						</div>
 					</div>
 				</div>
 			</div>
-			<div class="col-3">
-				<div class="card">
-					<div class="card-body ">
-						<h4 class="mb-3">Hora inicio</h4>
-						<p></p>
-						<form action="\" method="GET">
-							<select class="form-select mb-3" aria-label="Default select example">
-								<option selected>Hora inicio</option>
-								<option value="1">08:00</option>
-								<option value="2">09:00</option>
-								<option value="3">10:00</option>
-								<option value="4">11:00</option>
-								<option value="5">12:00</option>
-							</select>
-							<button type="button" class="btn btn-primary float-end">Seleccionar</button>
-						</form>
-					</div>
-				</div>
-			</div>
-			<div class="col-3">
-				<div class="card">
-					<div class="card-body ">
-						<h4 class="mb-3">Intervalo</h4>
-						<p></p>
-						<form action="\" method="GET">
-							<select class="form-select mb-3" aria-label="Default select example">
-								<option selected>Minutos</option>
-								<option value="1">30</option>
-								<option value="2">45</option>
-								<option value="3">60</option>
-							</select>
-							<button type="button" class="btn btn-primary float-end">Seleccionar</button>
-						</form>
-					</div>
-				</div>
-			</div>
-			<div class="col-3">
-				<div class="card">
-					<div class="card-body ">
-						<h4 class="mb-3">Horas de Trabajos</h4>
-						<p></p>
-						<form action="\" method="GET">
-							<select class="form-select mb-3" aria-label="Default select example">
-								<option selected>Horas</option>
-								<option value="1">8</option>
-								<option value="2">7</option>
-								<option value="3">6</option>
-								<option value="4">5</option>
-								<option value="5">4</option>
-							</select>
-							<button type="button" class="btn btn-primary float-end">Seleccionar</button>
-						</form>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<br />
-	<div class="form-group">
+			<br />
+			<div class="form-group">
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-      		<input type="submit" value="Guardar" class="btn btn-success" >
-			  <input onclick="document.location.href='/inicioSession'" type="button" value="Volver al Menu" class="btn btn-outline-dark" />
+					<input type="submit" value="Generar" class="btn btn-success" id="generar" name="generar">
+					<input type="submit" value="Previsualizar" class="btn btn-info" id="previsualizar" name="previsualizar">
+				</div>
 		</div>
+			
+		</form>
 	</div>
+	
+	<div id = "bloquesDeAgenda">
+		<table class="table">
+			<thead>
+				<tr>
+					<th scope="col">#</th>
+					<th scope="col">Hora</th>
+				</tr>
+			</thead>
+			<tbody id="bodyAgenda">
+			</tbody>
+		</table>		
+	</div>
+
+
+	<script>
+
+
+
+
+		const retornaAgenda = function(fechaInicio, horaInicio, intervalos, bloques ) {
+			const horas =  moment.tz(`${fechaInicio} ${horaInicio}`, 'America/Santiago');
+			const agenda = [horas.toISOString()];
+			for (var i = 1 ; i < bloques; i++) {
+				var paraAgenda = horas.add(intervalos, 'minutes').toISOString()
+				agenda.push(paraAgenda)
+			}
+			return agenda
+		};
+
+		const generarReserva = function(fechaInicio, horaInicio, intervalos, bloques) {
+			// 1º Guardamos la agenda.
+			console.log(fechaInicio)
+				$.ajax({
+						url: '/agendas',
+						type: 'POST',
+						data: { fechaInicio },			
+						success: function(response){
+							const idAgenda = response.newAgenda.id_agenda;
+							if (idAgenda) {
+								$.ajax({
+									url: `/agendas/${idAgenda}/reservas`,
+									type: 'POST',
+									data: { horarioReserva: retornaAgenda(fechaInicio, horaInicio, intervalos, bloques) },			
+									success: function(response){
+										console.log(response)
+									},
+									error: function(error) {
+										console.log(error);
+									}
+								});
+							}
+						},
+						error: function(error) {
+							console.log(error);
+						}
+					});	
+
+			// 2º recorremos las horas y las guardamos en la base de datos
+			 // realizar refactoring del guardado de horas.-
+			 // o realizar un multiplellamado. [menos optimo]
+
+			return true;
+		}
+
+
+		const serialize_form = form => JSON.stringify(
+			Array.from(new FormData(form).entries())
+					.reduce((m, [ key, value ]) => Object.assign(m, { [key]: value }), {})
+		);
+
+		$('#previsualizaAgenda').submit(function(e) {
+			event.preventDefault(e)
+			const datosParaAgenda = JSON.parse(serialize_form(this));
+			var btn = $(this).find("input[type=submit]:focus").attr('id')
+
+			const bloquesDeHoras = retornaAgenda(
+				datosParaAgenda.fecha_agenda,
+				datosParaAgenda.horaInicio,
+				datosParaAgenda.intervalo,
+				datosParaAgenda.bloques
+			);
+
+			switch (btn) {
+				case 'previsualizar':
+				$('#containerHours').val('');
+				$('#bodyAgenda').find('td').remove().end()
+				$('#containerHours').val(bloquesDeHoras);
+				bloquesDeHoras.forEach((bloque, index) => {
+					var hours = moment.tz(bloque, 'America/Santiago').format("hh:mm")
+					$('#bodyAgenda').append(`<tr> 
+							<td> ${index + 1}</td>
+							<td> ${hours} </td>
+						</tr>`);
+					})
+					break;
+				case 'generar': 
+					generarReserva(
+						datosParaAgenda.fecha_agenda,
+						datosParaAgenda.horaInicio,
+						datosParaAgenda.intervalo,
+						datosParaAgenda.bloques						
+					);
+					break;
+			}
+
+
+
+
+
+			console.log(datosParaAgenda)
+
+
+			
+		// 	$.ajax({
+		// 			url: `/agendas/${JSON.parse(reservaHoraDatos).agendaSelect}/reservas/${JSON.parse(reservaHoraDatos).reservaHora}`,
+		// 			processData: false,
+		// 			contentType: false,
+		// 			type: 'PUT',
+		// 			contentType: "application/json",
+		// 			dataType   : "json",				
+		// 			data: serialize_form(this),
+		// 			success: function(response){
+		// 					console.log(response);
+		// 			}
+		// 		});	
+		})
+
+
+
+	</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.33/moment-timezone.min.js"> </script>
+
 </body>
 </html>
