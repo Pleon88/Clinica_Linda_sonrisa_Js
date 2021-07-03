@@ -83,8 +83,9 @@ router.get('/reservaHora', (req, res) => { res.render('reservaHora', {layout: '.
 router.get('/reservations',verifyUserLogin ,reservaController.showProfessionals);
 
 //Menu Usuario Odontologo
-router.get('/agenda', (req, res) => { res.render('agenda', {layout: './Shared/layout_login'}) });
-router.get('/reservations',verifyUserLogin ,reservaController.showProfessionals);
+router.get('/agenda', (req, res) => { res.render('agenda', {layout: './Shared/layout'}) });
+router.get('/verAgenda', (req, res) => { res.render('verAgenda', {layout: './Shared/layout'}) });
+
 
 // login
 router.get('/', (req, res) => { res.render('index', {layout: './Shared/layout'}) });

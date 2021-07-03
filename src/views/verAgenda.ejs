@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <body>
-	<h2>Agenda</h2>
+	<h2>Ver Agenda</h2>
 	<br>
 	<div class="container">
 		<div class="row row-cols-1 row-cols-md-3 g-4">
@@ -11,8 +11,14 @@
 						<h4 class="mb-3">Agenda</h4>
 						<p></p>
 						<form action="\" method="GET">
-							<input class="form-control text-box single-line mb-3" data-val="true" data-val-date="El campo Fecha de Nacimiento debe ser una fecha." data-val-required="El campo Fecha Nacimiento es obligatorio." id="fecha_agenda" name="fecha_agenda" required="required" type="date" value="" min="2021-07-01" max="2021-12-31">
-							<span class="field-validation-valid text-danger" data-valmsg-for="fecha_agenda" data-valmsg-replace="true"></span>
+							<select class="form-select mb-3" aria-label="Default select example">
+								<option selected>Agenda</option>
+								<option value="1">Fecha</option>
+								<option value="2">Fecha</option>
+								<option value="3">Fecha</option>
+								<option value="4">Fecha</option>
+								<option value="5">Fecha</option>
+							</select>
 							<button type="button" class="btn btn-primary float-end">Seleccionar</button>
 						</form>
 					</div>
@@ -24,52 +30,39 @@
 						<h4 class="mb-3">Hora inicio</h4>
 						<p></p>
 						<form action="\" method="GET">
-							<select class="form-select mb-3" aria-label="Default select example">
+							<select class="form-select mb-3" aria-label="DefaultHora select example">
 								<option selected>Hora inicio</option>
-								<option value="1">08:00</option>
-								<option value="2">09:00</option>
-								<option value="3">10:00</option>
-								<option value="4">11:00</option>
-								<option value="5">12:00</option>
+								<option value="1">Hora</option>
+								<option value="2">Hora</option>
+								<option value="3">Hora</option>
+								<option value="4">Hora</option>
+								<option value="5">Hora</option>
 							</select>
 							<button type="button" class="btn btn-primary float-end">Seleccionar</button>
 						</form>
 					</div>
 				</div>
 			</div>
-			<div class="col-3">
+			<div class="col-5">
 				<div class="card">
 					<div class="card-body ">
-						<h4 class="mb-3">Intervalo</h4>
-						<p></p>
-						<form action="\" method="GET">
-							<select class="form-select mb-3" aria-label="Default select example">
-								<option selected>Minutos</option>
-								<option value="1">30</option>
-								<option value="2">45</option>
-								<option value="3">60</option>
-							</select>
-							<button type="button" class="btn btn-primary float-end">Seleccionar</button>
-						</form>
-					</div>
-				</div>
-			</div>
-			<div class="col-3">
-				<div class="card">
-					<div class="card-body ">
-						<h4 class="mb-3">Horas de Trabajos</h4>
-						<p></p>
-						<form action="\" method="GET">
-							<select class="form-select mb-3" aria-label="Default select example">
-								<option selected>Horas</option>
-								<option value="1">8</option>
-								<option value="2">7</option>
-								<option value="3">6</option>
-								<option value="4">5</option>
-								<option value="5">4</option>
-							</select>
-							<button type="button" class="btn btn-primary float-end">Seleccionar</button>
-						</form>
+						<h4 class="mb-3">Reserva Paciente</h4>
+						<div class="mb-3">
+							<label for="formGroupExampleInput" class="form-label">Nombre:</label>
+							<Label type="text" class="form-control" id="formGroupExampleInput"> Nombre</label>
+						</div>
+						<div class="mb-3">
+							<label for="formGroupExampleInput2" class="form-label">Apellido:</label>
+							<Label type="text" class="form-control" id="formGroupExampleInput"> Apellido</label>
+						</div>
+						<div class="mb-3">
+							<label for="formGroupExampleInput2" class="form-label">Fecha</label>
+							<Label type="text" class="form-control" id="formGroupExampleInput"> Fecha</label>
+						</div>
+						<div class="mb-3">
+							<label for="formGroupExampleInput2" class="form-label">Hora</label>
+							<Label type="text" class="form-control" id="formGroupExampleInput"> Hora</label>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -78,7 +71,8 @@
 	<br />
 	<div class="form-group">
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-      		<input type="submit" value="Guardar" class="btn btn-success" >
+      		<input type="submit" value="Ver" class="btn btn-success" > |
+			<input onclick="document.location.href='/inicioSession'" type="button" value="Volver al Menu" class="btn btn-outline-dark" />
 		</div>
 	</div>
 </body>
