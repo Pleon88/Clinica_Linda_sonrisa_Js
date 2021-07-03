@@ -1,3 +1,4 @@
+const moment = require('moment');
 const Sequelize = require('sequelize');
 module.exports = function(sequelize, DataTypes) {
   return sequelize.define('Agenda', {
@@ -17,7 +18,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     fecha_agenda: {
       type: DataTypes.DATEONLY,
-      allowNull: false
+      allowNull: false,   
     },
     status_agenda: {
       type: DataTypes.STRING(50),

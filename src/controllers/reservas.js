@@ -15,11 +15,16 @@ const showProfessionals = async (req, res) => {
 const add = async (req, res) => {
   const { id } = req.params;
   const { horarioReserva } = req.body;
-  const addReserva = await Model.Reserva.create({
-    id_agenda: Number(id),
-    status_reserva: 'activo',
-    horario_reserva: horarioReserva,
+
+  const toSave = horarioReserva.map((hora) => {
+    return {
+      id_agenda: Number(id),
+      status_reserva: 'activo',
+      horario_reserva: hora,
+      id_usuario: req.user.run_usuario,
+    }
   })
+  const addReserva = await Model.Reserva.bulkCreate(toSave)
   return res.status(200).json({ addReserva })
 }
 

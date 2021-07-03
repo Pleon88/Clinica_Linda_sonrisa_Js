@@ -72,6 +72,7 @@
 						.val('whatever');	
 						$('#agendaSelect').prop("disabled", false);						
 					agendas.forEach((agenda) => {
+						console.log(agenda)
 						$('#agendaSelect').append(`<option value="${agenda.id_agenda}" > ${agenda.fecha_agenda} </option>`);
 					})
 					
@@ -105,8 +106,7 @@
 							.val('whatever');
 						$('#reservaHora').prop("disabled", false);	
 						reservas.forEach((reserva) => {
-							var hours = new Date(reserva.horario_reserva)
-							$('#reservaHora').append(`<option  value="${reserva.id}"> ${hours.getHours()}:${('0' + hours.getMinutes()).slice(-2)} </option>`);
+							$('#reservaHora').append(`<option  value="${reserva.id}"> ${moment.tz(reserva.horario_reserva, 'America/Santiago').format("hh:mm")} </option>`);
 						})
 					}
 				}
@@ -136,5 +136,8 @@
 	})
 
 </script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.33/moment-timezone.min.js"> </script>
 </body>
 </html>
