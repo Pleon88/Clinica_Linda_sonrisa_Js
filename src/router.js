@@ -35,9 +35,10 @@ router.use(passport.session());
 // usuarios
 router.get("/users", usuario.showAll);
 router.get("/usuarios/:id", usuario.show);
+router.get("/visualizar/:id", usuario.showP);
 router.post("/registrar", usuario.create);
-router.put("/usuarios/:id", usuario.edit);
-router.delete("/usuarios/:id", usuario.remove);
+router.put("/modificar/:id", usuario.edit);
+router.delete("/eliminar/:id", usuario.remove);
 
 // agenda
 router.get("/agendas", agendaController.show);
@@ -72,8 +73,8 @@ router.get('/registrar', (req, res) => { res.render('registrar', {layout: './Sha
 // Crud Usuarios
 router.get('/users',verifyUserLogin, (req, res) => { res.render('users', {layout: './Shared/layout_login', user: req.user}) }); 
 router.get('/visualizar',verifyUserLogin, (req, res) => { res.render('visualizar', {layout: './Shared/layout_login', user: req.user}) });
-router.get('/eliminar', (req, res) => { res.render('eliminar', {layout: './Shared/layout'}) });
-router.get('/modificar', (req, res) => { res.render('modificar', {layout: './Shared/layout'}) });
+router.get('/eliminar', verifyUserLogin, (req, res) => { res.render('eliminar', {layout: './Shared/layout_login', user: req.user}) });
+router.get('/modificar',verifyUserLogin, (req, res) => { res.render('modificar', {layout: './Shared/layout_login', user: req.user}) });
 
 // router.get('/inicioSession', (req, res) => { res.render('inicioSession', {layout: './Shared/layout_login'}) });
 

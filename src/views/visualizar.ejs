@@ -4,15 +4,15 @@
     <h2>Mi Información</h2>
 
 <div>
-    <h4>Paciente <%= user.nombre_usuario %>  <%= user.apellidoP_usuario %></h4>
+    <h4>Usuario <%= user.nombre_usuario %>  <%= user.apellidoP_usuario %></h4>
     <hr />
-    <form id="showUser" name="showUser" action="/usuarios/:id" method="get">
+    <form id="showP" name="showP" action="/visualizar/:id" method="get">
     <div class="form-group">
         <div class="form-group">
             <strong>RUN:</strong>
         </div>
         <div class="form-control">
-            <%= user.run_usuario %>
+            <%= users.run_usuario %>            
         </div>
     
         <div class="form-group">
@@ -20,7 +20,7 @@
         </div>
 
         <div class="form-control">
-            <%= user.nombre_usuario %>
+            <%= users.nombre_usuario %>
         </div>
 
         <div class="form-group">
@@ -28,7 +28,7 @@
         </div>
 
         <div class="form-control">
-            <%= user.apellidoP_usuario %>
+            <%= users.apellidoP_usuario %>
         </div>
 
         <div class="form-group">
@@ -36,7 +36,7 @@
         </div>
 
         <div class="form-control">
-            <%= user.apellidoM_usuario %>
+            <%= users.apellidoM_usuario %>
         </div>
 
         <div class="form-group">
@@ -44,7 +44,7 @@
         </div>
 
         <div class="form-control">
-            <%= user.fecha_nac_usuario %>
+            <%= users.fecha_nac_usuario %>
         </div>
 
         <div class="form-group">
@@ -52,7 +52,7 @@
         </div>
 
         <div class="form-control">
-            <%= user.usuario %>
+            <%= users.usuario %>
         </div>
 
         <div class="form-group">
@@ -60,7 +60,7 @@
         </div>
 
         <div class="form-control">
-            <%= user.password_usuario %>
+            <%= users.password_usuario %>
         </div>
 
         <div class="form-group">
@@ -68,7 +68,7 @@
         </div>
 
         <div class="form-control">
-            <%= user.direccion_usuario %>
+            <%= users.direccion_usuario %>
         </div>
 
         <div class="form-group">
@@ -76,7 +76,7 @@
         </div>
 
         <div class="form-control">
-            <%= user.comuna_usuario %>
+            <%= users.comuna_usuario %>
         </div>
 
         <div class="form-group">
@@ -84,7 +84,7 @@
         </div>
 
         <div class="form-control">
-            <%= user.email_usuario %>
+            <%= users.email_usuario %>
         </div>
 
         <div class="form-group">
@@ -92,7 +92,7 @@
         </div>
 
         <div class="form-control">
-            <%= user.fono_usuario %>
+            <%= users.fono_usuario %>
         </div>
 
         <div class="form-group">
@@ -100,7 +100,7 @@
         </div>
 
         <div class="form-control">
-            <%= user.persona_cargo %>
+            <%= users.persona_cargo %>
         </div>
 
         <div class="form-group">
@@ -108,7 +108,7 @@
         </div>
 
         <div class="form-control">
-            <%= user.status_usuario %>
+            <%= users.status_usuario %>
         </div>
 
         <div class="form-group">
@@ -116,7 +116,7 @@
         </div>
 
         <div class="form-control">
-            <%= user.fecha_creacion %>
+            <%= users.fecha_creacion %>
         </div>
 
         <div class="form-group">
@@ -124,14 +124,14 @@
         </div>
 
         <div class="form-control">
-            <%= user.idTipo_usuario %>
+            <%= users.idTipo_usuario %>
         </div>
     </div>
 </div>
 <hr />
-
 <p>
-    <input onclick="document.location.href='/modificar/<%= user.run_usuario %>'" type="button" value="Modificar" class="btn btn-outline-success" />
+    <input onclick="document.location.href='/modificar/<%= user.run_usuario %>'" type="button" value="Modificar" class="btn btn-outline-success" /> |
+    <input onclick="document.location.href='/users'" type="button" value="Volver a la lista" class="btn btn-outline-dark" />
 </p>
 </form>
 </body>

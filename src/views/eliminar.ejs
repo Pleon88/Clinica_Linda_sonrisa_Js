@@ -1,149 +1,139 @@
 <!DOCTYPE html>
 <html lang="en">
 <body>
-<h2>Eliminar</h2>
+    <h2>Eliminar</h2>
+    <h3>¿Estás seguro?</h3>
+    <div>
+        <h4>Usuario</h4>
+        <hr />
+        <form id="remove" name="remove" action="/eliminar/:id" method="delete">
+            <div class="form-group">
+                <div class="form-group">
+                    <strong>RUN:</strong>
+                </div>
+                <div class="form-control">
+                    <%= users.run_usuario %>            
+                </div>
+            
+                <div class="form-group">
+                    <strong>Nombre:</strong>
+                </div>
+        
+                <div class="form-control">
+                    <%= users.nombre_usuario %>
+                </div>
+        
+                <div class="form-group">
+                    <strong>A. Paterno:</strong>
+                </div>
+        
+                <div class="form-control">
+                    <%= users.apellidoP_usuario %>
+                </div>
+        
+                <div class="form-group">
+                    <strong>A. Materno:</strong>
+                </div>
+        
+                <div class="form-control">
+                    <%= users.apellidoM_usuario %>
+                </div>
+        
+                <div class="form-group">
+                    <strong>Fecha de Nacimiento:</strong>
+                </div>
+        
+                <div class="form-control">
+                    <%= users.fecha_nac_usuario %>
+                </div>
+        
+                <div class="form-group">
+                    <strong>Usuario:</strong>
+                </div>
+        
+                <div class="form-control">
+                    <%= users.usuario %>
+                </div>
+        
+                <div class="form-group">
+                    <strong>Contraseña:</strong>
+                </div>
+        
+                <div class="form-control">
+                    <%= users.password_usuario %>
+                </div>
+        
+                <div class="form-group">
+                    <strong>Dirección:</strong>
+                </div>
+        
+                <div class="form-control">
+                    <%= users.direccion_usuario %>
+                </div>
+        
+                <div class="form-group">
+                    <strong>Comuna:</strong>
+                </div>
+        
+                <div class="form-control">
+                    <%= users.comuna_usuario %>
+                </div>
+        
+                <div class="form-group">
+                    <strong>Email:</strong>
+                </div>
+        
+                <div class="form-control">
+                    <%= users.email_usuario %>
+                </div>
+        
+                <div class="form-group">
+                    <strong>Fono:</strong>
+                </div>
+        
+                <div class="form-control">
+                    <%= users.fono_usuario %>
+                </div>
+        
+                <div class="form-group">
+                    <strong>RUN Persona a Cargo:</strong>
+                </div>
+        
+                <div class="form-control">
+                    <%= users.persona_cargo %>
+                </div>
+        
+                <div class="form-group">
+                    <strong>Status:</strong>
+                </div>
+        
+                <div class="form-control">
+                    <%= users.status_usuario %>
+                </div>
+        
+                <div class="form-group">
+                    <strong>Fecha de Creación:</strong>
+                </div>
+        
+                <div class="form-control">
+                    <%= users.fecha_creacion %>
+                </div>
+        
+                <div class="form-group">
+                    <strong>Tipo usuario:</strong>
+                </div>
+        
+                <div class="form-control">
+                    <%= users.idTipo_usuario %>
+                </div>
+            </div>
 
-<h3>¿Estás seguro?</h3>
-<div>
-    <h4>Usuario</h4>
-    <hr />
-    <div class=" form-group">
-        <div class="form-group">
-            <strong>RUN:</strong>
-        </div>
-        <div class="form-control">
-            @Html.DisplayFor(model => model.run_usuario)
-        </div>
-
-        <div class="form-group">
-            <strong>Nombre:</strong>
-        </div>
-
-        <div class="form-control">
-            @Html.DisplayFor(model => model.nombre_usuario)
-        </div>
-
-        <div class="form-group">
-            <strong>A. Paterno:</strong>
-        </div>
-
-        <div class="form-control">
-            @Html.DisplayFor(model => model.apellidoP_usuario)
-        </div>
-
-        <div class="form-group">
-            <strong>A. Materno:</strong>
-        </div>
-
-        <div class="form-control">
-            @Html.DisplayFor(model => model.apellidoM_usuario)
-        </div>
-
-        <div class="form-group">
-            <strong>Fecha de Nacimiento:</strong>
-        </div>
-
-        <div class="form-control">
-            @Html.DisplayFor(model => model.fecha_nac_usuario)
-        </div>
-
-        <div class="form-group">
-            <strong>Usuario:</strong>
-        </div>
-
-        <div class="form-control">
-            @Html.DisplayFor(model => model.usuario1)
-        </div>
-
-        <div class="form-group">
-            <strong>Contraseña:</strong>
-        </div>
-
-        <div class="form-control">
-            @Html.DisplayFor(model => model.password_usuario)
-        </div>
-
-        <div class="form-group">
-            <strong>Dirección:</strong>
-        </div>
-
-        <div class="form-control">
-            @Html.DisplayFor(model => model.direccion_usuario)
-        </div>
-
-        <div class="form-group">
-            <strong>Región:</strong>
-        </div>
-
-        <div class="form-control">
-            @Html.DisplayFor(model => model.Comuna.idregion)
-        </div>
-
-        <div class="form-group">
-            <strong>Comuna:</strong>
-        </div>
-
-        <div class="form-control">
-            @Html.DisplayFor(model => model.Comuna.nombre_comuna)
-        </div>
-
-        <div class="form-group">
-            <strong>Email:</strong>
-        </div>
-
-        <div class="form-control">
-            @Html.DisplayFor(model => model.email_usuario)
-        </div>
-
-        <div class="form-group">
-            <strong>Fono:</strong>
-        </div>
-
-        <div class="form-control">
-            @Html.DisplayFor(model => model.fono_usuario)
-        </div>
-
-        <div class="form-group">
-            <strong>RUN Persona a Cargo:</strong>
-        </div>
-
-        <div class="form-control">
-            @Html.DisplayFor(model => model.persona_cargo)
-        </div>
-
-        <div class="form-group">
-            <strong>Status:</strong>
-        </div>
-
-        <div class="form-control">
-            @Html.DisplayFor(model => model.status_usuario)
-        </div>
-
-        <div class="form-group">
-            <strong>Fecha de Creación:</strong>
-        </div>
-
-        <div class="form-control">
-            @Html.DisplayFor(model => model.fecha_creacion)
-        </div>
-
-        <div class="form-group">
-            <strong>Categoria:</strong>
-        </div>
-
-        <div class="form-control">
-            @Html.DisplayFor(model => model.Tipo_Usuario.nombre_usuario)
-        </div>
+                <hr />
+            <div class="form-actions no-color">
+                <input type="submit" value="Eliminar" class="btn btn-danger" /> |
+                <input onclick="document.location.href='/users'" type="button" value="Volver a la lista" class="btn btn-outline-dark" />
+            </div>
+        </form>
     </div>
-    <hr />
-
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Eliminar" class="btn btn-danger" />
-        </div>
-    }
-</div>
 </body>
 </html>

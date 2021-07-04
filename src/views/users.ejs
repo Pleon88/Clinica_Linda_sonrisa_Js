@@ -45,9 +45,9 @@
                     <td><%= user.status_usuario %> </td>
                     <td><%= user.fecha_creacion %> </td>     
                 <td>            
-                    <input onclick="document.location.href=`/Usuarios/Details/id=<%= user.run_usuario %>`" type="button" value="Ver" class="btn btn-outline-warning"> |
-                    <input onclick="document.location.href='/Usuarios/Modificar/186131797'" type="button" value="Modificar" class="btn btn-outline-dark"> |
-                    <input onclick="document.location.href='/Usuarios/Delete/186131797'" type="button" value="Eliminar" class="btn btn-outline-danger">
+                    <input onclick="document.location.href=`/visualizar/<%= user.run_usuario %>`" type="button" value="Ver" class="btn btn-outline-warning"> |
+                    <input onclick="document.location.href='/modificar/<%= user.run_usuario %>'" type="button" value="Modificar" class="btn btn-outline-dark"> |
+                    <input onclick="document.location.href='/eliminar/<%= user.run_usuario %>'" type="button" value="Eliminar" class="btn btn-outline-danger">
                 </tr>
             <% }) %> 
         </td>

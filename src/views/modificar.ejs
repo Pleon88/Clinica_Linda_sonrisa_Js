@@ -6,134 +6,77 @@
 <div class="form-horizontal">
     <h4>Usuario</h4>
     <hr />
-
+    <form id="edit" name="edit" action="/modificar/:id" method="put">
     <div class="form-group">
         <label for="nombre_usuario" class="control-label col-md-2"> Nombre:</label>
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.nombre_usuario, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.nombre_usuario, "", new { @class = "text-danger" })
-        </div>
+        <input type="text" id="nombre_usuario" name="nombre_usuario" class="form-control col-md-4" placeholder="RUN" value="<%= users.nombre_usuario %>">
     </div>
 
     <div class="form-group">
         <label for="apellidoP_usuario" class="control-label col-md-2"> A. Paterno:</label>
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.apellidoP_usuario, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.apellidoP_usuario, "", new { @class = "text-danger" })
-        </div>
+        <input type="text" id="apellidoP_usuario" name="apellidoP_usuario" class="form-control col-md-4" placeholder="RUN" value="<%= users.apellidoP_usuario %>">
     </div>
 
     <div class="form-group">
         <label for="apellidoM_usuario" class="control-label col-md-2"> A. Materno</label>
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.apellidoM_usuario, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.apellidoM_usuario, "", new { @class = "text-danger" })
-        </div>
+        <input type="text" id="apellidoM_usuario" name="apellidoM_usuario" class="form-control col-md-4" placeholder="RUN" value="<%= users.apellidoM_usuario %>">
     </div>
 
     <div class="form-group">
         <label for="fecha_nac_usuario" class="control-label col-md-2"> Fecha Nacimiento:</label>
-        <div class="col-md-10">
-            @Html.TextBoxFor(model => model.fecha_nac_usuario, new { @Value = String.Format("{0:dd/MM/yyyy}", Model.fecha_nac_usuario), @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.fecha_nac_usuario, "", new { @class = "text-danger" })
-        </div>
+        <input type="text" id="fecha_nac_usuario" name="fecha_nac_usuario" class="form-control col-md-4" placeholder="RUN" value="<%= users.fecha_nac_usuario %>">
     </div>
 
     <div class="form-group">
         <label for="usuario" class="control-label col-md-2"> Usuario:</label>
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.usuario1, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.usuario1, "", new { @class = "text-danger" })
-        </div>
+        <input type="text" id="usuario" name="usuario" class="form-control col-md-4" placeholder="RUN" value="<%= users.usuario %>">
     </div>
 
     <div class="form-group">
         <label for="password_usuario" class="control-label col-md-2"> Contraseña:</label>
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.password_usuario, new { htmlAttributes = new { @class = "form-control", required = "required", placeholder = "Contraseña" } })
-            @Html.ValidationMessageFor(model => model.password_usuario, "", new { @class = "text-danger" })
-        </div>
+        <input type="text" id="password_usuario" name="password_usuario" class="form-control col-md-4" placeholder="RUN" value="<%= users.password_usuario %>">
     </div>
 
     <div class="form-group">
         <label for="direccion_usuario" class="control-label col-md-2"> Dirección:</label>
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.direccion_usuario, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.direccion_usuario, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        <label for="idregion" class="control-label col-md-2"> Región:</label>
-        <div class="col-md-10">
-            @Html.DropDownList("region_usuario", null, htmlAttributes: new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.Comuna.idregion, "", new { @class = "text-danger" })
-        </div>
+        <input type="text" id="direccion_usuario" name="direccion_usuario" class="form-control col-md-4" placeholder="RUN" value="<%= users.direccion_usuario %>">
     </div>
 
     <div class="form-group">
         <label for="comuna_usuario" class="control-label col-md-2"> Comuna:</label>
-        <div class="col-md-10">
-            @Html.DropDownList("comuna_usuario", null, htmlAttributes: new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.comuna_usuario, "", new { @class = "text-danger" })
-        </div>
+        <input type="text" id="comuna_usuario" name="comuna_usuario" class="form-control col-md-4" placeholder="RUN" value="<%= users.comuna_usuario %>">
     </div>
 
     <div class="form-group">
         <label for="email_usuario" class="control-label col-md-2"> Email:</label>
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.email_usuario, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.email_usuario, "", new { @class = "text-danger" })
-        </div>
+        <input type="text" id="email_usuario" name="email_usuario" class="form-control col-md-4" placeholder="RUN" value="<%= users.email_usuario %>">
     </div>
 
     <div class="form-group">
         <label for="fono_usuario" class="control-label col-md-2"> Fono:</label>
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.fono_usuario, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.fono_usuario, "", new { @class = "text-danger" })
-        </div>
+        <input type="text" id="fono_usuario" name="fono_usuario" class="form-control col-md-4" placeholder="RUN" value="<%= users.fono_usuario %>">
     </div>
 
     <div class="form-group">
         <label for="idTipo_usuario" class="control-label col-md-2"> Tipo de usuario:</label>  
-        <div class="col-md-10">
-            @Html.DropDownList("idTipo_usuario", null, htmlAttributes: new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.idTipo_usuario, "", new { @class = "text-danger" })
-        </div>
+        <input type="text" id="idTipo_usuario" name="idTipo_usuario" class="form-control col-md-4" placeholder="RUN" value="<%= users.idTipo_usuario %>">
     </div>
 
     <div class="form-group">
         <label for="idCliente_usuario" class="control-label col-md-2"> Id Cliente Usuario:</label>
-        <div class="col-md-10">
-            @Html.DropDownList("idCliente_usuario", null, htmlAttributes: new { @class = "form-control", @style = "display:none" })
-            @Html.ValidationMessageFor(model => model.idCliente_usuario, "", new { @class = "text-danger" })
-        </div>
+        <input type="text" id="idCliente_usuario" name="idCliente_usuario" class="form-control col-md-4" placeholder="RUN" value="<%= users.idCliente_usuario %>">
     </div>
 
     <div class="form-group">
         <label for="persona_cargo" class="control-label col-md-2"> Run Persona Cargo:</label>
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.persona_cargo, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.persona_cargo, "", new { @class = "text-danger" })
-        </div>
+        <input type="text" id="persona_cargo" name="persona_cargo" class="form-control col-md-4" placeholder="RUN" value="<%= users.persona_cargo %>">
     </div>
 
     <div class="form-group">
         <label for="status_usuario" class="control-label col-md-2"> Status:</label>
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.status_usuario, new { htmlAttributes = new { @Value = "Activo", @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.status_usuario, "", new { @class = "text-danger" })
-        </div>
+        <input type="text" id="status_usuario" name="status_usuario" class="form-control col-md-4" placeholder="RUN" value="<%= users.status_usuario %>">
     </div>
 
-    <div class="form-group">
-        <label for="fecha_creacion" class="control-label col-md-2"> Fecha Creación:</label>
-        <div class="col-md-10">
-            @Html.TextBoxFor(model => model.fecha_creacion, new { @Value = String.Format("{0:dd/MM/yyyy}", Model.fecha_creacion), @class = "form-control", @style = "display:none" })
-            @Html.ValidationMessageFor(model => model.fecha_creacion, "", new { @class = "text-danger" })
-        </div>
-    </div>
     <hr />
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
@@ -141,5 +84,6 @@
         </div>
     </div>
 </div>
+</form>
 </body>
 </html>

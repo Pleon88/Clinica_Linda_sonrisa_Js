@@ -9,8 +9,16 @@ const showAll = async (req, res) => {
 
 const show = async (req, res) => {
   const usuarios = await Model.Usuario.findByPk(req.params.id );
-  return res.status(200).json({usuarios})
+  return res.render('informacion', {layout: './Shared/layout_login', users: usuarios, user: req.user })
+  //return res.status(200).json({usuarios})
 };
+
+const showP = async (req, res) => {
+  const usuarios = await Model.Usuario.findByPk(req.params.id );
+  return res.render('visualizar', {layout: './Shared/layout_login', users: usuarios, user: req.user })
+  //return res.status(200).json({usuarios})
+};
+
 
 const create = async (req, res) => {
   req.body.comuna_usuario = Number(req.body.comuna_usuario);
@@ -29,6 +37,7 @@ const edit = async (req, res) => {
     return res.status(200).json({ error: false, message: 'Usuario actualizado' })
   }
   return res.status(400).json({ error: true, message: 'Problemas al actualizar al usuario'});
+  //return res.render('modificar', {layout: './Shared/layout_login', users: usuarios, user: req.user })
 };
 
 const remove = async (req, res) => {
@@ -38,10 +47,12 @@ const remove = async (req, res) => {
     return res.status(200).json({ message: 'Eliminado' })
   }
   return res.status(400).json({ message: 'Problemas al borrar al usuario'})
+  //return res.render('eliminar', {layout: './Shared/layout_login', users: usuarios, user: req.user })
 };
 
 module.exports = {
   show,
+  showP,
   create,
   showAll,
   edit,
