@@ -14,11 +14,12 @@ const show = async (req, res) => {
 };
 
 const showP = async (req, res) => {
-  const usuarios = await Model.Usuario.findByPk(req.params.id );
+  let usuarios = await Model.Usuario.findByPk(req.params.id );
+  const comunaFind = await Model.Comuna.findOne({ where: { id_comuna: Number(usuarios.comuna_usuario) }})
+  usuarios.comuna_usuario = comunaFind.nombre_comuna
   return res.render('visualizar', {layout: './Shared/layout_login', users: usuarios, user: req.user })
   //return res.status(200).json({usuarios})
 };
-
 
 const create = async (req, res) => {
   req.body.comuna_usuario = Number(req.body.comuna_usuario);
