@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
+
+
 <body>
 	<h2>Ver Agenda</h2>
 	<br>
@@ -11,15 +13,12 @@
 						<h4 class="mb-3">Agenda</h4>
 						<p></p>
 						<form action="\" method="GET">
-							<select class="form-select mb-3" aria-label="Default select example">
+							<select class="form-select mb-3" aria-label="Default select example" id="agendasSelected", name="agendasSelected">
 								<option selected>Agenda</option>
-								<option value="1">Fecha</option>
-								<option value="2">Fecha</option>
-								<option value="3">Fecha</option>
-								<option value="4">Fecha</option>
-								<option value="5">Fecha</option>
+								<% agendas.forEach((agenda) => {%>
+									<option value="<%= agenda.id_agenda %>"><%= agenda.fecha_agenda.toISOString().split('T')[0] %></option>
+								<% }) %>
 							</select>
-							<button type="button" class="btn btn-primary float-end">Seleccionar</button>
 						</form>
 					</div>
 				</div>
@@ -30,7 +29,7 @@
 						<h4 class="mb-3">Hora inicio</h4>
 						<p></p>
 						<form action="\" method="GET">
-							<select class="form-select mb-3" aria-label="DefaultHora select example">
+							<select class="form-select mb-3" aria-label="DefaultHora select example" id="reservaHora", name="reservaHora">
 								<option selected>Hora inicio</option>
 								<option value="1">Hora</option>
 								<option value="2">Hora</option>
@@ -38,7 +37,6 @@
 								<option value="4">Hora</option>
 								<option value="5">Hora</option>
 							</select>
-							<button type="button" class="btn btn-primary float-end">Seleccionar</button>
 						</form>
 					</div>
 				</div>
@@ -49,19 +47,27 @@
 						<h4 class="mb-3">Reserva Paciente</h4>
 						<div class="mb-3">
 							<label for="formGroupExampleInput" class="form-label">Nombre:</label>
-							<Label type="text" class="form-control" id="formGroupExampleInput"> Nombre</label>
+							<Label type="text" class="form-control" id="formGroupExampleInput">
+								<p id="nombreLabel"> Nombre </p>
+							</label>
 						</div>
 						<div class="mb-3">
 							<label for="formGroupExampleInput2" class="form-label">Apellido:</label>
-							<Label type="text" class="form-control" id="formGroupExampleInput"> Apellido</label>
+							<Label type="text" class="form-control" id="formGroupExampleInput">
+								<p id="apellido"> Apellido </p>
+							</label>
 						</div>
 						<div class="mb-3">
 							<label for="formGroupExampleInput2" class="form-label">Fecha</label>
-							<Label type="text" class="form-control" id="formGroupExampleInput"> Fecha</label>
+							<Label type="text" class="form-control" id="formGroupExampleInput" name="fecha" id="fecha"> 
+								<p id="fecha"> Fecha </p>
+							</label>
 						</div>
 						<div class="mb-3">
 							<label for="formGroupExampleInput2" class="form-label">Hora</label>
-							<Label type="text" class="form-control" id="formGroupExampleInput"> Hora</label>
+							<Label type="text" class="form-control" id="formGroupExampleInput" name="hora" id="hora"> 
+								<p id="hora"> Hora </p>
+							</label>
 						</div>
 					</div>
 				</div>
@@ -69,10 +75,74 @@
 		</div>
 	</div>
 	<br />
-	<div class="form-group">
-        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-      		<input type="submit" value="Ver" class="btn btn-success" >
-		</div>
-	</div>
+	<script>
+
+$('#agendasSelected').change(function() {
+		var agendaSelected = $('#agendasSelected').find(":selected").val();
+		console.log(agendaSelected);
+		$.ajax({
+				url: `/agendas/${agendaSelected}/reservas?all=true`,
+				processData: false,
+				contentType: false,
+				type: 'get',
+				success: function(reservas){
+					console.log(reservas)
+					if (reservas.length > 0) {
+						$('#reservaHora')
+							.find('option')
+							.remove()
+							.end()
+							.append('<option value="">Seleccione una hora</option>')
+							.val('whatever');
+						$('#reservaHora').prop("disabled", false);	
+						reservas.forEach((reserva) => {
+							console.log(reserva)
+							let color = 'green'
+							if (reserva.status_reserva === "reservado") color = "red";
+							$('#reservaHora').append(`<option  value="${reserva.id}" style="color: ${color}"> ${moment.tz(reserva.horario_reserva, 'America/Santiago').format("hh:mm")} </option>`);
+						})
+					}
+				}
+			});			
+	})
+
+
+
+$('#reservaHora').change(function() {
+		var reservaSelected = $('#reservaHora').find(":selected").val();
+		console.log(reservaSelected);
+		$.ajax({
+				url: `/reserva/${reservaSelected}`,
+				processData: false,
+				contentType: false,
+				type: 'get',
+				success: function(reserva){
+					if (reserva.id_usuario !== null) {
+						$.ajax({
+						url: `/usuarios/${reserva.id_usuario}`,
+						processData: false,
+						contentType: false,
+						type: 'get',
+						success: function(usuario){
+								$('#nombreLabel').text(usuario.usuarios.nombre_usuario)
+								$('#apellido').text(usuario.usuarios.apellidoP_usuario)
+								$('#fecha').text(moment.tz(reserva.horario_reserva, 'America/Santiago').format("DD-MM-YYYY"))
+								$('#hora').text(moment.tz(reserva.horario_reserva, 'America/Santiago').format("hh:mm"))
+							}
+						})
+					} else {
+						$('#nombreLabel').text('Nombre')
+						$('#apellido').text('Apellido')
+						$('#fecha').text('Fecha')
+						$('#hora').text('Hora')
+					}
+				}
+			});			
+	})
+
+	</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.33/moment-timezone.min.js"> </script>
 </body>
 </html>
