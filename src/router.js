@@ -70,21 +70,24 @@ router.get('/contacto', (req, res) => { res.render('contacto', {layout: './Share
 router.get('/registrar', (req, res) => { res.render('registrar', {layout: './Shared/layout', created: null}) });
 
 // Crud Usuarios
-router.get('/indexUsers', (req, res) => { res.render('indexUsers', {layout: './Shared/layout'}) }); 
-router.get('/Informacion', (req, res) => { res.render('Informacion', {layout: './Shared/layout'}) }); 
+router.get('/users',verifyUserLogin, (req, res) => { res.render('users', {layout: './Shared/layout_login', user: req.user}) }); 
+router.get('/visualizar',verifyUserLogin, (req, res) => { res.render('visualizar', {layout: './Shared/layout_login', user: req.user}) });
 router.get('/eliminar', (req, res) => { res.render('eliminar', {layout: './Shared/layout'}) });
 router.get('/modificar', (req, res) => { res.render('modificar', {layout: './Shared/layout'}) });
 
 // router.get('/inicioSession', (req, res) => { res.render('inicioSession', {layout: './Shared/layout_login'}) });
 
 //Menu usuario Paciente
-router.get('/informacion', (req, res) => { res.render('informacion', {layout: './Shared/layout_login'}) });
+router.get('/informacion',verifyUserLogin, (req, res) => { res.render('informacion', {layout: './Shared/layout_login', user: req.user}) });
+router.get('/situacionEconomica',verifyUserLogin, (req, res) => { res.render('situacionEconomica', {layout: './Shared/layout_login', user: req.user}) });
 router.get('/reservaHora', (req, res) => { res.render('reservaHora', {layout: './Shared/layout'}) });
 router.get('/reservations',verifyUserLogin ,reservaController.showProfessionals);
+router.get('/verBoletas',verifyUserLogin, (req, res) => { res.render('verBoletas', {layout: './Shared/layout_login', user: req.user}) });
+
 
 //Menu Usuario Odontologo
 router.get('/agenda',verifyUserLogin, (req, res) => { res.render('agenda', {layout: './Shared/layout_login', user: req.user}) });
-router.get('/verAgenda', (req, res) => { res.render('verAgenda', {layout: './Shared/layout'}) });
+router.get('/verAgenda',verifyUserLogin, (req, res) => { res.render('verAgenda', {layout: './Shared/layout_login', user: req.user}) });
 
 
 // login
