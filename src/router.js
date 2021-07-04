@@ -51,6 +51,7 @@ router.post("/agendas/:id/reservas", reservaController.add);
 router.get("/agendas/:id/reservas", reservaController.show);
 router.delete("/agendas/:id/reservas/:idReserva", reservaController.remove);
 router.put("/agendas/:id/reservas/:idReserva", reservaController.edit);
+router.get("/reserva/:id", reservaController.getReserva)
 
 // login
 router.post("/login", loginController.login);
@@ -88,7 +89,7 @@ router.get('/verBoletas',verifyUserLogin, (req, res) => { res.render('verBoletas
 
 //Menu Usuario Odontologo
 router.get('/agenda',verifyUserLogin, (req, res) => { res.render('agenda', {layout: './Shared/layout_login', user: req.user}) });
-router.get('/verAgenda',verifyUserLogin, (req, res) => { res.render('verAgenda', {layout: './Shared/layout_login', user: req.user}) });
+router.get('/verAgenda', agendaController.show);
 
 
 // login

@@ -21,18 +21,29 @@ const add = async (req, res) => {
       id_agenda: Number(id),
       status_reserva: 'activo',
       horario_reserva: hora,
-      id_usuario: req.user.run_usuario,
     }
   })
   const addReserva = await Model.Reserva.bulkCreate(toSave)
   return res.status(200).json({ addReserva })
 }
 
-const show = async (req, res) => {
-  const { id } = req.params;
-  const reservas = await Model.Reserva.findAll({ where: { id_agenda: Number(id), status_reserva: 'activo' } })
+const getReserva = async (req, res) => {
+  const reservas = await Model.Reserva.findByPk(req.params.id)
   return res.status(200).json(reservas)
 }
+
+const show = async (req, res) => {
+  const { id } = req.params;
+  const { all } = req.query;
+
+  const toWhere = {
+    id_agenda: Number(id),
+  }
+  if (all !== "true")  toWhere.status_reserva = 'activo'
+  const reservas = await Model.Reserva.findAll({ where: toWhere })
+  return res.status(200).json(reservas)
+}
+
 
 const edit = async (req, res) => {
   const { id, idReserva } = req.params;
@@ -44,7 +55,6 @@ const edit = async (req, res) => {
     }
   });
 
-  console.log(userUpdate)
   return res.json(userUpdate)
 };
 
@@ -66,4 +76,5 @@ module.exports = {
   remove,
   edit,
   showProfessionals,
+  getReserva,
 }
