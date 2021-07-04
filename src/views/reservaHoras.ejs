@@ -46,7 +46,6 @@
 	</div>
 <br />
 	
-
 <script>
 	$('#profesional').change(function() {
 		var profesionalSelected = $('#profesional').find(":selected").val();
@@ -73,9 +72,8 @@
 						$('#agendaSelect').prop("disabled", false);						
 					agendas.forEach((agenda) => {
 						console.log(agenda)
-						$('#agendaSelect').append(`<option value="${agenda.id_agenda}" > ${agenda.fecha_agenda} </option>`);
+						$('#agendaSelect').append(`<option value="${agenda.id_agenda}" > ${moment.tz(agenda.fecha_agenda, 'America/Santiago').format("DD-MM-YYYY")} </option>`);
 					})
-					
 				} else {
 					$('#agendaSelect')
 						.find('option')

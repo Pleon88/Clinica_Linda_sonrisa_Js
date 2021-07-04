@@ -1,14 +1,14 @@
 const Sequelize = require("sequelize");
 const Model = require("../models");
+const moment = require('moment');
 
 const show = async (req, res) => {
   const { profesional } = req.query;
   const agenda = await Model.Agenda.findAll({
     where: { id_usuario_agenda: profesional }
   });
-
   console.log(agenda)
-  res.send(agenda)
+  return res.status(200).json(agenda)
 }
 
 const create = async (req, res) => {
