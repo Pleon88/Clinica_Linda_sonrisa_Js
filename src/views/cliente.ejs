@@ -1,0 +1,41 @@
+<form id="nuevoCliente" method="POST">
+  <input type="file" id="file-select" />
+  <input type="submit">
+</form>
+<!-- <button onclick="getImage()" id="upload-button">Convert</button> -->
+
+
+<div id="test"></div>
+
+<script>
+  function getImage() {
+    return new Promise(function (resolve, reject) {
+      var reader = new FileReader();
+       var f = document.getElementById("file-select").files;
+    reader.onloadend = function () {
+      resolve(reader.result)
+    }
+    reader.readAsDataURL(f[0]);
+    })
+  }
+
+
+  $('#nuevoCliente').submit(async (e) => {
+			event.preventDefault(e)
+      const dataFromImage = getImage();
+      const base64ImageFile = await dataFromImage.then((result) => result)
+
+      $.ajax({
+				url: `/clientes`,
+				processData: false,
+				contentType: false,
+				type: 'POST',
+				contentType: "application/json",
+      	dataType   : "json",				
+				data: JSON.stringify({data: base64ImageFile}),
+				success: function(response){
+						console.log(response)
+				}
+			});	
+  })
+</script>
