@@ -1,14 +1,19 @@
 const Sequelize = require("sequelize");
 const Model = require("../models");
-const moment = require('moment');
 
 const show = async (req, res) => {
-  const { profesional } = req.query;
+  const { profesional, returned } = req.query;
+  let userLogin = profesional;
+  if (returned !== "false") userLogin = req.user.run_usuario
   const agenda = await Model.Agenda.findAll({
-    where: { id_usuario_agenda: profesional }
+    where: { id_usuario_agenda: userLogin }
   });
-  console.log(agenda)
+  if (returned !== "false") {
+    console.log('entra al return')
+    return res.render('verAgenda', {layout: './Shared/layout_login', user: req.user, agendas: agenda })
+  }
   return res.status(200).json(agenda)
+  // (req, res) => { res.render('verAgenda', {layout: './Shared/layout_login', user: req.user}) }
 }
 
 const create = async (req, res) => {
