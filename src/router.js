@@ -17,6 +17,7 @@ const usuario = require("./controllers/usuario");
 const agendaController = require('./controllers/agenda');
 const loginController = require("./controllers/login");
 const reservaController = require('./controllers/reservas');
+const clienteController = require('./controllers/cliente');
 
 router.use(bodyParser.urlencoded({ extended: true }));
 router.use(bodyParser.json());
@@ -52,6 +53,10 @@ router.get("/agendas/:id/reservas", reservaController.show);
 router.delete("/agendas/:id/reservas/:idReserva", reservaController.remove);
 router.put("/agendas/:id/reservas/:idReserva", reservaController.edit);
 router.get("/reserva/:id", reservaController.getReserva)
+
+// cliente
+router.get("/clientes", clienteController.show);
+router.post("/clientes", clienteController.add);
 
 // login
 router.post("/login", loginController.login);
