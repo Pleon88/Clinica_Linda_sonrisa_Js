@@ -1,100 +1,242 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Linda Sonrisa</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-</head>
-<body>
-  <div class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top mt-0 mb-3">
-        <div class="container fluid">
-            <div class="navbar-brand">
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Linda Sonrisa</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css"
+      integrity="sha256-BJ/G+e+y7bQdrYkS2RBTyNfBHpA9IuGaPmf9htub5MQ="
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="/css/open-iconic-bootstrap.min.css" />
+    <link rel="stylesheet" href="/css/animate.css" />
+    <link rel="stylesheet" href="/css/owl.carousel.min.css" />
+    <link rel="stylesheet" href="/css/owl.theme.default.min.css" />
+    <link rel="stylesheet" href="/css/magnific-popup.css" />
+    <link rel="stylesheet" href="/css/aos.css" />
+    <link rel="stylesheet" href="/css/ionicons.min.css" />
+    <link rel="stylesheet" href="/css/bootstrap-datepicker.css" />
+    <link rel="stylesheet" href="/css/jquery.timepicker.css" />
+    <link rel="stylesheet" href="/css/flaticon.css" />
+    <link rel="stylesheet" href="/css/icomoon.css" />
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
 
-                <a class="navbar-brand d-lg-none" href="/">
-                    <img src="https://i.ibb.co/vD4hyWF/klipartzcom.png" width="40" height="40" class="d-inline-block align-top" alt="CLS">
-                    CLS
-                </a>
+  <body>
 
-            </div>
-            <div class="collapse navbar-collapse" id="navbarNavDropdown">
 
-                <div class="navbar-nav mr-auto">
-                    <a class="nav-item nav-link active" href="/">Inicio</a>
-                    <a class="nav-item nav-link" href="mision">Misión</a>
-                    <a class="nav-item nav-link" href="/login">Reserva de Hora</a>
-                    <a class="nav-item nav-link" href="contacto">Contacto</a>
-                </div>
+    <nav
+    class="
+      navbar navbar-expand-lg navbar-dark
+      ftco_navbar
+      bg-dark
+      ftco-navbar-light
+    "
+    id="ftco-navbar"
+  >
+    <div class="container"></div>
+      <a class="navbar-brand" href="/">Linda<span>Sonrisa</span></a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#ftco-nav"
+        aria-controls="ftco-nav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="oi oi-menu"></span> Menu
+      </button>
 
-                <a class="nav navbar-brand d-none d-lg-block" href="/">
-                    <img src="https://i.ibb.co/vD4hyWF/klipartzcom.png" width="40" height="40" class="d-inline-block align-top" alt="CLS">
-                    CLS
-                </a>
-
-                <div class="navbar-nav ml-auto">
-                    <a class="nav-item nav-link" href="/login">Ingresar</a>
-                    <a class="nav-item nav-link" href="/registrar">Registrate</a>
-                </div>
-            </div>
-        </div>
-        </div>
-        <div class="container">
-            <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-                <div class="carousel-indicators">
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                </div>
-                <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="https://witneydentalpractice.com/wp-content/uploads/2014/07/slider-1-1100x300.jpg" class="d-block w-100" alt="First slide">
-                </div>
-                <div class="carousel-item">
-                    <img src="https://engineering.lga.jobs/wp-content/uploads/2021/04/Afbeeldingen-website-2-1100x300.png" class="d-block w-100" alt="Second slide">
-                </div>
-                <div class="carousel-item">
-                    <img src="https://witneydentalpractice.com/wp-content/uploads/2014/07/slider-21-1100x300.jpg" class="d-block w-100" alt="Third slide">
-                </div>
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-                </button>
-            </div> 
-        </div> 
+      <div class="collapse navbar-collapse" id="ftco-nav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a href="index.html" class="nav-link">Home</a>
+          </li>
+          <li class="nav-item">
+            <a href="about.html" class="nav-link">About</a>
+          </li>
+          <li class="nav-item">
+            <a href="services.html" class="nav-link">Services</a>
+          </li>
+          <li class="nav-item">
+            <a href="doctors.html" class="nav-link">Doctors</a>
+          </li>
+          <li class="nav-item">
+            <a href="blog.html" class="nav-link">Blog</a>
+          </li>
+          <li class="nav-item">
+            <a href="contact.html" class="nav-link">Contact</a>
+          </li>
+          <li class="nav-item cta">
+            <a
+              href="/inicioSession"
+              class="nav-link"
+              data-toggle="modal"
+              data-target="#loginModal"
+              ><span>Iniciar Sesión</span></a
+            >
+          </li>
+        </ul>
+      </div>
     </div>
-</div>
-<div class="container body-content">
-    <br />
-    <hr />
-    <%- body %>
-</div>
-<div class="container body-content">
-    <br />
-    <hr />
-    <footer>
-        <p>&copy; 2021 - Grupo Número 1</p>
-    </footer>
-</div>
-    
-    <script
-    src="https://code.jquery.com/jquery-3.4.1.min.js"
-    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-    crossorigin="anonymous">
-    </script>
+  </nav>
 
+    <div><%- body %></div>
+
+
+    <footer class="ftco-footer ftco-bg-dark ftco-section">
+      <%- include('footer') %>
+    </footer>
+
+    <!-- external  -->
+    <div
+      class="modal fade"
+      id="loginModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header border-bottom-0">
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="form-title text-center">
+              <h4>Iniciar Sesión</h4>
+            </div>
+            <div class="d-flex flex-column text-center">
+              <form
+                action="/login"
+                method="post"
+                id="loginForm"
+                name="loginForm"
+              >
+                <div class="form-group">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="username"
+                    name="username"
+                    placeholder="Ingrese su usuario"
+                  />
+                </div>
+                <div class="form-group">
+                  <input
+                    type="password"
+                    class="form-control"
+                    id="password"
+                    name="password"
+                    placeholder="Ingrese su clave"
+                  />
+                </div>
+                <div id="errorLogin"></div>
+                <div>
+                  <input
+                    type="submit"
+                    class="btn btn-success btn-block btn-round"
+                    value="Entrar"
+                  />
+                  <a href="/registrar" class="btn btn-info btn-block btn-round"
+                    >Crear Cuenta</a
+                  >
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.min.js"
+      integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+      crossorigin="anonymous"
+    ></script>
+    <script src="/js/notify.js"></script>
     <script src="js/reservations.js"></script>
-</body>
+    <script src="/js/jquery-migrate-3.0.1.min.js"></script>
+    <script src="/js/popper.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/jquery.easing.1.3.js"></script>
+    <script src="/js/jquery.waypoints.min.js"></script>
+    <script src="/js/jquery.stellar.min.js"></script>
+    <script src="/js/owl.carousel.min.js"></script>
+    <script src="/js/jquery.magnific-popup.min.js"></script>
+    <script src="/js/aos.js"></script>
+    <script src="/js/jquery.animateNumber.min.js"></script>
+    <script src="/js/bootstrap-datepicker.js"></script>
+    <script src="/js/jquery.timepicker.min.js"></script>
+    <script src="/js/scrollax.min.js"></script>
+    <script src="/js/google-map.js"></script>
+    <script src="/js/main.js"></script>
+
+    <script>
+      const serialize_form = (form) =>
+        JSON.stringify(
+          Array.from(new FormData(form).entries()).reduce(
+            (m, [key, value]) => Object.assign(m, { [key]: value }),
+            {}
+          )
+        );
+
+      $("#loginForm").submit(function (e) {
+        event.preventDefault(e);
+        const reservaHoraDatos = serialize_form(this);
+        $.ajax({
+          url: `/login`,
+          processData: false,
+          contentType: false,
+          type: "POST",
+          contentType: "application/json",
+          dataType: "json",
+          data: serialize_form(this),
+          success: function (response) {
+            console.log(response);
+            console.log();
+            window.location.href = `/medico`;
+            // $.notify({
+            //   message: 'Hora Registrada!'
+            // },{
+            //   type: 'success'
+            // });
+
+            // setTimeout(function(){
+            //   window.location.reload(1);
+            // }, 3000);
+          },
+          error: function (xhr, status, error) {
+            $("#errorLogin").empty();
+            if (xhr.status === 409) {
+              $("#errorLogin").append(
+                '<p style="color:red"> Usuario o Contraseña Invalida </p>'
+              );
+              $("#password").val("");
+              $("#username").val("");
+              // $.notify("Usuario o Clave incorrecta", "error");
+            }
+          },
+        });
+      });
+    </script>
+  </body>
 </html>

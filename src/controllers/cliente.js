@@ -1,3 +1,6 @@
+const Sequelize = require("sequelize");
+const Model = require("../models");
+
 const show = (req, res) => {
   return res.render('cliente', {layout: './Shared/layout'})
 }

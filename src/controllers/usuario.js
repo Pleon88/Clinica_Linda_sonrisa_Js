@@ -25,6 +25,9 @@ const create = async (req, res) => {
   req.body.comuna_usuario = Number(req.body.comuna_usuario);
   req.body.idTipo_usuario = Number(req.body.idTipo_usuario);
   req.body.fecha_creacion = new Date();
+  req.body.idTipo_usuario = req.body.idTipo_usuario ? req.body.idTipo_usuario : 5;
+  req.body.status_usuario = req.body.status_usuario  ? req.body.status_usuario  : 'Activo'
+
   const usuarios = await Model.Usuario.create(req.body).catch((error) => error)
   if (usuarios.message) return res.render(res.render('registrar', {layout: './Shared/layout', created: false }))
   // return res.status(200).json({usuarios})

@@ -64,7 +64,7 @@ router.post('/logout', (req, res) => {
   req.logout();
   req.session.destroy((err) => {
     res.clearCookie('connect.sid');
-    res.render('login', {layout: './Shared/layout'})
+    res.render('index', {layout: './Shared/layout'})
   });
 });
 
