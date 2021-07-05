@@ -210,18 +210,7 @@
           dataType: "json",
           data: serialize_form(this),
           success: function (response) {
-            console.log(response);
-            console.log();
-            window.location.href = `/medico`;
-            // $.notify({
-            //   message: 'Hora Registrada!'
-            // },{
-            //   type: 'success'
-            // });
-
-            // setTimeout(function(){
-            //   window.location.reload(1);
-            // }, 3000);
+            window.location.href = `/inicioSession`;
           },
           error: function (xhr, status, error) {
             $("#errorLogin").empty();
