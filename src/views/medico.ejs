@@ -1,21 +1,105 @@
+<section class="home-slider owl-carousel">
+  <div
+    class="slider-item bread-item"
+    style="background-image: url('images/bg_1.jpg')"
+    data-stellar-background-ratio="0.5"
+  >
+    <div class="overlay"></div>
+    <div class="container" data-scrollax-parent="true">
+      <div class="row slider-text align-items-end">
+        <div class="col-md-7 col-sm-12 ftco-animate mb-5">
+          <h1
+            class="mb-3"
+            data-scrollax=" properties: { translateY: '70%', opacity: .9}"
+          >
+            BIENVENIDO
+          </h1>
+          <br />
+          <h4 style="color: white">
+            <%= user.nombre_usuario %> <%= user.apellidoP_usuario %>
+          </h4>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="ftco-section container">
+  <div class="row">
+
+
+      <div class="col-md-3">
+        <div class="card text-center">
+          <div class="card-body">
+            <h5 class="card-title">Usuario</h5>
+            <img src="/imagesMenu/user.png" alt="" width="70px" />
+            <p class="card-text"></p>
+            <a href="#" class="btn btn-primary">Crear</a>
+            <a href="/users" class="btn btn-primary"> Ver</a>
+          </div>
+        </div>
+      </div>
+
+    <div class="col-md-3">
+      <div class="card text-center">
+        <div class="card-body">
+          <h5 class="card-title">Agenda</h5>
+          <img src="/imagesMenu/calendar.png" alt="" width="70px" />
+          <p class="card-text"></p>
+          <a href="/agenda"" class="btn btn-primary">Crear</a>
+          <a href="/veragenda" class="btn btn-primary">Ver</a>
+        </div>
+      </div>
+    </div>
+
+
+
+    <div class="col-md-5">
+      <div class="card text-center">
+        <div class="card-body">
+          <h5 class="card-title">Situación Ecónomica Paciente</h5>
+          <img
+            src="/imagesMenu/bloc-de-notas-y-lapiz.png"
+            alt=""
+            width="70px"
+          />
+          <p class="card-text"></p>
+          <a href="#" class="btn btn-primary">Ver</a>
+        </div>
+      </div>
+    </div>
+
+
+</section>
+
+<!-- 
+
 <!DOCTYPE html>
 <html lang="en">
-<body>
-<h2>Inicio Sesion</h2>
-<br>
-<h4>BIENVENIDO</h4> 
-<h4>Odontólogo <%= user.nombre_usuario %>  <%= user.apellidoP_usuario %></h4>
-<hr />
-<br />
-<div class="list-group">
-    <a href="#" class="list-group-item list-group-item-action active">
+  <body>
+    <h2>Inicio Sesion</h2>
+    <br />
+    <h4>BIENVENIDO</h4>
+    <h4>Odontólogo <%= user.nombre_usuario %> <%= user.apellidoP_usuario %></h4>
+    <hr />
+    <br />
+    <div class="list-group">
+      <a href="#" class="list-group-item list-group-item-action active">
         Menú
-    </a>
-    <a href="/agenda" class="list-group-item list-group-item-action">Agenda</a>
-    <a href="/veragenda" class="list-group-item list-group-item-action">Ver Agenda</a>
-    <a href="/users" class="list-group-item list-group-item-action">Crear Usuario</a>
-    <a href="/validarSituacion" class="list-group-item list-group-item-action">Situación Ecónomica Pacientes</a>
-</div>
-<br />
-</body>
-</html>
+      </a>
+      <a href="/agenda" class="list-group-item list-group-item-action"
+        >Agenda</a
+      >
+      <a href="/veragenda" class="list-group-item list-group-item-action"
+        >Ver Agenda</a
+      >
+      <a href="/users" class="list-group-item list-group-item-action"
+        >Crear Usuario</a
+      >
+      <a href="/validarSituacion" class="list-group-item list-group-item-action"
+        >Situación Ecónomica Pacientes</a
+      >
+    </div>
+    <br />
+  </body>
+</html> -->

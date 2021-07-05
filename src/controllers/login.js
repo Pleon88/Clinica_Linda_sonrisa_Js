@@ -42,7 +42,8 @@ const login = async (req, res, next) => {
       if(err){
         return next(err);
       }
-      return res.status(200).json({ success : true, message : 'authentication succeeded' });        
+      console.log(user)
+      return res.status(200).json({ success : true, message : 'authentication succeeded', user: user.idTipo_usuario });        
     });
   })(req, res, next);
 
