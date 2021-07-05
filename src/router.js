@@ -100,7 +100,7 @@ router.get('/validarSituacion',verifyUserLogin, (req, res) => { res.render('vali
 // login
 router.get('/', (req, res) => { res.render('index', {layout: './Shared/layout'}) });
 
-router.get('/medico',verifyUserLogin ,(req, res) => { res.render('inicioSession', { layout: './Shared/layout_login', user: req.user }) });
+router.get('/medico',verifyUserLogin ,(req, res) => { res.render('medico', { layout: './Shared/layout_login', user: req.user }) });
 
 router.get('/inicioSession', (req, res , next) => {
   if (req.isAuthenticated()) return next();
