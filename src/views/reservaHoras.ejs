@@ -1,153 +1,194 @@
-<!DOCTYPE html>
-<html lang="en">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.3/animate.min.css"><body>
-	<h2>Reserva de hora</h2>
-	<br>
-	<div class="container">
-		<div class="row row-cols-1 row-cols-md-5 ">
-			<div class="col-8">
-				<div class="card">
-					<div class="card-body ">
-						<h4 class="mb-3">Seleccion de profesional</h4>
-						<p></p>
-						<form id="professionals" method="POST">
-							<select class="form-select mb-3 profesionalOptions" aria-label="Default select example" id="profesional" name="profesional">
-								<option selected>Selecciona profesional</option>
-								<% professionals.forEach((profesional) => { %>
-									<option value="<%= profesional.run_usuario %>" id="<%= profesional.run_usuario %>" ><%= profesional.nombre_usuario %></option>
-								<% }) %>
-							</select>
+<section class="home-slider owl-carousel">
+  <div
+    class="slider-item bread-item"
+    style="background-image: url('images/bg_1.jpg')"
+    data-stellar-background-ratio="0.5"
+  >
+    <div class="overlay"></div>
+    <div class="container" data-scrollax-parent="true">
+      <div class="row slider-text align-items-end">
+        <div class="col-md-7 col-sm-12 ftco-animate mb-5">
+          <h1
+            class="mb-3"
+            data-scrollax=" properties: { translateY: '70%', opacity: .9}"
+          >
+            Reservar Hora
+          </h1>
+          <p>En esta sección puedes reservar una hora</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-							<h4 class="mb-3">Fecha</h4>
-							<p></p>
-							<select class="form-select mb-3" aria-label="Default select example" id="agendaSelect" name="agendaSelect" disabled>
-								<option value="">Seleccione una agenda</option>
-							</select>			
-							
-							<h4 class="mb-3">Horas</h4>
-							<p></p>
-							<select class="form-select mb-3" aria-label="Default select example" id="reservaHora" name="reservaHora" disabled>
-								<option selected>Horas</option>
-							</select>
-							<input type="submit" value="Reservar"  class="btn btn-success">
+<section class="ftco-section container" >
+  <div class="d-flex justify-content-center">
+    <div class="col-7">
+      <div class="card">
+        <div class="card-body">
+          <form id="professionals" method="POST">
+            <select
+              class="form-control mb-3 profesionalOptions"
+              aria-label="Default select example"
+              id="profesional"
+              name="profesional"
+            >
+              <option selected>Seleccione un profesional</option>
+              <div style="color: black"> <%= professionals %> </div>
+              <% professionals.forEach((profesional) => { %>
+                <%= profesional%>
+              <option
+                value="<%= profesional.run_usuario %>"
+                id="<%= profesional.run_usuario %>"
+              >
+                <%= profesional.nombre_usuario %>
+              </option>
+              <% }) %>
+            </select>
+            <br>
 
-						</form>				
-					</div>
-				</div>
-			</div>
-		</div>	
-	</div>
-	<br>
-	<div class="form-group">
-        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-      		<!-- <input type="submit" value="Reservar" class="btn btn-success" > |
-			<input onclick="document.location.href='/inicioSession'" type="button" value="Volver al Menu" class="btn btn-outline-dark" /> -->
-		</div>
-	</div>
-<br />
-	
+            <select
+              class="form-control"
+              aria-label="Default select example"
+              id="agendaSelect"
+              name="agendaSelect"
+              disabled
+            >
+              <option value="">Seleccione una agenda</option>
+            </select>
+
+            <br>
+            <select
+              class="form-control mb-3"
+              aria-label="Default select example"
+              id="reservaHora"
+              name="reservaHora"
+              disabled
+            >
+              <option selected>Seleccione una Hora</option>
+            </select>
+
+            <div id="reservaMensaje"></div>
+              <br>
+              <div align="center">
+                <input type="submit" value="Reservar" class="btn btn-info col-md-4" />
+              </div>
+            
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <script>
-	$('#profesional').change(function() {
-		var profesionalSelected = $('#profesional').find(":selected").val();
-		$.ajax({
-			url: `/agendas?profesional=${profesionalSelected}&returned=false`,
-			processData: false,
-			contentType: false,
-			type: 'get',
-			success: function(agendas){
-				console.log(agendas)
-				if (agendas.length > 0) {
-					$('#agendaSelect')
-						.find('option')
-						.remove()
-						.end()
-						.append('<option value="" selected>Seleccione una agenda</option>')
-						.val('whatever');
+  $("#profesional").change(function () {
+    var profesionalSelected = $("#profesional").find(":selected").val();
+    $.ajax({
+      url: `/agendas?profesional=${profesionalSelected}&returned=false`,
+      processData: false,
+      contentType: false,
+      type: "get",
+      success: function (agendas) {
+        console.log(agendas);
+        if (agendas.length > 0) {
+          $("#agendaSelect")
+            .find("option")
+            .remove()
+            .end()
+            .append('<option value="" selected>Seleccione una agenda</option>')
+            .val("whatever");
 
-						$('#reservaHora')
-						.find('option')
-						.remove()
-						.end()
-						.append('<option value="" selected>Seleccione una hora</option>')
-						.val('whatever');	
-						$('#agendaSelect').prop("disabled", false);						
-					agendas.forEach((agenda) => {
-						console.log(agenda)
-						$('#agendaSelect').append(`<option value="${agenda.id_agenda}" > ${moment.tz(agenda.fecha_agenda, 'America/Santiago').format("DD-MM-YYYY")} </option>`);
-					})
-				} else {
-					$('#agendaSelect')
-						.find('option')
-						.remove()
-						.end()
-						.append('<option value="" selected>Seleccione una agenda</option>')
-						.val('whatever');					
-					$('#agendaSelect').prop("disabled", true);		
-				}
-			}
-		});
-	})
+          $("#reservaHora")
+            .find("option")
+            .remove()
+            .end()
+            .append('<option value="" selected>Seleccione una hora</option>')
+            .val("whatever");
+          $("#agendaSelect").prop("disabled", false);
+          agendas.forEach((agenda) => {
+            console.log(agenda);
+            $("#agendaSelect").append(
+              `<option value="${agenda.id_agenda}" > ${moment
+                .tz(agenda.fecha_agenda, "America/Santiago")
+                .format("DD-MM-YYYY")} </option>`
+            );
+          });
+        } else {
+          $("#agendaSelect")
+            .find("option")
+            .remove()
+            .end()
+            .append('<option value="" selected>Seleccione una agenda</option>')
+            .val("whatever");
+          $("#agendaSelect").prop("disabled", true);
+        }
+      },
+    });
+  });
 
-	$('#agendaSelect').change(function() {
-			var agendaSelected = $('#agendaSelect').find(":selected").val();
-			$.ajax({
-				url: `/agendas/${agendaSelected}/reservas`,
-				processData: false,
-				contentType: false,
-				type: 'get',
-				success: function(reservas){
-					if (reservas.length > 0) {
-						$('#reservaHora')
-							.find('option')
-							.remove()
-							.end()
-							.append('<option value="">Seleccione una hora</option>')
-							.val('whatever');
-						$('#reservaHora').prop("disabled", false);	
-						console.log(reservas)
-						reservas.forEach((reserva) => {
-							$('#reservaHora').append(`<option  value="${reserva.id}"> ${moment.tz(reserva.horario_reserva, 'America/Santiago').format("hh:mm")} </option>`);
-						})
-					}
-				}
-			});			
-		});
+  $("#agendaSelect").change(function () {
+    var agendaSelected = $("#agendaSelect").find(":selected").val();
+    $.ajax({
+      url: `/agendas/${agendaSelected}/reservas`,
+      processData: false,
+      contentType: false,
+      type: "get",
+      success: function (reservas) {
+        if (reservas.length > 0) {
+          $("#reservaHora")
+            .find("option")
+            .remove()
+            .end()
+            .append('<option value="">Seleccione una hora</option>')
+            .val("whatever");
+          $("#reservaHora").prop("disabled", false);
+          console.log(reservas);
+          reservas.forEach((reserva) => {
+            $("#reservaHora").append(
+              `<option  value="${reserva.id}"> ${moment
+                .tz(reserva.horario_reserva, "America/Santiago")
+                .format("hh:mm")} </option>`
+            );
+          });
+        }
+      },
+    });
+  });
 
-	const serialize_form = form => JSON.stringify(
-		Array.from(new FormData(form).entries())
-				.reduce((m, [ key, value ]) => Object.assign(m, { [key]: value }), {})
-	);
+  const serialize_form = (form) =>
+    JSON.stringify(
+      Array.from(new FormData(form).entries()).reduce(
+        (m, [key, value]) => Object.assign(m, { [key]: value }),
+        {}
+      )
+    );
 
-	$('#professionals').submit(function(e) {
-		event.preventDefault(e)
-  	const reservaHoraDatos = serialize_form(this);
-		$.ajax({
-				url: `/agendas/${JSON.parse(reservaHoraDatos).agendaSelect}/reservas/${JSON.parse(reservaHoraDatos).reservaHora}`,
-				processData: false,
-				contentType: false,
-				type: 'PUT',
-				contentType: "application/json",
-      	dataType   : "json",				
-				data: serialize_form(this),
-				success: function(response){
-						console.log(response);
-						$.notify({
-							message: 'Hora Registrada!'
-						},{
-							type: 'success'
-						});
-
-						setTimeout(function(){
-   						window.location.reload(1);
-						}, 3000);
-				}
-			});	
-	})
-
+  $("#professionals").submit(function (e) {
+    event.preventDefault(e);
+    const reservaHoraDatos = serialize_form(this);
+    $("#reservaMensaje").empty();
+    $.ajax({
+      url: `/agendas/${JSON.parse(reservaHoraDatos).agendaSelect}/reservas/${
+        JSON.parse(reservaHoraDatos).reservaHora
+      }`,
+      processData: false,
+      contentType: false,
+      type: "PUT",
+      contentType: "application/json",
+      dataType: "json",
+      data: serialize_form(this),
+      success: function (response) {
+        $("#reservaMensaje").append(
+                '<p style="color:green"> Hora Registrada</p>'
+              );
+        setTimeout(function () {
+          window.location.reload(1);
+        }, 3000);
+      },
+    });
+  });
 </script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.33/moment-timezone.min.js"> </script>
-
-</body>
-</html>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.33/moment-timezone.min.js"></script>

@@ -9,8 +9,10 @@ app.set('views','./src/views');
 app.use(expressLayouts);
 app.set('layout', './Shared/layout')
 app.set('layout', './Shared/layout_login')
+app.set('view options', { layout:'/Shared/footer.ejs' });
 app.set('view engine', 'ejs');
 app.use('/',indexRouter);
+app.use(express.static(__dirname + '/src/public'));
 
 const portApp = process.env.APP_PORT || 3000;
 

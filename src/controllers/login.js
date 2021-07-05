@@ -5,7 +5,6 @@ const Model = require("../models");
 
 const login = async (req, res, next) => {
   console.log(req.body);
-
   passport.use(
     new PassportLocal(async function (username, password, done) {
       const loginUser = await Model.Usuario.findOne({
@@ -30,11 +29,23 @@ const login = async (req, res, next) => {
   passport.deserializeUser(function (id, done) {
     done(null, id);
   });
-  
-  passport.authenticate("local", {
-    successRedirect: "/inicioSession",
-    failureRedirect: "/",
+
+  passport.authenticate('local', function(err, user, info) {
+    if (err) {
+      return next(err); // will generate a 500 error
+    }
+    // Generate a JSON response reflecting authentication status
+    if (! user) {
+      return res.status(409).json({ success : false, message : 'authentication failed' });
+    }
+    req.login(user, function(err){
+      if(err){
+        return next(err);
+      }
+      return res.status(200).json({ success : true, message : 'authentication succeeded' });        
+    });
   })(req, res, next);
+
 };
 
 module.exports = {

@@ -1,89 +1,98 @@
-<!DOCTYPE html>
-<html lang="en">
-<body>
-  <div class="container">
-  <h2>Crear Cuenta</h2>
-  <div class="form-horizontal">
-  <h3>Paciente</h3>
-  <div id ="test" >
-  </div>
-  <br>
-  <div>
-
-    <% if (created) { %>
-      <div class="alert alert-success" role="alert">
-        Usuario creado correctamente
-      </div>
-    <%} else if (created !== null){%>
-      <div class="alert alert-danger" role="alert">
-        problemas al crear al usuario
-      </div>
-    <%}%>
-
-    <form id="addUser" name="addUser" action="/registrar" method="post">
-      <label for="run_usuario" class="control-label col-md-2"> RUN:</label>
-      <input type="text" id="run_usuario" name="run_usuario" class="form-control col-md-4" placeholder="RUN"> <br>
-
-      <label for="nombre_usuario" class="control-label col-md-2"> Nombre:</label>
-      <input type="text" id="nombre_usuario" name="nombre_usuario" class="form-control col-md-4" placeholder="Nombre"> <br>
-
-      <label for="apellidoP_usuario" class="control-label col-md-2"> A. Paterno:</label>
-      <input type="text" id="apellidoP_usuario" name="apellidoP_usuario" class="form-control col-md-4" placeholder="A. Paterno"> <br>
-
-      <label for="apellidoM_usuario" class="control-label col-md-2"> A. Materno</label>
-      <input type="text" id="apellidoM_usuario" name="apellidoM_usuario" class="form-control col-md-4" placeholder="A. Materno"> <br>
-      
-      <label for="fecha_nac_usuario" class="control-label col-md-2"> Fecha Nacimiento:</label>
-      <input class="form-control text-box single-line col-md-4" data-val="true" data-val-date="El campo Fecha de Nacimiento debe ser una fecha." data-val-required="El campo Fecha Nacimiento es obligatorio." id="fecha_nac_usuario" name="fecha_nac_usuario" required="required" type="date" value=""min="1911-01-01" max="2021-08-01">
-      <span class="field-validation-valid text-danger" data-valmsg-for="fecha_nac_usuario" data-valmsg-replace="true"></span>
-      <br>
-      <label for="usuario" class="control-label col-md-2"> Usuario:</label>
-      <input type="text" id="usuario" name="usuario" class="form-control col-md-4" placeholder="Usuario"> <br>
-
-      <label for="idTipo_usuario" class="control-label col-md-2"> Tipo de usuario:</label>      
-      <select class="form-select col-md-4" id="idTipo_usuario" name="idTipo_usuario">
-          <option value="1">Odontologo</option>
-          <option value="2">Asistente Dental</option>
-          <option value="3">Recepcionista</option>
-          <option value="4">Externo</option>
-          <option selected="selected" value="5">Paciente</option>
-          <option value="6">Proveedor</option>
-          <option value="7">Carga Familiar</option>
-      </select>
-      <span class="field-validation-valid text-danger" data-valmsg-for="idTipo_usuario" data-valmsg-replace="true"></span>
-      <br>
-      <label for="status_usuario" class="control-label col-md-2"> Status:</label>
-      <input type="text" id="status_usuario" name="status_usuario" class="form-control col-md-4" value="Activo"> <br>
-
-      <label for="password_usuario" class="control-label col-md-2"> Contraseña:</label>
-      <input type="text" id="password_usuario" name="password_usuario" class="form-control col-md-4" placeholder="Contraseña"> <br>
-
-      <label for="direccion_usuario" class="control-label col-md-2"> Dirección:</label>
-      <input type="text" id="direccion_usuario" name="direccion_usuario" class="form-control col-md-4" placeholder="Dirección"> <br>
-
-      <label for="comuna_usuario" class="control-label col-md-2"> Comuna:</label>
-      <input type="text" id="comuna_usuario" name="comuna_usuario" class="form-control col-md-4" placeholder="Comuna"> <br>
-
-      <label for="email_usuario" class="control-label col-md-2"> Email:</label>
-      <input type="text" id="email_usuario" name="email_usuario" class="form-control col-md-4" placeholder="Email"> <br>
-
-      <label for="fono_usuario" class="control-label col-md-2"> Fono:</label>
-      <input type="text" id="fono_usuario" name="fono_usuario" class="form-control col-md-4" placeholder="Fono"><br>
-<hr>
-   <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-      <input type="submit" value="Guardar" class="btn btn-success" >
+<section class="home-slider owl-carousel">
+  <div class="slider-item bread-item" style="background-image: url('images/bg_1.jpg');" data-stellar-background-ratio="0.5">
+    <div class="overlay"></div>
+    <div class="container" data-scrollax-parent="true">
+      <div class="row slider-text align-items-end">
+        <div class="col-md-7 col-sm-12 ftco-animate mb-5">
+          <h1 class="mb-3" data-scrollax=" properties: { translateY: '70%', opacity: .9}">Registrate</h1>
+        </div>
       </div>
     </div>
-    </form>
   </div>
+</section>
 
-  </div>
-  </div>
-  <!-- <script src="js/usuarios.js"></script> -->
-   <script
-  src="https://code.jquery.com/jquery-3.4.1.min.js"
-  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-  crossorigin="anonymous"></script>
-</body>
-</html>
+
+<section class="ftco-intro">
+  <div class="container">
+    <h2>Crear Cuenta</h2>
+    <div class="form-horizontal">
+    <h3>Paciente</h3>
+    <div id ="test" >
+    </div>
+    <br>
+    <div>
+  
+      <% if (created) { %>
+        <div class="alert alert-success" role="alert">
+          Usuario creado correctamente
+        </div>
+      <%} else if (created !== null){%>
+        <div class="alert alert-danger" role="alert">
+          problemas al crear al usuario
+        </div>
+      <%}%>
+  
+      <form id="addUser" name="addUser" action="/registrar" method="post">
+
+        <input type="text" id="run_usuario" name="run_usuario" class="form-control col-md-4" placeholder="RUN"> <br>
+  
+
+        <input type="text" id="nombre_usuario" name="nombre_usuario" class="form-control col-md-4" placeholder="Nombre"> <br>
+  
+
+        <input type="text" id="apellidoP_usuario" name="apellidoP_usuario" class="form-control col-md-4" placeholder="A. Paterno"> <br>
+
+        <input type="text" id="apellidoM_usuario" name="apellidoM_usuario" class="form-control col-md-4" placeholder="A. Materno"> <br>
+        
+        <label for="fecha_nac_usuario" style="color: black !important"> Fecha Nacimiento:</label>
+        <input class="form-control text-box single-line col-md-4" data-val="true" data-val-date="El campo Fecha de Nacimiento debe ser una fecha." data-val-required="El campo Fecha Nacimiento es obligatorio." id="fecha_nac_usuario" name="fecha_nac_usuario" required="required" type="date" value=""min="1911-01-01" max="2021-08-01">
+        
+        <!-- <span class="field-validation-valid text-danger" data-valmsg-for="fecha_nac_usuario" data-valmsg-replace="true"></span> -->
+        <!-- <label for="idTipo_usuario" class="control-label col-md-2"> Tipo de usuario:</label>      
+        <select class="form-control col-md-4" id="idTipo_usuario" name="idTipo_usuario">
+            <option value="1">Odontologo</option>
+            <option value="2">Asistente Dental</option>
+            <option value="3">Recepcionista</option>
+            <option value="4">Externo</option>
+            <option selected="selected" value="5">Paciente</option>
+            <option value="6">Proveedor</option>
+            <option value="7">Carga Familiar</option>
+        </select> -->
+
+        
+        <span class="field-validation-valid text-danger" data-valmsg-for="idTipo_usuario" data-valmsg-replace="true"></span>
+        <br>
+
+        <!-- <input type="text" id="status_usuario" name="status_usuario" class="form-control col-md-4" value="Activo"> <br> -->
+  
+
+        <input type="text" id="password_usuario" name="password_usuario" class="form-control col-md-4" placeholder="Contraseña"> <br>
+  
+
+        <input type="text" id="direccion_usuario" name="direccion_usuario" class="form-control col-md-4" placeholder="Dirección"> <br>
+  
+
+        <input type="text" id="comuna_usuario" name="comuna_usuario" class="form-control col-md-4" placeholder="Comuna"> <br>
+  
+
+        <input type="text" id="email_usuario" name="email_usuario" class="form-control col-md-4" placeholder="Email"> <br>
+  
+
+        <input type="text" id="fono_usuario" name="fono_usuario" class="form-control col-md-4" placeholder="Fono"><br>
+
+     <div class="form-group">
+          <div class="col-md-offset-2 col-md-10">
+        <input type="submit" value="Guardar" class="btn btn-success" >
+        </div>
+      </div>
+      </form>
+    </div>
+  
+    </div>
+    </div>
+    <!-- <script src="js/usuarios.js"></script> -->
+     <script
+    src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+    crossorigin="anonymous"></script>
+</section>
