@@ -35,7 +35,7 @@ router.use(passport.session());
 
 // usuarios
 router.get("/users", usuario.showAll);
-router.get("/usuarios/:id", usuario.show);
+router.get("/informacion/:id", usuario.show);
 router.get("/visualizar/:id", usuario.showP);
 router.post("/registrar", usuario.create);
 router.put("/modificar/:id", usuario.edit);
