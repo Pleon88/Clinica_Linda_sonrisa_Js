@@ -1,10 +1,23 @@
+<section class="home-slider owl-carousel">
+    <div class="slider-item bread-item" style="background-image: url('/images/bg_1.jpg');" data-stellar-background-ratio="0.5">
+        <div class="overlay"></div>
+            <div class="container" data-scrollax-parent="true">
+                <div class="row slider-text align-items-end">
+                    <div class="col-md-7 col-sm-12 ftco-animate mb-5">
+                    <h1 class="mb-3" data-scrollax=" properties: { translateY: '70%', opacity: .9}">Mi Información</h1>
+                </div>
+            </div>
+        </div>        
+    </div>
+</section>
+  <br>
 <!DOCTYPE html>
 <html lang="en">
 <body>
-    <h2>Mi Información</h2>
-
+    <div class="container">
 <div>
-    <h4>Usuario <%= user.nombre_usuario %>  <%= user.apellidoP_usuario %></h4>
+    <h4>Usuario <%= users.nombre_usuario %>  <%= users.apellidoP_usuario %></h4>
+    <br>
     <hr />
     <form id="showP" name="showP" action="/visualizar/:id" method="get">
     <div class="form-group">
@@ -128,11 +141,13 @@
         </div>
     </div>
 </div>
-<hr />
+<br>
 <p>
     <input onclick="document.location.href='/modificar/<%= user.run_usuario %>'" type="button" value="Modificar" class="btn btn-outline-success" /> |
     <input onclick="document.location.href='/users'" type="button" value="Volver a la lista" class="btn btn-outline-dark" />
 </p>
 </form>
+</div>
+<br>
 </body>
 </html>

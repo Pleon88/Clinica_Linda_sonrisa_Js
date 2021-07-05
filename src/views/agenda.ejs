@@ -1,15 +1,26 @@
+<section class="home-slider owl-carousel">
+    <div class="slider-item bread-item" style="background-image: url('/images/bg_1.jpg');" data-stellar-background-ratio="0.5">
+      <div class="overlay"></div>
+      <div class="container" data-scrollax-parent="true">
+        <div class="row slider-text align-items-end">
+          <div class="col-md-7 col-sm-12 ftco-animate mb-5">
+            <h1 class="mb-3" data-scrollax=" properties: { translateY: '70%', opacity: .9}">Agenda</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 <!DOCTYPE html>
 <html lang="en">
 <body>
-	<h2>Agenda</h2>
 	<br>
-	<div class="container">
+	<div class="ftco-section container justify-content-center">
 		<form id="previsualizaAgenda" method="POST">
 			<div class="row row-cols-1 row-cols-md-3 g-4">
 				<div class="col-3">
 					<div class="card">
 						<div class="card-body ">
-							<h4 class="mb-3">Agenda</h4>
+							<h4 class="mb-auto">Agenda</h4>
 							<p></p>
 
 								<input class="form-control text-box single-line mb-3" data-val="true" data-val-date="El campo Fecha de Nacimiento debe ser una fecha." data-val-required="El campo Fecha Nacimiento es obligatorio." id="fecha_agenda" name="fecha_agenda" required="required" type="date" value="" min="2021-07-01" max="2021-12-31">
@@ -20,7 +31,7 @@
 				<div class="col-3">
 					<div class="card">
 						<div class="card-body ">
-							<h4 class="mb-3">Hora inicio</h4>
+							<h4 class="mb-4">Hora inicio</h4>
 							<p></p>
 
 								<select class="form-select mb-3" aria-label="Default select example" name="horaInicio">
@@ -38,7 +49,7 @@
 				<div class="col-3">
 					<div class="card">
 						<div class="card-body ">
-							<h4 class="mb-3">Intervalo</h4>
+							<h4 class="mb-4">Intervalo</h4>
 							<p></p>
 
 								<select class="form-select mb-3" aria-label="Default select example" name="intervalo">
@@ -54,7 +65,7 @@
 				<div class="col-3">
 					<div class="card">
 						<div class="card-body ">
-							<h4 class="mb-3">Bloques</h4>
+							<h4 class="mb-4">Bloques</h4>
 							<p></p>
 
 								<select class="form-select mb-3" aria-label="Default select example" name="bloques">
@@ -73,14 +84,14 @@
 			<br />
 			<div class="form-group">
         		<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-					<input type="submit" value="Generar" class="btn btn-success" id="generar" name="generar"> |
+					<input type="submit" value="Generar" class="btn btn-info" id="generar" name="generar"> |
 					<input type="submit" value="Previsualizar" class="btn btn-outline-dark" id="previsualizar" name="previsualizar">
 				</div>
 			</div>
 			
 		</form>
 	</div>
-	
+	<div class="ftco-section container justify-content-center">
 	<div id = "bloquesDeAgenda">
 		<table class="table">
 			<thead>
@@ -93,7 +104,7 @@
 			</tbody>
 		</table>		
 	</div>
-
+	</div>
 
 	<script>
 
