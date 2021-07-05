@@ -95,7 +95,7 @@ router.get('/verBoletas',verifyUserLogin, (req, res) => { res.render('verBoletas
 //Menu Usuario Odontologo
 router.get('/agenda',verifyUserLogin, (req, res) => { res.render('agenda', {layout: './Shared/layout_login', user: req.user}) });
 router.get('/verAgenda', agendaController.show);
-
+router.get('/validarSituacion',verifyUserLogin, (req, res) => { res.render('validarSituacion', {layout: './Shared/layout_login', user: req.user}) });
 
 // login
 router.get('/', (req, res) => { res.render('index', {layout: './Shared/layout'}) });
