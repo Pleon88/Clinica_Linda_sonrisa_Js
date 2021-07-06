@@ -14,13 +14,13 @@
 <br>
 <!DOCTYPE html>
 <html lang="en">
+
 <body>
-    <div class="container">
+    <div class="ftco-section container justify-content-center">
         <div>
             <h4>Usuario <%= users.nombre_usuario %>
                     <%= users.apellidoP_usuario %>
             </h4>
-            <br>
             <hr />
             <form id="showP" name="showP" action="/visualizar/:id" method="get">
                 <div class="form-group">
@@ -146,10 +146,8 @@
         </div>
         <br>
         <p>
-            <input onclick="document.location.href='/modificar/<%= user.run_usuario %>'" type="button" value="Modificar"
-                class="btn btn-outline-success" /> |
-            <input onclick="document.location.href='/users'" type="button" value="Volver a la lista"
-                class="btn btn-outline-dark" />
+            <input onclick="document.location.href='/modificar/<%= users.run_usuario %>'" type="button"
+                value="Modificar" class="btn btn-outline-success" />
         </p>
         </form>
     </div>

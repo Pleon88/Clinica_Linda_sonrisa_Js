@@ -1,80 +1,113 @@
 <section class="home-slider owl-carousel">
-    <div class="slider-item bread-item" style="background-image: url('images/bg_1.jpg');" data-stellar-background-ratio="0.5">
-      <div class="overlay"></div>
-      <div class="container" data-scrollax-parent="true">
-        <div class="row slider-text align-items-end">
-          <div class="col-md-7 col-sm-12 ftco-animate mb-5">
-            <h1 class="mb-3" data-scrollax=" properties: { translateY: '70%', opacity: .9}">Usuarios</h1>
-          </div>
+  <div class="slider-item bread-item" style="background-image: url('images/bg_1.jpg');"
+    data-stellar-background-ratio="0.5">
+    <div class="overlay"></div>
+    <div class="container" data-scrollax-parent="true">
+      <div class="row slider-text align-items-end">
+        <div class="col-md-7 col-sm-12 ftco-animate mb-5">
+          <h1 class="mb-3" data-scrollax=" properties: { translateY: '70%', opacity: .9}">Usuarios</h1>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 <!DOCTYPE html>
 <html lang="en">
+
 <body>
-    <div class="ftco-section container">
-<p>
-    <input onclick="document.location.href='/crear'" type="button" value="Crear" class="btn btn-info">
-</p>
-<div class=" table-responsive col-auto">
-    <table class="table table-hover text-truncate">
+  <div class="ftco-section container">
+    <p>
+      <input onclick="document.location.href='/crear'" type="button" value="Crear" class="btn btn-info">
+    </p>
+    <div class=" table-responsive col-auto">
+      <table class="table table-hover text-truncate">
         <thead class="thead-dark">
-            <tr>
-                <th>Nombre:</th>
-                <th>Apellido Paterno:</th>
-                <th>Apellido Materno:</th>
-                <th>Fecha de Nacimiento:</th>
-                <th>Usuario:</th>
-                <th>Contraseña:</th>
-                <th>Dirección:</th>
-                <th>Comuna:</th>
-                <th>Email:</th>
-                <th>Fono:</th>
-                <th>RUN Persona Cargo:</th>
-                <th>Categoria:</th>
-                <th>Status:</th>
-                <th>Fecha Creación:</th>
-                <th></th>
-            </tr>
+          <tr>
+            <th>Nombre:</th>
+            <th>Apellido Paterno:</th>
+            <th>Apellido Materno:</th>
+            <th>Fecha de Nacimiento:</th>
+            <th>Usuario:</th>
+            <th>Contraseña:</th>
+            <th>Dirección:</th>
+            <th>Comuna:</th>
+            <th>Email:</th>
+            <th>Fono:</th>
+            <th>RUN Persona Cargo:</th>
+            <th>Categoria:</th>
+            <th>Status:</th>
+            <th>Fecha Creación:</th>
+            <th></th>
+          </tr>
         </thead>
         <tbody>
-            <% users.forEach ( function(user) { %>
-                <tr v-for="(user,indice) of usuarios">
-                    <td><%= user.nombre_usuario %> </td>
-                    <td><%= user.apellidoP_usuario %> </td>
-                    <td><%= user.apellidoM_usuario %> </td>
-                    <td><%= user.fecha_nac_usuario %> </td>
-                    <td><%= user.Usuario %> </td>
-                    <td><%= user.password_usuario %> </td>
-                    <td><%= user.direccion_usuario %> </td>
-                    <td><%= user.comuna_usuario %> </td>
-                    <td><%= user.email_usuario %> </td>
-                    <td><%= user.fono_usuario %> </td>
-                    <td><%= user.persona_cargo %> </td>
-                    <td><%= user.idTipo_usuario %> </td>
-                    <td><%= user.status_usuario %> </td>
-                    <td><%= user.fecha_creacion %> </td>     
-                <td>            
-                    <input onclick="document.location.href=`/visualizar/<%= user.run_usuario %>`" type="button" value="Ver" class="btn btn-outline-warning"> |
-                    <input onclick="document.location.href='/modificar/<%= user.run_usuario %>'" type="button" value="Modificar" class="btn btn-outline-dark"> |
-                    <input type="button" value="Eliminar" onclick="deleteUser('<%= user.run_usuario %>')">
-                    <!-- <form method="POST" name="deleteUser" id="deleteUser">
+          <% users.forEach ( function(user) { %>
+            <tr v-for="(user,indice) of usuarios">
+              <td>
+                <%= user.nombre_usuario %>
+              </td>
+              <td>
+                <%= user.apellidoP_usuario %>
+              </td>
+              <td>
+                <%= user.apellidoM_usuario %>
+              </td>
+              <td>
+                <%= user.fecha_nac_usuario %>
+              </td>
+              <td>
+                <%= user.Usuario %>
+              </td>
+              <td>
+                <%= user.password_usuario %>
+              </td>
+              <td>
+                <%= user.direccion_usuario %>
+              </td>
+              <td>
+                <%= user.comuna_usuario %>
+              </td>
+              <td>
+                <%= user.email_usuario %>
+              </td>
+              <td>
+                <%= user.fono_usuario %>
+              </td>
+              <td>
+                <%= user.persona_cargo %>
+              </td>
+              <td>
+                <%= user.idTipo_usuario %>
+              </td>
+              <td>
+                <%= user.status_usuario %>
+              </td>
+              <td>
+                <%= user.fecha_creacion %>
+              </td>
+              <td>
+                <input onclick="document.location.href=`/visualizar/<%= user.run_usuario %>`" type="button" value="Ver"
+                  class="btn btn-outline-warning"> |
+                <input onclick="document.location.href='/modificar/<%= user.run_usuario %>'" type="button"
+                  value="Modificar" class="btn btn-outline-success"> |
+                <input type="button" value="Eliminar" onclick="deleteUser('<%= user.run_usuario %>')"
+                  class="btn btn-outline-danger">
+                <!-- <form method="POST" name="deleteUser" id="deleteUser">
                         <input type="hidden" id="userId" name="userId" value="<%= user.run_usuario %>">
                         <input type="submit" value="Eliminar" class="btn btn-outline-danger">
                     </form> -->
-                </tr>
-            <% }) %> 
-        </td>
-    </tr>
-    </tbody>
-    </table>
-</div>
-</div>
+            </tr>
+            <% }) %>
+              </td>
+              </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 
-<script>
-  function deleteUser(id) {
-    console.log("here", id)
+  <script>
+    function deleteUser(id) {
+      console.log("here", id)
       event.preventDefault(id);
       confirm("El usuario sera eliminado, ¿esta seguro?");
       $.ajax({
@@ -89,10 +122,11 @@
           }
         },
       });
-  }
+    }
 
 
-</script>
+  </script>
 
 </body>
+
 </html>

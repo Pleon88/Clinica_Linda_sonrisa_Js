@@ -37,9 +37,11 @@ router.use(passport.session());
 router.get("/users", usuario.showAll);
 router.get("/informacion/:id", usuario.show);
 router.get("/visualizar/:id", usuario.showP);
+router.get("/modificar/:id", usuario.showE);
+router.get("/editeUser/:id", usuario.showU);
 router.post("/registrar", usuario.create);
 router.post("/crear", usuario.createU);
-router.put("/modificar/:id", usuario.edit);
+router.put("/editar/:id", usuario.edit);
 router.delete("/eliminar/:id", usuario.remove);
 
 // agenda
@@ -88,6 +90,7 @@ router.get('/modificar',verifyUserLogin, (req, res) => { res.render('modificar',
 
 //Menu usuario Paciente
 router.get('/informacion',verifyUserLogin, usuario.showFromLoged);
+router.get('/editeUser',verifyUserLogin, (req, res) => { res.render('editeUser', {layout: './Shared/layout_login', user: req.user}) });
 router.get('/situacionEconomica',verifyUserLogin, (req, res) => { res.render('situacionEconomica', {layout: './Shared/layout_login', user: req.user}) });
 router.get('/reservaHora', (req, res) => { res.render('reservaHora', {layout: './Shared/layout'}) });
 router.get('/reservations',verifyUserLogin ,reservaController.showProfessionals);
