@@ -42,7 +42,6 @@ router.post("/crear", usuario.createU);
 router.put("/modificar/:id", usuario.edit);
 router.delete("/eliminar/:id", usuario.remove);
 
-
 // agenda
 router.get("/agendas", agendaController.show);
 router.post("/agendas", agendaController.create);

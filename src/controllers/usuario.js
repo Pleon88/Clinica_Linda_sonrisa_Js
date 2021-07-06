@@ -85,13 +85,6 @@ module.exports = {
   showAll,
   edit,
   remove,
-<<<<<<< HEAD
   createU,
-=======
   showFromLoged,
->>>>>>> 3f8aa4038c29b3b65cd9c9bb83bb90af7f9c8d14
 };
-
-
-// 2021-06-29T02:13:52.670Z
-// 2021-06-29T02:14:00.396Z
