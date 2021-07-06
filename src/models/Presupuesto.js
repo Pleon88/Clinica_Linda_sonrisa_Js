@@ -17,11 +17,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     id_cliente_presupuesto: {
       type: DataTypes.INTEGER,
-      allowNull: false,
-      references: {
-        model: 'Cliente',
-        key: 'Id_cliente'
-      }
+      allowNull: false
     },
     fecha_actualizacion: {
       type: DataTypes.DATEONLY,

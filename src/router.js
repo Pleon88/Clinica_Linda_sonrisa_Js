@@ -6,7 +6,7 @@ const passport = require("passport");
 
 const verifyUserLogin = (req, res , next) => {
   if (req.isAuthenticated()) return next();
-  res.redirect('/login');
+  res.render('index', {layout: './Shared/layout'})
 }
 
 const router = express.Router();
@@ -19,8 +19,8 @@ const loginController = require("./controllers/login");
 const reservaController = require('./controllers/reservas');
 const clienteController = require('./controllers/cliente');
 
-router.use(bodyParser.urlencoded({ extended: true }));
-router.use(bodyParser.json());
+router.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));
+router.use(bodyParser.json({ limit: '50mb' }));
 router.use(cors());
 router.use(cookieParser("yNtXwglSOT3LrnoqeJvr1g=="));
 router.use(
@@ -42,6 +42,7 @@ router.post("/crear", usuario.createU);
 router.put("/modificar/:id", usuario.edit);
 router.delete("/eliminar/:id", usuario.remove);
 
+
 // agenda
 router.get("/agendas", agendaController.show);
 router.post("/agendas", agendaController.create);
@@ -56,7 +57,7 @@ router.put("/agendas/:id/reservas/:idReserva", reservaController.edit);
 router.get("/reserva/:id", reservaController.getReserva)
 
 // cliente
-router.get("/clientes", clienteController.show);
+router.get("/clientes/:id", clienteController.show);
 router.post("/clientes", clienteController.add);
 
 // login
@@ -87,7 +88,7 @@ router.get('/modificar',verifyUserLogin, (req, res) => { res.render('modificar',
 // router.get('/inicioSession', (req, res) => { res.render('inicioSession', {layout: './Shared/layout_login'}) });
 
 //Menu usuario Paciente
-router.get('/informacion',verifyUserLogin, (req, res) => { res.render('informacion', {layout: './Shared/layout_login', user: req.user}) });
+router.get('/informacion',verifyUserLogin, usuario.showFromLoged);
 router.get('/situacionEconomica',verifyUserLogin, (req, res) => { res.render('situacionEconomica', {layout: './Shared/layout_login', user: req.user}) });
 router.get('/reservaHora', (req, res) => { res.render('reservaHora', {layout: './Shared/layout'}) });
 router.get('/reservations',verifyUserLogin ,reservaController.showProfessionals);

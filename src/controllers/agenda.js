@@ -22,6 +22,13 @@ const create = async (req, res) => {
     fecha_agenda: req.body.fechaInicio,
     status_agenda: 'activo'
   }
+
+
+  const verify = await Model.Agenda.findAll({ where: { fecha_agenda: req.body.fechaInicio}})
+  if (verify.length !== 0) {
+    return res.status(400).json({ message: 'Fecha de agenda ya cuenta con una agenda'})
+  }
+
   const newAgenda = await Model.Agenda.create(body).catch((error) => error)
   if (newAgenda.message) return res.json({ error: true, message: newAgenda.message })
   return res.status(200).json({newAgenda})

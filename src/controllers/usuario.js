@@ -1,6 +1,10 @@
 const Sequelize = require("sequelize");
 const Model = require("../models");
 
+const getComuna = () => {
+
+}
+
 const showAll = async (req, res) => {
   const usuarios = await Model.Usuario.findAll();
   return res.render('users', {layout: './Shared/layout_login', users: usuarios, user: req.user })
@@ -11,9 +15,15 @@ const show = async (req, res) => {
   let usuarios = await Model.Usuario.findByPk(req.params.id );
   const comunaFind = await Model.Comuna.findOne({ where: { id_comuna: Number(usuarios.comuna_usuario) }})
   usuarios.comuna_usuario = comunaFind.nombre_comuna
-  return res.render('informacion', {layout: './Shared/layout_login', users: usuarios, user: req.user })
-  //return res.status(200).json({usuarios})
+  // return res.render('informacion', {layout: './Shared/layout_login', users: usuarios, user: req.user })
+  return res.status(200).json({usuarios})
 };
+
+const showFromLoged = async (req, res) => {
+  const comunaFind = await Model.Comuna.findOne({ where: { id_comuna: Number(req.user.comuna_usuario) }})
+  req.user.comuna_usuario = comunaFind.nombre_comuna
+  return res.render('user-data', {layout: './Shared/layout_login', user: req.user })
+}
 
 const showP = async (req, res) => {
   let usuarios = await Model.Usuario.findByPk(req.params.id );
@@ -75,7 +85,11 @@ module.exports = {
   showAll,
   edit,
   remove,
+<<<<<<< HEAD
   createU,
+=======
+  showFromLoged,
+>>>>>>> 3f8aa4038c29b3b65cd9c9bb83bb90af7f9c8d14
 };
 
 
