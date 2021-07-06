@@ -32,9 +32,8 @@ const login = async (req, res, next) => {
 
   passport.authenticate('local', function(err, user, info) {
     if (err) {
-      return next(err); // will generate a 500 error
+      return next(err); 
     }
-    // Generate a JSON response reflecting authentication status
     if (! user) {
       return res.status(409).json({ success : false, message : 'authentication failed' });
     }
@@ -42,7 +41,6 @@ const login = async (req, res, next) => {
       if(err){
         return next(err);
       }
-      console.log(user)
       return res.status(200).json({ success : true, message : 'authentication succeeded', user: user.idTipo_usuario });        
     });
   })(req, res, next);

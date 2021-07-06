@@ -59,75 +59,8 @@
             width="70px"
           />
           <p class="card-text"></p>
-          <a href="#" class="btn btn-primary">Ver</a>
+          <a href="/validarSituacion" class="btn btn-primary">Ver</a>
         </div>
       </div>
     </div>
-
-
 </section>
-
-<!-- 
-
-<!DOCTYPE html>
-<html lang="en">
-  <body>
-    <h2>Inicio Sesion</h2>
-    <br />
-    <h4>BIENVENIDO</h4>
-    <h4>Odontólogo <%= user.nombre_usuario %> <%= user.apellidoP_usuario %></h4>
-    <hr />
-    <br />
-    <div class="list-group">
-      <a href="#" class="list-group-item list-group-item-action active">
-        Menú
-      </a>
-      <a href="/agenda" class="list-group-item list-group-item-action"
-        >Agenda</a
-      >
-      <a href="/veragenda" class="list-group-item list-group-item-action"
-        >Ver Agenda</a
-      >
-      <a href="/users" class="list-group-item list-group-item-action"
-        >Crear Usuario</a
-      >
-      <a href="/validarSituacion" class="list-group-item list-group-item-action"
-        >Situación Ecónomica Pacientes</a
-      >
-    </div>
-    <br />
-  </body>
-</html> -->
-<!-- =======
-            <a href="/users" class="btn btn-primary">Crear</a>
-          </div>
-        </div>
-      </div>
-  
-      <div class="col-md-3">
-        <div class="card text-center">
-          <div class="card-body">
-            <h5 class="card-title">Agenda</h5>
-            <img src="/imagesMenu/calendar.png" alt="" width="70px" />
-            <p class="card-text"></p>
-            <a href="/agenda" class="btn btn-primary">Añadir</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-3">
-        <div class="card text-center">
-          <div class="card-body">
-            <h5 class="card-title">Citas</h5>
-            <img src="/imagesMenu/calendar.png" alt="" width="70px" />
-            <p class="card-text"></p>
-            <a href="/verAgenda" class="btn btn-primary">Ver</a>
-          </div>
-        </div>
-      </div>  const serialize_form = (form) =>
-    JSON.stringify(
-      Array.from(new FormData(form).entries()).reduce(
-        (m, [key, value]) => Object.assign(m, { [key]: value }),
-        {}
-      )
-    );

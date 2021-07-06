@@ -16,7 +16,7 @@ module.exports = function(sequelize, DataTypes) {
       }
     },
     fecha_agenda: {
-      type: DataTypes.DATE,
+      type: DataTypes.TIME,
       allowNull: false
     },
     status_agenda: {
