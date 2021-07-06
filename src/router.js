@@ -38,6 +38,7 @@ router.get("/users", usuario.showAll);
 router.get("/informacion/:id", usuario.show);
 router.get("/visualizar/:id", usuario.showP);
 router.post("/registrar", usuario.create);
+router.post("/crear", usuario.createU);
 router.put("/modificar/:id", usuario.edit);
 router.delete("/eliminar/:id", usuario.remove);
 
@@ -78,6 +79,7 @@ router.get('/registrar', (req, res) => { res.render('registrar', {layout: './Sha
 
 // Crud Usuarios
 router.get('/users',verifyUserLogin, (req, res) => { res.render('users', {layout: './Shared/layout_login', user: req.user}) }); 
+router.get('/crear',verifyUserLogin, (req, res) => { res.render('crear', {layout: './Shared/layout_login', created: null}) }); 
 router.get('/visualizar',verifyUserLogin, (req, res) => { res.render('visualizar', {layout: './Shared/layout_login', user: req.user}) });
 router.get('/eliminar', verifyUserLogin, (req, res) => { res.render('eliminar', {layout: './Shared/layout_login', user: req.user}) });
 router.get('/modificar',verifyUserLogin, (req, res) => { res.render('modificar', {layout: './Shared/layout_login', user: req.user}) });

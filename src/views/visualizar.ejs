@@ -1,153 +1,159 @@
 <section class="home-slider owl-carousel">
-    <div class="slider-item bread-item" style="background-image: url('/images/bg_1.jpg');" data-stellar-background-ratio="0.5">
+    <div class="slider-item bread-item" style="background-image: url('/images/bg_1.jpg');"
+        data-stellar-background-ratio="0.5">
         <div class="overlay"></div>
-            <div class="container" data-scrollax-parent="true">
-                <div class="row slider-text align-items-end">
-                    <div class="col-md-7 col-sm-12 ftco-animate mb-5">
+        <div class="container" data-scrollax-parent="true">
+            <div class="row slider-text align-items-end">
+                <div class="col-md-7 col-sm-12 ftco-animate mb-5">
                     <h1 class="mb-3" data-scrollax=" properties: { translateY: '70%', opacity: .9}">Mi Información</h1>
                 </div>
             </div>
-        </div>        
+        </div>
     </div>
 </section>
-  <br>
+<br>
 <!DOCTYPE html>
 <html lang="en">
 <body>
     <div class="container">
-<div>
-    <h4>Usuario <%= users.nombre_usuario %>  <%= users.apellidoP_usuario %></h4>
-    <br>
-    <hr />
-    <form id="showP" name="showP" action="/visualizar/:id" method="get">
-    <div class="form-group">
-        <div class="form-group">
-            <strong>RUN:</strong>
-        </div>
-        <div class="form-control">
-            <%= users.run_usuario %>            
-        </div>
-    
-        <div class="form-group">
-            <strong>Nombre:</strong>
-        </div>
+        <div>
+            <h4>Usuario <%= users.nombre_usuario %>
+                    <%= users.apellidoP_usuario %>
+            </h4>
+            <br>
+            <hr />
+            <form id="showP" name="showP" action="/visualizar/:id" method="get">
+                <div class="form-group">
+                    <div class="form-group">
+                        <strong>RUN:</strong>
+                    </div>
+                    <div class="form-control">
+                        <%= users.run_usuario %>
+                    </div>
 
-        <div class="form-control">
-            <%= users.nombre_usuario %>
-        </div>
+                    <div class="form-group">
+                        <strong>Nombre:</strong>
+                    </div>
 
-        <div class="form-group">
-            <strong>A. Paterno:</strong>
-        </div>
+                    <div class="form-control">
+                        <%= users.nombre_usuario %>
+                    </div>
 
-        <div class="form-control">
-            <%= users.apellidoP_usuario %>
-        </div>
+                    <div class="form-group">
+                        <strong>A. Paterno:</strong>
+                    </div>
 
-        <div class="form-group">
-            <strong>A. Materno:</strong>
-        </div>
+                    <div class="form-control">
+                        <%= users.apellidoP_usuario %>
+                    </div>
 
-        <div class="form-control">
-            <%= users.apellidoM_usuario %>
-        </div>
+                    <div class="form-group">
+                        <strong>A. Materno:</strong>
+                    </div>
 
-        <div class="form-group">
-            <strong>Fecha de Nacimiento:</strong>
-        </div>
+                    <div class="form-control">
+                        <%= users.apellidoM_usuario %>
+                    </div>
 
-        <div class="form-control">
-            <%= users.fecha_nac_usuario %>
-        </div>
+                    <div class="form-group">
+                        <strong>Fecha de Nacimiento:</strong>
+                    </div>
 
-        <div class="form-group">
-            <strong>Usuario:</strong>
-        </div>
+                    <div class="form-control">
+                        <%= users.fecha_nac_usuario %>
+                    </div>
 
-        <div class="form-control">
-            <%= users.usuario %>
-        </div>
+                    <div class="form-group">
+                        <strong>Usuario:</strong>
+                    </div>
 
-        <div class="form-group">
-            <strong>Contraseña:</strong>
-        </div>
+                    <div class="form-control">
+                        <%= users.usuario %>
+                    </div>
 
-        <div class="form-control">
-            <%= users.password_usuario %>
-        </div>
+                    <div class="form-group">
+                        <strong>Contraseña:</strong>
+                    </div>
 
-        <div class="form-group">
-            <strong>Dirección:</strong>
-        </div>
+                    <div class="form-control">
+                        <%= users.password_usuario %>
+                    </div>
 
-        <div class="form-control">
-            <%= users.direccion_usuario %>
-        </div>
+                    <div class="form-group">
+                        <strong>Dirección:</strong>
+                    </div>
 
-        <div class="form-group">
-            <strong>Comuna:</strong>
-        </div>
+                    <div class="form-control">
+                        <%= users.direccion_usuario %>
+                    </div>
 
-        <div class="form-control">
-            <%= users.comuna_usuario %>
-        </div>
+                    <div class="form-group">
+                        <strong>Comuna:</strong>
+                    </div>
 
-        <div class="form-group">
-            <strong>Email:</strong>
-        </div>
+                    <div class="form-control">
+                        <%= users.comuna_usuario %>
+                    </div>
 
-        <div class="form-control">
-            <%= users.email_usuario %>
-        </div>
+                    <div class="form-group">
+                        <strong>Email:</strong>
+                    </div>
 
-        <div class="form-group">
-            <strong>Fono:</strong>
-        </div>
+                    <div class="form-control">
+                        <%= users.email_usuario %>
+                    </div>
 
-        <div class="form-control">
-            <%= users.fono_usuario %>
-        </div>
+                    <div class="form-group">
+                        <strong>Fono:</strong>
+                    </div>
 
-        <div class="form-group">
-            <strong>RUN Persona a Cargo:</strong>
-        </div>
+                    <div class="form-control">
+                        <%= users.fono_usuario %>
+                    </div>
 
-        <div class="form-control">
-            <%= users.persona_cargo %>
-        </div>
+                    <div class="form-group">
+                        <strong>RUN Persona a Cargo:</strong>
+                    </div>
 
-        <div class="form-group">
-            <strong>Status:</strong>
-        </div>
+                    <div class="form-control">
+                        <%= users.persona_cargo %>
+                    </div>
 
-        <div class="form-control">
-            <%= users.status_usuario %>
-        </div>
+                    <div class="form-group">
+                        <strong>Status:</strong>
+                    </div>
 
-        <div class="form-group">
-            <strong>Fecha de Creación:</strong>
-        </div>
+                    <div class="form-control">
+                        <%= users.status_usuario %>
+                    </div>
 
-        <div class="form-control">
-            <%= users.fecha_creacion %>
-        </div>
+                    <div class="form-group">
+                        <strong>Fecha de Creación:</strong>
+                    </div>
 
-        <div class="form-group">
-            <strong>Tipo usuario:</strong>
-        </div>
+                    <div class="form-control">
+                        <%= users.fecha_creacion %>
+                    </div>
 
-        <div class="form-control">
-            <%= users.idTipo_usuario %>
+                    <div class="form-group">
+                        <strong>Tipo usuario:</strong>
+                    </div>
+
+                    <div class="form-control">
+                        <%= users.idTipo_usuario %>
+                    </div>
+                </div>
         </div>
+        <br>
+        <p>
+            <input onclick="document.location.href='/modificar/<%= user.run_usuario %>'" type="button" value="Modificar"
+                class="btn btn-outline-success" /> |
+            <input onclick="document.location.href='/users'" type="button" value="Volver a la lista"
+                class="btn btn-outline-dark" />
+        </p>
+        </form>
     </div>
-</div>
-<br>
-<p>
-    <input onclick="document.location.href='/modificar/<%= user.run_usuario %>'" type="button" value="Modificar" class="btn btn-outline-success" /> |
-    <input onclick="document.location.href='/users'" type="button" value="Volver a la lista" class="btn btn-outline-dark" />
-</p>
-</form>
-</div>
-<br>
+    <br>
 </body>
+
 </html>
