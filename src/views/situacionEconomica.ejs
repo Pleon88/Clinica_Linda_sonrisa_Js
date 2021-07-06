@@ -10,28 +10,22 @@
     </div>
   </div>
 </section>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Situación Económica</title>
-</head>
-<body>
+
+<section>
   <div class="ftco-section container d-flex justify-content-center">
   <div class="col-7">
     <div class="card">
       <div class="card-body ">
         <h4 class="mb-3">Adjuntar Documentos:</h4>
+        <form action="POST" id="nuevaSituacionEconomica" >
         <div class="mb-3">
           <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+            <input class="form-check-input" type="checkbox" value="" >
             <label class="form-check-label" for="flexCheckDefault">
               <strong>Cotizaciones AFP:</strong>
             </label>
           </div>
-          <input type="file" class="form-control-file" id="exampleFormControlFile1">
+          <input type="file" class="form-control-file" id="file-afp" name="file-afp">
           </label>
         </div>
         <div class="mb-3">
@@ -41,7 +35,7 @@
               <strong>Liquidaciones de Sueldo:</strong>
             </label>
           </div>
-          <input type="file" class="form-control-file" id="exampleFormControlFile1">
+          <input type="file" class="form-control-file" id="file-liquidacion-sueldo" name="file-liquidacion-sueldo">
           </label>
         </div>
         <div class="mb-3">
@@ -51,17 +45,74 @@
               <strong>Documento RSH:</strong>
             </label>
           </div>
-          <input type="file" class="form-control-file" id="exampleFormControlFile1">
+          <input type="file" class="form-control-file" id="file-rsh" name="file-rsh">
           </label>
         </div>
         <div class="form-group">
           <div class="d-grid gap-2 d-md-flex justify-content-md-end">
         <input type="submit" value="Enviar" class="btn btn-info col-md-4" id="generar" name="generar">
+      </form>
       </div>
     </div>
       </div>
     </div>
   </div>
-</div>
-</body>
-</html>
+  </div>
+</section>
+
+<script>
+  function getImage(fileName) {
+    return new Promise(function (resolve, reject) {
+      var reader = new FileReader();
+       var f = document.getElementById(fileName).files;
+    reader.onloadend = function () {
+      resolve(reader.result)
+    }
+    reader.readAsDataURL(f[0]);
+    })
+  }
+
+  const serialize_form = (form) =>
+    JSON.stringify(
+      Array.from(new FormData(form).entries()).reduce(
+        (m, [key, value]) => Object.assign(m, { [key]: value }),
+        {}
+      )
+    );
+
+  $('#nuevaSituacionEconomica').submit(async (e) => {
+			event.preventDefault(e)
+      const toData = {};
+      if ($('#file-afp').val()) {
+        toData.AFP_cliente = await getImage('file-afp').then((result) => result);
+      }
+
+      if ($('#file-liquidacion-sueldo').val()) {
+        toData.liq_sueldo_cliente = await getImage('file-liquidacion-sueldo').then((result) => result);
+      }
+
+      if ($('#file-rsh').val()) {
+        toData.finiquito_cliente = await getImage('file-rsh').then((result) => result);
+      }
+
+      $.ajax({
+				url: `/clientes`,
+				processData: false,
+				contentType: false,
+				type: 'POST',
+				contentType: "application/json",
+      	dataType   : "json",				
+				data: JSON.stringify(toData),
+				success: function(response){
+          console.log(response.status)
+          if (response.status === 200) {
+            $.notify('Guardado Correctamente', 'success')
+          }
+						console.log(response)
+				},
+        error: function(error) {
+          $.notify('Ya cuenta con registros', 'error')
+        }        
+			});	
+  })
+</script>

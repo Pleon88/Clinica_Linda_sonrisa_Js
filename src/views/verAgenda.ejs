@@ -22,7 +22,7 @@
 						<h4 class="mb-3">Agenda</h4>
 						<p></p>
 						<form action="\" method="GET">
-							<select class="form-select mb-3" aria-label="Default select example" id="agendasSelected", name="agendasSelected">
+							<select class="form-control mb-3" aria-label="Default select example" id="agendasSelected", name="agendasSelected">
 								<option selected>Agenda</option>
 								<% agendas.forEach((agenda) => {%>
 									<option value="<%= agenda.id_agenda %>"><%= agenda.fecha_agenda.toISOString().split('T')[0] %></option>
@@ -38,7 +38,7 @@
 						<h4 class="mb-3">Hora inicio</h4>
 						<p></p>
 						<form action="\" method="GET">
-							<select class="form-select mb-3" aria-label="DefaultHora select example" id="reservaHora", name="reservaHora">
+							<select class="form-control mb-3" aria-label="DefaultHora select example" id="reservaHora", name="reservaHora">
 								<option selected>Hora inicio</option>
 								<option value="1">Hora</option>
 								<option value="2">Hora</option>
@@ -105,7 +105,6 @@ $('#agendasSelected').change(function() {
 							.val('whatever');
 						$('#reservaHora').prop("disabled", false);	
 						reservas.forEach((reserva) => {
-							console.log(reserva)
 							let color = 'green'
 							if (reserva.status_reserva === "reservado") color = "red";
 							$('#reservaHora').append(`<option  value="${reserva.id}" style="color: ${color}"> ${moment.tz(reserva.horario_reserva, 'America/Santiago').format("hh:mm")} </option>`);
@@ -126,9 +125,10 @@ $('#reservaHora').change(function() {
 				contentType: false,
 				type: 'get',
 				success: function(reserva){
+					console.log(reserva)
 					if (reserva.id_usuario !== null) {
 						$.ajax({
-						url: `/usuarios/${reserva.id_usuario}`,
+						url: `/informacion/${reserva.id_usuario}`,
 						processData: false,
 						contentType: false,
 						type: 'get',

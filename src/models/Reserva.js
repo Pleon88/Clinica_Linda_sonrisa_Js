@@ -15,7 +15,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     horario_reserva: {
       type: DataTypes.TIME,
-      allowNull: false,    
+      allowNull: false
     },
     id: {
       type: DataTypes.INTEGER,

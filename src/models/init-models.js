@@ -40,14 +40,8 @@ function initModels(sequelize) {
   Agenda.hasMany(Reserva, { as: "Reservas", foreignKey: "id_agenda"});
   Insumos.belongsTo(Categoria_Insumos, { as: "id_categoria_insumos_Categoria_Insumo", foreignKey: "id_categoria_insumos"});
   Categoria_Insumos.hasMany(Insumos, { as: "Insumos", foreignKey: "id_categoria_insumos"});
-  Presupuesto.belongsTo(Cliente, { as: "id_cliente_presupuesto_Cliente", foreignKey: "id_cliente_presupuesto"});
-  Cliente.hasMany(Presupuesto, { as: "Presupuestos", foreignKey: "id_cliente_presupuesto"});
-  Usuario.belongsTo(Cliente, { as: "idCliente_usuario_Cliente", foreignKey: "idCliente_usuario"});
-  Cliente.hasMany(Usuario, { as: "Usuarios", foreignKey: "idCliente_usuario"});
   Proveedor.belongsTo(Comuna, { as: "id_comuna_Comuna", foreignKey: "id_comuna"});
   Comuna.hasMany(Proveedor, { as: "Proveedors", foreignKey: "id_comuna"});
-  Usuario.belongsTo(Comuna, { as: "comuna_usuario_Comuna", foreignKey: "comuna_usuario"});
-  Comuna.hasMany(Usuario, { as: "Usuarios", foreignKey: "comuna_usuario"});
   Insumos_OrdenPedido.belongsTo(Insumos, { as: "id_producto_Insumo", foreignKey: "id_producto"});
   Insumos.hasMany(Insumos_OrdenPedido, { as: "Insumos_OrdenPedidos", foreignKey: "id_producto"});
   Producto.belongsTo(Insumos, { as: "id_insumos_Insumo", foreignKey: "id_insumos"});
@@ -66,10 +60,10 @@ function initModels(sequelize) {
   Region.hasMany(Comuna, { as: "Comunas", foreignKey: "idregion"});
   Producto.belongsTo(Servicio, { as: "id_servicio_Servicio", foreignKey: "id_servicio"});
   Servicio.hasMany(Producto, { as: "Productos", foreignKey: "id_servicio"});
-  Usuario.belongsTo(Tipo_Usuario, { as: "idTipo_usuario_Tipo_Usuario", foreignKey: "idTipo_usuario"});
-  Tipo_Usuario.hasMany(Usuario, { as: "Usuarios", foreignKey: "idTipo_usuario"});
   Agenda.belongsTo(Usuario, { as: "id_usuario_agenda_Usuario", foreignKey: "id_usuario_agenda"});
   Usuario.hasMany(Agenda, { as: "Agendas", foreignKey: "id_usuario_agenda"});
+  Cliente.belongsTo(Usuario, { as: "Id_cliente_Usuario", foreignKey: "Id_cliente"});
+  Usuario.hasOne(Cliente, { as: "Cliente", foreignKey: "Id_cliente"});
 
   return {
     Agenda,

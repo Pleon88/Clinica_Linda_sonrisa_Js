@@ -32,8 +32,8 @@
             <h5 class="card-title">Usuario</h5>
             <img src="/imagesMenu/user.png" alt="" width="70px" />
             <p class="card-text"></p>
-            <a href="/users" class="btn btn-primary">Crear</a>
-            <a href="/informacion" class="btn btn-primary"> Ver</a>
+            <a href="/registrar" class="btn btn-primary">Crear</a>
+            <a href="/users" class="btn btn-primary"> Ver</a>
           </div>
         </div>
       </div>
@@ -124,22 +124,10 @@
             <a href="/verAgenda" class="btn btn-primary">Ver</a>
           </div>
         </div>
-      </div>
-  
-      <div class="col-md-3">
-        <div class="card text-center">
-          <div class="card-body">
-            <h5 class="card-title">Situación Ecónomica</h5>
-            <img
-              src="/imagesMenu/bloc-de-notas-y-lapiz.png"
-              alt=""
-              width="70px"
-            />
-            <p class="card-text"></p>
-            <a href="/validarSituacion" class="btn btn-primary">Ver</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
->>>>>>> 75f84746f1652d04f6f3fa3dcb967921dad35051 -->
+      </div>  const serialize_form = (form) =>
+    JSON.stringify(
+      Array.from(new FormData(form).entries()).reduce(
+        (m, [key, value]) => Object.assign(m, { [key]: value }),
+        {}
+      )
+    );
