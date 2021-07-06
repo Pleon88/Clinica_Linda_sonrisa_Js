@@ -58,7 +58,11 @@
                 <td>            
                     <input onclick="document.location.href=`/visualizar/<%= user.run_usuario %>`" type="button" value="Ver" class="btn btn-outline-warning"> |
                     <input onclick="document.location.href='/modificar/<%= user.run_usuario %>'" type="button" value="Modificar" class="btn btn-outline-dark"> |
-                    <input onclick="document.location.href='/eliminar/<%= user.run_usuario %>'" type="button" value="Eliminar" class="btn btn-outline-danger">
+                    <input type="button" value="Eliminar" onclick="deleteUser('<%= user.run_usuario %>')">
+                    <!-- <form method="POST" name="deleteUser" id="deleteUser">
+                        <input type="hidden" id="userId" name="userId" value="<%= user.run_usuario %>">
+                        <input type="submit" value="Eliminar" class="btn btn-outline-danger">
+                    </form> -->
                 </tr>
             <% }) %> 
         </td>
@@ -67,5 +71,28 @@
     </table>
 </div>
 </div>
+
+<script>
+  function deleteUser(id) {
+    console.log("here", id)
+      event.preventDefault(id);
+      confirm("El usuario sera eliminado, ¿esta seguro?");
+      $.ajax({
+        url: `/eliminar/${id}`,
+        processData: false,
+        contentType: false,
+        type: "DELETE",
+        success: function (response) {
+          console.log(typeof response.status)
+          if (response.status === 200) {
+            $.notify('Usuario Elimiado', 'success')
+          }
+        },
+      });
+  }
+
+
+</script>
+
 </body>
 </html>

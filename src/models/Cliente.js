@@ -2,29 +2,29 @@ const Sequelize = require('sequelize');
 module.exports = function(sequelize, DataTypes) {
   return sequelize.define('Cliente', {
     Id_cliente: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      primaryKey: true
-    },
-    nombre_cliente: {
       type: DataTypes.STRING(50),
-      allowNull: false
+      allowNull: false,
+      primaryKey: true,
+      references: {
+        model: 'Usuario',
+        key: 'run_usuario'
+      }
     },
     AFP_cliente: {
-      type: DataTypes.STRING(50),
-      allowNull: false
+      type: DataTypes.TEXT,
+      allowNull: true
     },
     finiquito_cliente: {
-      type: DataTypes.STRING(50),
-      allowNull: false
+      type: DataTypes.TEXT,
+      allowNull: true
     },
     liq_sueldo_cliente: {
-      type: DataTypes.STRING(50),
-      allowNull: false
+      type: DataTypes.TEXT,
+      allowNull: true
     },
     IdBoleta_cliente: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: true
     }
   }, {
     sequelize,

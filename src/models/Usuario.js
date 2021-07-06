@@ -36,11 +36,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     comuna_usuario: {
       type: DataTypes.INTEGER,
-      allowNull: false,
-      references: {
-        model: 'Comuna',
-        key: 'id_comuna'
-      }
+      allowNull: false
     },
     email_usuario: {
       type: DataTypes.STRING(50),
@@ -52,19 +48,11 @@ module.exports = function(sequelize, DataTypes) {
     },
     idTipo_usuario: {
       type: DataTypes.INTEGER,
-      allowNull: false,
-      references: {
-        model: 'Tipo_Usuario',
-        key: 'idTipo_usuario'
-      }
+      allowNull: false
     },
     idCliente_usuario: {
       type: DataTypes.INTEGER,
-      allowNull: true,
-      references: {
-        model: 'Cliente',
-        key: 'Id_cliente'
-      }
+      allowNull: true
     },
     persona_cargo: {
       type: DataTypes.STRING(50),

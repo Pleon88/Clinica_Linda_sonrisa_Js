@@ -10,36 +10,29 @@
       </div>
     </div>
   </section>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Situación Económica</title>
-</head>
-<body>
+
+  <section>
   <div class="ftco-section container d-flex justify-content-center">
   <div class="col-8">
     <div class="card">
       <div class="card-body ">
         <h4 class="mb-3">Documentos Paciente:</h4>
         <div class="mb-3">
-            <form class="form-inline justify-content-center">
-                <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search">
-                <button class="btn btn-info my-2 my-sm-3" type="submit">Buscar</button>
+            <form class="form-inline justify-content-center" id="buscarSituacion" name="buscarSituacion">
+                <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search" id="idUSer" name="idUSer">
+                <input type="submit" class="btn btn-info my-2 my-sm-3" value="Buscar">
               </form>
               <br>
             <div class="mb-3">
                 <label for="formGroupExampleInput" class="form-label">RUN:</label>
                 <Label type="text" class="form-control" id="formGroupExampleInput">
-                    <p id="nombreLabel"> RUN </p>
+                    <p id="runUsuario"> RUN </p>
                 </label>
             </div>
             <div class="mb-3">
                 <label for="formGroupExampleInput" class="form-label">Nombre:</label>
                 <Label type="text" class="form-control" id="formGroupExampleInput">
-                    <p id="nombreLabel"> Nombre </p>
+                    <p id="nombreUsuario"> Nombre </p>
                 </label>
             </div>
             <br>
@@ -53,7 +46,7 @@
                 <p id="nombreLabel"> Cotizaciones AFP: </p>
             </label>
             <div class="form-group d-grid gap-2 d-md-flex justify-content-md-end">
-                <input type="submit" value="Ver" class="btn btn-outline-success my-2 my-sm-0" id="generar" name="generar">
+                <input type="submit" value="Ver" class="btn btn-danger my-2 my-sm-0" id="afp" name="afp" data-toggle="modal" data-target="#muestraDocumento" disabled>
             </div>
         </div>
         <div class="mb-3">
@@ -67,7 +60,7 @@
                 <p id="nombreLabel"> Liquidaciones de Sueldo: </p>
             </label>
             <div class="form-group d-grid gap-2 d-md-flex justify-content-md-end">
-                <input type="submit" value="Ver" class="btn btn-outline-success my-2 my-sm-0" id="generar" name="generar">
+                <input type="submit" value="Ver" class="btn btn-danger my-2 my-sm-0" id="liquidaciones" name="liquidaciones" data-toggle="modal" data-target="#muestraDocumento" disabled>
             </div>
         </div>
         <div class="mb-3">
@@ -81,7 +74,7 @@
                 <p id="nombreLabel"> Documento RSH: </p>
             </label>
             <div class="form-group d-grid gap-2 d-md-flex justify-content-md-end">
-                <input type="submit" value="Ver" class="btn btn-outline-success my-2 my-sm-0" id="generar" name="generar">
+                <input type="submit" value="Ver" class="btn btn-danger my-2 my-sm-0" id="rsh" name="rsh" data-toggle="modal" data-target="#muestraDocumento" disabled>
             </div>
         </div>
     </div>
@@ -89,5 +82,93 @@
     </div>
   </div>
 </div>
-</body>
-</html>
+</section>
+
+<!-- Modal -->
+<div class="modal fade" id="muestraDocumento" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Documento</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" > 
+        <img src="" alt="" id="chargeBase64" name="chargeBase64">
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  $('#afp').on("click", function(e){
+    event.preventDefault(e)
+    $('#chargeBase64').attr("src", '');
+    var test = $('#afp').attr("data-base64")
+    $('#chargeBase64').attr("src", test);
+  })
+  $('#liquidaciones').on("click", function(e){
+    event.preventDefault(e)
+    $('#chargeBase64').attr("src", '');
+    var test = $('#liquidaciones').attr("data-base64")
+    $('#chargeBase64').attr("src", test);
+  })
+  $('#rsh').on("click", function(e){
+    event.preventDefault(e)
+    $('#chargeBase64').attr("src", '');
+    var test = $('#rsh').attr("data-base64")
+    $('#chargeBase64').attr("src", test);
+  })
+
+  $('#buscarSituacion').submit(async (e) => {
+			event.preventDefault(e)
+      dpUI.loading.start("Buscando Paciente ...");
+
+      const userId = $('#idUSer').val();
+      console.log(userId)
+      await $.ajax({
+				url: `/clientes/${userId}`,
+				processData: false,
+				contentType: false,
+				type: 'GET',
+				success: function(response){
+
+            $("#runUsuario").text('run')
+            $("#nombreUsuario").text('nombre')
+
+            if (response.usuario.run) $("#runUsuario").text(response.usuario.run)
+            if (response.usuario.nombre) $("#nombreUsuario").text(response.usuario.nombre)
+
+            if (response.result.AFP_cliente) {
+              console.log('ENTRA ACA')
+              $("#afp").removeClass( "btn-danger disabled" )
+              $("#afp").removeAttr('disabled');
+              $("#afp").addClass( "btn-success" );
+              $("#afp").attr('data-base64', response.result.AFP_cliente);
+            }
+
+            if (response.result.liq_sueldo) {
+              console.log('ENTRA ACA')
+              $("#liquidaciones").removeClass( "btn-danger" )
+              $("#liquidaciones").removeAttr('disabled');
+              $("#liquidaciones").addClass( "btn-success" );
+              $("#liquidaciones").attr('data-base64', response.result.liq_sueldo);
+            }
+
+            if (response.result.finiquito_cliente) {
+              $("#rsh").removeClass( "btn-danger" )
+              $("#rsh").removeAttr('disabled');
+              $("#rsh").addClass( "btn-success" );
+              $("#rsh").attr('data-base64', response.result.finiquito_cliente);
+            }
+            dpUI.loading.stop()
+				},
+        error: function(error) {
+          console.log(error)
+          $.notify('Problemas internos', 'error')
+          dpUI.loading.stop()
+        }
+			});	
+  })
+</script>

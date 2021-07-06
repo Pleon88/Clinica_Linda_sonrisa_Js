@@ -24,7 +24,6 @@
 			event.preventDefault(e)
       const dataFromImage = getImage();
       const base64ImageFile = await dataFromImage.then((result) => result)
-
       $.ajax({
 				url: `/clientes`,
 				processData: false,
@@ -35,7 +34,10 @@
 				data: JSON.stringify({data: base64ImageFile}),
 				success: function(response){
 						console.log(response)
-				}
+				},
+        error: function(error) {
+          console.log('ERROR STATUS', error.status)
+        }
 			});	
   })
 </script>
