@@ -98,7 +98,6 @@ const createU = async (req, res) => {
   const usuarios = await Model.Usuario.create(req.body).catch((error) => error)
   if (usuarios.message) return res.render(res.render('crear', {layout: './Shared/layout_login', created: false }))
   // return res.status(200).json({usuarios})
-  console.log(req.user)
   return res.render(res.render('crear', {layout: './Shared/layout_login', created: true, user: req.user }))
 };
 
