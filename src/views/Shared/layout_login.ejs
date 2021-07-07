@@ -45,7 +45,13 @@
     id="ftco-navbar"
   >
     <div class="container">
-      <a class="navbar-brand" href="/medico">Linda<span>Sonrisa</span></a>
+      <% if (user.idTipo_usuario === 5 ) {%>
+        <a class="navbar-brand" href="/inicioSession">Linda<span>Sonrisa</span></a>
+      <% } %>
+
+      <% if (user.idTipo_usuario === 1 ) {%>
+        <a class="navbar-brand" href="/medico">Linda<span>Sonrisa</span></a>
+      <% } %>
       <button
         class="navbar-toggler"
         type="button"
