@@ -93,7 +93,7 @@ const createU = async (req, res) => {
   const usuarios = await Model.Usuario.create(req.body).catch((error) => error)
   if (usuarios.message) return res.render(res.render('crear', {layout: './Shared/layout_login', created: false }))
   // return res.status(200).json({usuarios})
-  return res.render(res.render('crear', {layout: './Shared/layout_login', created: true }))
+  return res.render(res.render('crear', {layout: './Shared/layout_login', created: true}))
 };
 
 const edit = async (req, res) => {
