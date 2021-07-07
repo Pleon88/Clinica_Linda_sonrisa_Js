@@ -79,9 +79,14 @@ const create = async (req, res) => {
   if (usuarios.message) return res.render(res.render('registrar', {layout: './Shared/layout', 
   created: false,
   regiones: await getRegion(),
+  user: req.user,
 }))
   // return res.status(200).json({usuarios})
-  return res.render(res.render('registrar', {layout: './Shared/layout', created: true, regiones: await getRegion(), }))
+  return res.render(res.render('registrar', {layout: './Shared/layout', 
+  created: true, 
+  regiones: await getRegion(),
+  user: req.user,
+ }))
 };
 
 const createU = async (req, res) => {
@@ -93,7 +98,7 @@ const createU = async (req, res) => {
   const usuarios = await Model.Usuario.create(req.body).catch((error) => error)
   if (usuarios.message) return res.render(res.render('crear', {layout: './Shared/layout_login', created: false }))
   // return res.status(200).json({usuarios})
-  return res.render(res.render('crear', {layout: './Shared/layout_login', created: true}))
+  return res.render(res.render('crear', {layout: './Shared/layout_login', created: true, user: req.user }))
 };
 
 const edit = async (req, res) => {

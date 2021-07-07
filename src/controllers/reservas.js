@@ -49,7 +49,7 @@ const edit = async (req, res) => {
   const { id, idReserva } = req.params;
   const userUpdate = await Model.Reserva.update({ 
     status_reserva: "reservado", 
-    id_usuario: req.body.profesional }, {
+    id_usuario: req.user.run_usuario }, {
     where: {
       id_agenda: id, id: idReserva 
     }

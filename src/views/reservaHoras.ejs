@@ -167,6 +167,7 @@
   $("#professionals").submit(function (e) {
     event.preventDefault(e);
     const reservaHoraDatos = serialize_form(this);
+    console.log(reservaHoraDatos)
     $("#reservaMensaje").empty();
     $.ajax({
       url: `/agendas/${JSON.parse(reservaHoraDatos).agendaSelect}/reservas/${
