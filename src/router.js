@@ -86,7 +86,7 @@ router.get('/registrar', async (req, res) => {
 
 // Crud Usuarios
 router.get('/users',verifyUserLogin, (req, res) => { res.render('users', {layout: './Shared/layout_login', user: req.user}) }); 
-router.get('/crear',verifyUserLogin, (req, res) => { res.render('crear', {layout: './Shared/layout_login', created: null}) }); 
+router.get('/crear',verifyUserLogin, (req, res) => { res.render('crear', {layout: './Shared/layout_login', created: null, user: req.user}) }); 
 router.get('/visualizar',verifyUserLogin, (req, res) => { res.render('visualizar', {layout: './Shared/layout_login', user: req.user}) });
 router.get('/eliminar', verifyUserLogin, (req, res) => { res.render('eliminar', {layout: './Shared/layout_login', user: req.user}) });
 router.get('/modificar',verifyUserLogin, (req, res) => { res.render('modificar', {layout: './Shared/layout_login', user: req.user}) });
