@@ -122,7 +122,6 @@ const create = async (req, res) => {
       })
     );
   // return res.status(200).json({usuarios})
-
   if (req.user) {
     return res.render(
       res.render("crear", {

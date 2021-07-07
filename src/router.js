@@ -81,7 +81,8 @@ router.get('/login', (req, res) => { res.render('login', {layout: './Shared/layo
 router.get('/mision', (req, res) => { res.render('mision', {layout: './Shared/layout'}) });
 router.get('/contacto', (req, res) => { res.render('contacto', {layout: './Shared/layout'}) });
 router.get('/registrar', async (req, res) => { 
-  if (req.user) {
+  const { user } = req
+  if (user === undefined) {
     res.render('registrar', {layout: './Shared/layout', created: null, regiones: await getRegion()})
   } else {
     res.render('registrar', {layout: './Shared/layout_login', created: null, regiones: await getRegion()})
