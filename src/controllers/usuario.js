@@ -1,9 +1,7 @@
 const Sequelize = require("sequelize");
 const Model = require("../models");
 
-const getComuna = () => {
-
-}
+const { getComuna, getRegion } = require('./divisonGeografica');
 
 const showAll = async (req, res) => {
   const usuarios = await Model.Usuario.findAll();
@@ -20,9 +18,13 @@ const show = async (req, res) => {
 };
 
 const showFromLoged = async (req, res) => {
-  const comunaFind = await Model.Comuna.findOne({ where: { id_comuna: Number(req.user.comuna_usuario) }})
-  req.user.comuna_usuario = comunaFind.nombre_comuna
-  return res.render('user-data', {layout: './Shared/layout_login', user: req.user })
+  const tipoUsuario = await Model.Tipo_Usuario.findAll();
+  return res.render('user-data', {layout: './Shared/layout_login', 
+  user: req.user,
+  regiones: await getRegion(),
+  comunas: await getComuna(req.user.region_usuario),
+  tipoUsuario: tipoUsuario,
+})
 }
 
 const showP = async (req, res) => {
@@ -35,9 +37,18 @@ const showP = async (req, res) => {
 
 const showE = async (req, res) => {
   let usuarios = await Model.Usuario.findByPk(req.params.id );
-  const comunaFind = await Model.Comuna.findOne({ where: { id_comuna: Number(usuarios.comuna_usuario) }})
-  usuarios.comuna_usuario = comunaFind.nombre_comuna
-  return res.render('modificar', {layout: './Shared/layout_login', users: usuarios, user: req.user })
+
+  const tipoUsuario = await Model.Tipo_Usuario.findAll();
+
+  const toRedirect = {
+    layout: './Shared/layout_login', 
+    users: usuarios, 
+    user: req.user,
+    regiones: await getRegion(),
+    comunas: await getComuna(usuarios.dataValues.region_usuario),
+    tipoUsuario: tipoUsuario,
+  }
+  return res.render('modificar', toRedirect)
   //return res.status(200).json({usuarios})
 };
 
@@ -75,8 +86,16 @@ const createU = async (req, res) => {
 };
 
 const edit = async (req, res) => {
+  if (req.body.selectRegion) {
+    req.body.region_usuario = Number(req.body.selectRegion)
+    delete req.body.selectRegion
+  }
+  if (req.body.comunasSelect) {
+    req.body.comuna_usuario = Number(req.body.comunasSelect)
+    delete req.body.comunasSelect
+  }
+  if (req.body.idTipo_usuario) req.body.idTipo_usuario = +req.body.idTipo_usuario
   const usuario = await Model.Usuario.update(req.body, { where: {run_usuario: req.params.id }})
-  console.log(usuario)
   if (usuario[0] === 1) {
     return res.status(200).json({ error: false, message: 'Usuario actualizado' })
   }

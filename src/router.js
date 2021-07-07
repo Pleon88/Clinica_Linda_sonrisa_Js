@@ -18,6 +18,9 @@ const agendaController = require('./controllers/agenda');
 const loginController = require("./controllers/login");
 const reservaController = require('./controllers/reservas');
 const clienteController = require('./controllers/cliente');
+const divisionGeografica = require('./controllers/divisonGeografica');
+
+const { getRegion } = require('./controllers/divisonGeografica');
 
 router.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));
 router.use(bodyParser.json({ limit: '50mb' }));
@@ -77,7 +80,9 @@ router.post('/logout', (req, res) => {
 router.get('/login', (req, res) => { res.render('login', {layout: './Shared/layout'}) });
 router.get('/mision', (req, res) => { res.render('mision', {layout: './Shared/layout'}) });
 router.get('/contacto', (req, res) => { res.render('contacto', {layout: './Shared/layout'}) });
-router.get('/registrar', (req, res) => { res.render('registrar', {layout: './Shared/layout', created: null}) });
+router.get('/registrar', async (req, res) => { 
+  res.render('registrar', {layout: './Shared/layout', created: null, regiones: await getRegion()})
+ });
 
 // Crud Usuarios
 router.get('/users',verifyUserLogin, (req, res) => { res.render('users', {layout: './Shared/layout_login', user: req.user}) }); 
@@ -96,6 +101,9 @@ router.get('/reservaHora', (req, res) => { res.render('reservaHora', {layout: '.
 router.get('/reservations',verifyUserLogin ,reservaController.showProfessionals);
 router.get('/verBoletas',verifyUserLogin, (req, res) => { res.render('verBoletas', {layout: './Shared/layout_login', user: req.user}) });
 
+// division geografica
+router.get('/regiones', divisionGeografica.region)
+router.get('/regiones/:idRegion/comunas', divisionGeografica.comuna)
 
 //Menu Usuario Odontologo
 router.get('/agenda',verifyUserLogin, (req, res) => { res.render('agenda', {layout: './Shared/layout_login', user: req.user}) });
@@ -104,9 +112,7 @@ router.get('/validarSituacion',verifyUserLogin, (req, res) => { res.render('vali
 
 // login
 router.get('/', (req, res) => { res.render('index', {layout: './Shared/layout'}) });
-
 router.get('/medico',verifyUserLogin ,(req, res) => { res.render('medico', { layout: './Shared/layout_login', user: req.user }) });
-
 router.get('/inicioSession', (req, res , next) => {
   if (req.isAuthenticated()) return next();
   res.redirect('/login');
