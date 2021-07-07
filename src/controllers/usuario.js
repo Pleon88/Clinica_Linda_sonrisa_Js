@@ -112,37 +112,32 @@ const create = async (req, res) => {
   const usuarios = await Model.Usuario.create(req.body).catch((error) => error);
   const tipoUsuario = await Model.Tipo_Usuario.findAll();
   if (usuarios.message)
-    return res.render(
-      res.render("registrar", {
+
+      return res.render("registrar", {
         layout: "./Shared/layout",
         created: false,
         regiones: await getRegion(),
         user: req.user,
         tipoUsuario: tipoUsuario
       })
-    );
+
   // return res.status(200).json({usuarios})
-    const {user} = req
+  const {user} = req
 
   if (user !== undefined) {
-    return res.render(
-      res.render("crear", {
+      return res.render("crear", {
         layout: "./Shared/layout_login",
         created: true,
         regiones: await getRegion(),
         user: req.user,
-
       })
-    );
   } else {
-    return res.render(
-      res.render("registrar", {
+      return res.render("registrar", {
         layout: "./Shared/layout",
         created: true,
         regiones: await getRegion(),
         user: req.user,
       })
-    );
   }
 };
 
