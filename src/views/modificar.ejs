@@ -11,18 +11,18 @@
         </div>
     </div>
 </section>
-<!DOCTYPE html>
-<html lang="en">
 
-<body>
+<section>
+  <input type="hidden" id="iduser" name="iduser" value="<%= users.run_usuario %>">
     <div class="ftco-section container justify-content-center">
         <h2>Usuario <%= users.nombre_usuario %>
                 <%= users.apellidoP_usuario %>
         </h2>
         <br>
         <div class="form-horizontal">
+            
             <hr />
-            <form id="edit" name="edit" action="/modificar/:id" method="put">
+            <form id="userEdit" name="userEdit" method="POST">
                 <div class="form-group">
                     <label for="nombre_usuario" class="control-label col-md-2"> Nombre:</label>
                     <input type="text" id="nombre_usuario" name="nombre_usuario" class="form-control col-md-4"
@@ -65,10 +65,26 @@
                         placeholder="RUN" value="<%= users.direccion_usuario %>">
                 </div>
 
-                <div class="form-group">
-                    <label for="comuna_usuario" class="control-label col-md-2"> Comuna:</label>
-                    <input type="text" id="comuna_usuario" name="comuna_usuario" class="form-control col-md-4"
-                        placeholder="RUN" value="<%= users.comuna_usuario %>">
+                <div>
+                  <label for="region_usuario" class="control-label col-md-2"> Region:</label>
+                  <select name="selectRegion"  id="selectRegion" class="form-control col-md-4">
+                    <% regiones.forEach((region) => { %>
+                    <option <%= users.region_usuario === region.idregion ? 'selected' : '' %> value="<%= region.idregion %>" >
+                      <%= region.nombre_region %>
+                    </option>
+                    <%})%>
+                </select>
+                </div>
+
+                <div>
+                  <label for="comuna_usuario" class="control-label col-md-2"> Comuna:</label>
+                  <select name="comunasSelect"  id="comunasSelect" class="form-control col-md-4">
+                    <% comunas.forEach((comuna) => { %>
+                    <option <%= users.comuna_usuario === comuna.id_comuna ? 'selected' : '' %> value="<%= comuna.id_comuna %>" >
+                      <%= comuna.nombre_comuna %>
+                    </option>
+                    <%})%>
+                </select>                  
                 </div>
 
                 <div class="form-group">
@@ -83,19 +99,15 @@
                         placeholder="RUN" value="<%= users.fono_usuario %>">
                 </div>
 
-                <div class="form-group">
-                    <label for="idTipo_usuario" class="control-label col-md-2"> Tipo de usuario:</label>
-                    <input type="text" id="idTipo_usuario" name="idTipo_usuario" class="form-control col-md-4"
-                        placeholder="RUN" value="<%= users.idTipo_usuario %>">
-                    <!--<select class="form-control col-md-4" id="idTipo_usuario" name="idTipo_usuario" value="<%= user.idTipo_usuario %>">
-                            <option value="1">Odontologo</option>
-                            <option value="2">Asistente Dental</option>
-                            <option value="3">Recepcionista</option>
-                            <option value="4">Externo</option>
-                            <option value="5">Paciente</option>
-                            <option value="6">Proveedor</option>
-                            <option value="7">Carga Familiar</option>
-                        </select> -->
+                <div>
+                  <label for="password_usuario" class="control-label col-md-2"> Tipo de Usuario:</label>
+                  <select name="idTipo_usuario"  id="idTipo_usuario" class="form-control col-md-4">
+                    <% tipoUsuario.forEach((tipo) => { %>
+                      <option <%= users.idTipo_usuario === tipo.idTipo_usuario ? 'selected' : '' %> value="<%= tipo.idTipo_usuario %>" >
+                        <%= tipo.nombre_usuario %>
+                      </option>
+                    <%})%>
+                </select>                  
                 </div>
 
                 <div class="form-group">
@@ -124,6 +136,60 @@
         </div>
         </form>
     </div>
-</body>
+  </section>
 
-</html>
+  <script>
+
+    const serialize_form = (form) =>
+      JSON.stringify(
+        Array.from(new FormData(form).entries()).reduce(
+          (m, [key, value]) => Object.assign(m, { [key]: value }),
+          {}
+        )
+      );
+
+    $("#selectRegion").change(function () {
+      var regionSelected = $("#selectRegion").find(":selected").val();
+      console.log(regionSelected)
+      $.ajax({
+        url: `/regiones/${regionSelected}/comunas`,
+        processData: false,
+        contentType: false,
+        type: "get",
+        success: function (comunas) {
+          $('#comunasSelect')
+            .find('option')
+            .remove()
+            .end()
+          $("#comunasSelect").removeAttr('disabled');
+          comunas.data.forEach((comuna) => {
+            $("#comunasSelect").append(`<option value="${comuna.id_comuna}">${comuna.nombre_comuna} </option>`)
+          })
+        }
+      })
+    });
+
+    $('#userEdit').submit(async (e) => {
+			event.preventDefault(e)
+      const reservaHoraDatos = $("form").serialize()
+      const userId = $("#iduser").val();
+      $.ajax({
+				url: `/editar/${userId}`,
+				processData: false,
+				contentType: false,
+				type: 'PUT',
+				contentType: "application/x-www-form-urlencoded;charset=ISO-8859-15",
+      	dataType   : "json",				
+				data: reservaHoraDatos,
+				success: function(response){
+            if (response.error === false) {
+              $.notify('Usuario actualizado', 'success')
+            }
+				},
+        error: function(error) {
+          console.log('ERROR STATUS', error.status)
+          $.notify('Problemas internos', 'error')
+        }
+			});	
+    })
+  </script>

@@ -34,6 +34,10 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING(100),
       allowNull: false
     },
+    region_usuario: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },    
     comuna_usuario: {
       type: DataTypes.INTEGER,
       allowNull: false

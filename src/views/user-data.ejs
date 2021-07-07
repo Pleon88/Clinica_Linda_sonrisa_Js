@@ -16,10 +16,11 @@
 <body>
     <div class="container">
 <div>
+    <input type="hidden" id="iduser" name="iduser" value="<%= user.run_usuario %>">
     <h4>Paciente <%= user.nombre_usuario %>  <%= user.apellidoP_usuario %></h4>
     <br>
     <hr />
-    <form id="showUser" name="showUser" action="/informacion:id" method="get">
+    <form id="userEdit" name="userEdit"  method="POST">
     <div class="form-group">
         <div class="form-group">
             <strong>RUN:</strong>
@@ -78,34 +79,41 @@
 
         <div class="form-group">
             <strong>Dirección:</strong>
+            <input type="text" id="direccion_usuario" name="direccion_usuario" class="form-control col-md-12"
+            placeholder="RUN" value="<%= user.direccion_usuario %>">            
         </div>
 
-        <div class="form-control">
-            <%= user.direccion_usuario %>
-        </div>
+        <div>
+            <strong>Region:</strong>
+            <select name="selectRegion"  id="selectRegion" class="form-control col-md-12">
+              <% regiones.forEach((region) => { %>
+              <option <%= user.region_usuario === region.idregion ? 'selected' : '' %> value="<%= region.idregion %>" >
+                <%= region.nombre_region %>
+              </option>
+              <%})%>
+          </select>
+          </div>
 
-        <div class="form-group">
+          <div>
             <strong>Comuna:</strong>
-        </div>
-
-        <div class="form-control">
-            <%= user.comuna_usuario  %>
-        </div>
+            <select name="comunasSelect"  id="comunasSelect" class="form-control col-md-12">
+              <% comunas.forEach((comuna) => { %>
+              <option <%= user.comuna_usuario === comuna.id_comuna ? 'selected' : '' %> value="<%= comuna.id_comuna %>" >
+                <%= comuna.nombre_comuna %>
+              </option>
+              <%})%>
+          </select>                  
+          </div>
 
         <div class="form-group">
             <strong>Email:</strong>
-        </div>
-
-        <div class="form-control">
-            <%= user.email_usuario %>
+            <input type="text" id="email_usuario" name="email_usuario" class="form-control col-md-12" placeholder="RUN" value="<%= user.email_usuario %>">
         </div>
 
         <div class="form-group">
             <strong>Fono:</strong>
-        </div>
-
-        <div class="form-control">
-            <%= user.fono_usuario %>
+            <input type="text" id="fono_usuario" name="fono_usuario" class="form-control col-md-12"
+            placeholder="RUN" value="<%= user.fono_usuario %>">            
         </div>
 
         <div class="form-group">
@@ -120,10 +128,66 @@
 </div>
 <br>
 <p>
-    <input onclick="document.location.href='/editeUser/<%= user.run_usuario %>'" type="button" value="Modificar" class="btn btn-outline-success" />
+    <input type="submit" value="Modificar" class="btn btn-outline-success" />
 </p>
 </form>
 </div>
 <br>
 </body>
 </html>
+
+<script>
+    const serialize_form = (form) =>
+      JSON.stringify(
+        Array.from(new FormData(form).entries()).reduce(
+          (m, [key, value]) => Object.assign(m, { [key]: value }),
+          {}
+        )
+      );
+
+    $("#selectRegion").change(function () {
+      var regionSelected = $("#selectRegion").find(":selected").val();
+      console.log(regionSelected)
+      $.ajax({
+        url: `/regiones/${regionSelected}/comunas`,
+        processData: false,
+        contentType: false,
+        type: "get",
+        success: function (comunas) {
+          $('#comunasSelect')
+            .find('option')
+            .remove()
+            .end()
+          $("#comunasSelect").removeAttr('disabled');
+          comunas.data.forEach((comuna) => {
+            $("#comunasSelect").append(`<option value="${comuna.id_comuna}">${comuna.nombre_comuna} </option>`)
+          })
+        }
+      })
+    });
+
+    $('#userEdit').submit(async (e) => {
+			event.preventDefault(e)
+      const reservaHoraDatos = $("form").serialize()
+      const userId = $("#iduser").val();
+      $.ajax({
+				url: `/editar/${userId}`,
+				processData: false,
+				contentType: false,
+				type: 'PUT',
+				contentType: "application/x-www-form-urlencoded;charset=ISO-8859-15",
+      	        dataType   : "json",				
+				data: reservaHoraDatos,
+				success: function(response){
+          console.log(response)
+          if (response.error === false) {
+            $.notify('Usuario actualizado', 'success')
+          }
+				},
+        error: function(error) {
+          console.log('ERROR STATUS', error.status)
+          $.notify('Problemas internos', 'error')
+        }
+			});	
+    })
+  </script>
