@@ -28,6 +28,7 @@
       <div id="test"></div>
       <br />
       <div>
+        
         <% if (created) { %>
         <div class="alert alert-success" role="alert">
           Usuario creado correctamente
@@ -112,10 +113,9 @@
             id="selectRegion"
             class="form-control col-md-4"
           >
-            <option value=""> Seleccione Region</option>
+            <option value="">Seleccione Region</option>
             <% regiones.forEach((region) => { %>
             <option value="<%= region.idregion %>">
-              
               <%= region.nombre_region %>
             </option>
             <%})%>
@@ -189,19 +189,21 @@
   <script>
     $("#selectRegion").change(function () {
       var regionSelected = $("#selectRegion").find(":selected").val();
-      console.log(regionSelected)
+      console.log(regionSelected);
       $.ajax({
         url: `/regiones/${regionSelected}/comunas`,
         processData: false,
         contentType: false,
         type: "get",
         success: function (comunas) {
-          $("#comunasSelect").removeAttr('disabled');
+          $("#comunasSelect").removeAttr("disabled");
           comunas.data.forEach((comuna) => {
-            $("#comunasSelect").append(`<option value="${comuna.id_comuna}">${comuna.nombre_comuna} </option>`)
-          })
-        }
-      })
+            $("#comunasSelect").append(
+              `<option value="${comuna.id_comuna}">${comuna.nombre_comuna} </option>`
+            );
+          });
+        },
+      });
     });
   </script>
 </section>

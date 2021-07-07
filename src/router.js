@@ -81,12 +81,17 @@ router.get('/login', (req, res) => { res.render('login', {layout: './Shared/layo
 router.get('/mision', (req, res) => { res.render('mision', {layout: './Shared/layout'}) });
 router.get('/contacto', (req, res) => { res.render('contacto', {layout: './Shared/layout'}) });
 router.get('/registrar', async (req, res) => { 
-  res.render('registrar', {layout: './Shared/layout', created: null, regiones: await getRegion()})
+  if (req.user) {
+    res.render('registrar', {layout: './Shared/layout', created: null, regiones: await getRegion()})
+  } else {
+    res.render('registrar', {layout: './Shared/layout_login', created: null, regiones: await getRegion()})
+  }
+  
  });
 
 // Crud Usuarios
 router.get('/users',verifyUserLogin, (req, res) => { res.render('users', {layout: './Shared/layout_login', user: req.user}) }); 
-router.get('/crear',verifyUserLogin, (req, res) => { res.render('crear', {layout: './Shared/layout_login', created: null, user: req.user}) }); 
+router.get('/crear',verifyUserLogin, usuario.crearFromUser); 
 router.get('/visualizar',verifyUserLogin, (req, res) => { res.render('visualizar', {layout: './Shared/layout_login', user: req.user}) });
 router.get('/eliminar', verifyUserLogin, (req, res) => { res.render('eliminar', {layout: './Shared/layout_login', user: req.user}) });
 router.get('/modificar',verifyUserLogin, (req, res) => { res.render('modificar', {layout: './Shared/layout_login', user: req.user}) });
