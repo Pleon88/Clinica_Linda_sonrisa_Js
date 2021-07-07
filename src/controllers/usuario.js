@@ -122,7 +122,9 @@ const create = async (req, res) => {
       })
     );
   // return res.status(200).json({usuarios})
-  if (req.user) {
+    const {user} = req
+
+  if (user !== undefined) {
     return res.render(
       res.render("crear", {
         layout: "./Shared/layout_login",
