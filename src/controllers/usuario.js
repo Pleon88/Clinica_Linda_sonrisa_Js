@@ -66,11 +66,22 @@ const create = async (req, res) => {
   req.body.fecha_creacion = new Date();
   req.body.idTipo_usuario = req.body.idTipo_usuario ? req.body.idTipo_usuario : 5;
   req.body.status_usuario = req.body.status_usuario  ? req.body.status_usuario  : 'Activo'
+  if (req.body.selectRegion) {
+    req.body.region_usuario = Number(req.body.selectRegion)
+    delete req.body.selectRegion
+  }
+  if (req.body.comunasSelect) {
+    req.body.comuna_usuario = Number(req.body.comunasSelect)
+    delete req.body.comunasSelect
+  }
 
   const usuarios = await Model.Usuario.create(req.body).catch((error) => error)
-  if (usuarios.message) return res.render(res.render('registrar', {layout: './Shared/layout', created: false }))
+  if (usuarios.message) return res.render(res.render('registrar', {layout: './Shared/layout', 
+  created: false,
+  regiones: await getRegion(),
+}))
   // return res.status(200).json({usuarios})
-  return res.render(res.render('registrar', {layout: './Shared/layout', created: true }))
+  return res.render(res.render('registrar', {layout: './Shared/layout', created: true, regiones: await getRegion(), }))
 };
 
 const createU = async (req, res) => {
